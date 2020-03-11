@@ -34,16 +34,15 @@ You may install other simulators to accelerate the speed of simulation. For exam
 
 ## Clone Github Repositories
 
-TODO: Link to update
 
 ```
-git clone git@github.com:OpenCAPI/oc-accel.git
+git clone https://github.com/OpenCAPI/oc-accel
 cd oc-accel
 git submodule init
 git submodule update
 
 cd ..
-git clone git@github.com:OpenCAPI/ocse.git
+git clone https://github.com/OpenCAPI/ocse
 ```
 
 It's better to have `ocse` stay in the same directory parallel to `oc-accel`. That is the default path of `$OCSE_ROOT`. Or you need to assign `$OCSE_ROOT` explicitly in `snap_env.sh`.

@@ -10,42 +10,32 @@ There are two ways to program FPGA:
 
 This is the default way to program FPGA. 
 
-* Log on to Power9 server,  **TODO**: link to update
+* Log on to Power9 server, 
 
 ``` 
-$ git clone https://github.ibm.com/OC-Enablement/oc-utils/
+$ git clone https://github.com/OpenCAPI/oc-utils/
 $ make
 $ sudo make install
 ```
 
 * Copy the generated `hardware/build/Images/*.bin` from the development machine to Power9 server, and execute: 
 
-```
-sudo oc-flash-script <file.bin>
-```
- or for SPIx8 flash interface:
-
+For cards with SPIx8 Flash interface:
 ```
 $ sudo oc-flash-script <file_primary.bin> <file_secondary.bin>
 ```
 
-* If the previous flashing is not done correctly, you may need to delete the lock file manually.
+A `oc-reload` script is called automatically if the flash programming succeeds. This script reloads the bitstream from Flash and set up the OpenCAPI links again. 
 
-```
-$ rm -rf "/var/cxl/capi-flash-script.lock"
-```
+!!!Warning
+    AD9H7 card doesn't support above scripts temporally. (TODO)
 
-* Reboot system. Check if the device is valid by 
+* Check if the device is valid: 
 
 ```
 $ ls /dev/ocxl
 IBM,oc-snap.0007:00:00.1.0
 ```
-
-
-
-!!!Warning
-    oc-reset hasn't been verified. 
 
 ### Program FPGA chip
 
@@ -53,16 +43,16 @@ Not like "programming flash" which permanently stores FPGA image into the flash 
 
 Prepare a laptop/desktop machine and install **Vivado Lab**. Use USB cable to connect it to the FPGA board's USB-JTAG debugging port. Then in Vivado Lab, right click the FPGA device name and select "program device..."
 
-* For ZZ systems:
+
+Then run 
 ```
-$ sudo su
-$ echo 1 > /sys/class/ocxl/IBM\,oc-snap.0007\:00\:00.1.0/reset_adapter
+sudo oc-reset
 ```
 
-* For Mihawk/AC922 systems:
+This command will bring the new bitstream working.
 
 !!!Warning
-    **TODO**
+    Host Flashing and oc-reset require firmware and OS kernel support. Contact your system provider for detailed information. 
 
 ## Install libocxl
 
@@ -82,7 +72,7 @@ You can check the FPGA image version, name and build date/time by
 
 ```
 $ cd software/tools
-$ sudo ./snap_maint -vvv
+$ sudo ./oc_maint -vvv
 ```
 
 ```
