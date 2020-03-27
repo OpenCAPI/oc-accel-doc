@@ -53,9 +53,11 @@ You can simply edit the markdown (.md) files by any text editor, but it's better
 First, you need to git clone the oc-accel repository and go to `web-doc` directory. Make sure you are working on a branch other than master.
 
 ``` bash
-git clone git@github.com:OpenCAPI/oc-accel.git
-git checkout <A branch other than master>
-cd oc-accel/web-doc
+$ git clone git@github.com:OpenCAPI/oc-accel.git
+$ cd oc-accel/web-doc
+Create a branch if needed:
+  $ git branch <new-branch-name>
+$ git checkout <A branch other than master>
 ```
 
 The `docs` folder is where to put the markdown files, and the `mkdocs.yml` lists the website structure and global definitons. For example, this site has a structure like:
