@@ -6,8 +6,6 @@
 
 **OpenCAPI Acceleration Framework**, abbreviated as **OC-Accel**, the Integrated Development Environment (IDE) for creating application FPGA-based accelerators. By the nature of the FPGA, all of these types of accelerators are reconfigurable.
 
-Gene Was here
-
 The underlying enabling technology is OpenCAPI 3.0, the third generation coherent interface allowing processing elements (Code running on CPU cores and Logic implemented in FPGA chip) to seamlessly and coherently share host memory.
 
  All of the codes and materials are on Github <https://github.com/OpenCAPI/oc-accel>.
