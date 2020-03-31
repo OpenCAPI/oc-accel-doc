@@ -4,11 +4,11 @@
 ![oc-accel-bar](pictures/oc-accel-bar.png)
 
 
-**OpenCAPI Acceleration Framework**, abbreviated as **OC-Accel**, the Integrated Development Environment (IDE) for creating application FPGA-based accelerators. By the nature of the FPGA, all of these types of accelerators are reconfigurable.
+**OpenCAPI Acceleration Framework**, abbreviated as **OC-Accel**, the Integrated Development Environment (IDE) for creating application FPGA-based accelerators. By the nature of the FPGA, all these types of accelerators are reconfigurable.
 
-The underlying enabling technology is OpenCAPI 3.0, the third generation coherent interface allowing processing elements (Code running on CPU cores and Logic implemented in FPGA chip) to seamlessly and coherently share host memory.
+The underlying enabling technology is OpenCAPI 3.0, the third-generation coherent interface allowing processing elements (Code running on CPU cores and accelerator logic implemented in FPGA chip) to seamlessly and coherently share host memory.
 
- All of the codes and materials are on Github <https://github.com/OpenCAPI/oc-accel>.
+ All the code and related materials are contributed to Github here: <https://github.com/OpenCAPI/oc-accel>.
 
 ![conceptual_system] (pictures/conceptual_system.svg)
 The predecessor to OC-Accel was [SNAP](https://github.com/open-power/snap) for CAPI 2.0 and CAPI 1.0.
@@ -17,28 +17,28 @@ The predecessor to OC-Accel was [SNAP](https://github.com/open-power/snap) for C
 
 [OpenCAPI Consortium]: https://opencapi.org
 
-OpenCAPI (Open Coherent Accelerator Processor Interface) is the third generation coherent interface and is an open standard for coherent high performance bus interface. Driven by emerging, accelerated heterogeneous computing and advanced memory and storage solutions, it provides the open interface that allows any microprocessor to attach to:
+OpenCAPI (Open Coherent Accelerator Processor Interface) is the third-generation coherent interface and is an open standard for coherent high-performance bus interface. Driven by emerging, accelerated heterogeneous computing and advanced memory and storage solutions, it provides the open interface that allows any microprocessor to attach to:
 
 - Coherent user-level accelerators and I/O devices
 - Advanced memories accessible via read/write or user-level DMA semantics
 
-Its specifications and ecosystem are managed by an open forum [OpenCAPI Consortium]. And the reference designs are opened on Github <https://github.com/OpenCAPI/OpenCAPI3.0_Client_RefDesign>.
+Its specifications and ecosystem are managed by the [OpenCAPI Consortium]. The reference designs are open source and available on Github at the <https://github.com/OpenCAPI/OpenCAPI3.0_Client_RefDesign> address.
 
 
 ## What can I do with OC-Accel
 
-OC-Accel helps to easily create FPGA-based acceleration engines with OpenCAPI interfaces. More details can be found in the "**User Guide**" tab for a more detailed step-to-step guide.
-Generally, creating an accelerator includes the steps as below:
+OC-Accel helps to easily create FPGA-based acceleration engines with OpenCAPI interfaces. More details and a step-by-step guide can be found in the "**User Guide**" tab.
+Generally, creating an accelerator includes the following steps:
 
 
 
 ### Develop your accelerator
 
-* Many applications are developed using only software. However, there are classes of real-time applications in which the software cannot process the required data in a prescribed time period.
+* Many applications are developed using only software. However, there are classes of real-time applications for which the software cannot process the required data in a prescribed time period.
 * Analysis tools such as statistical performance monitors or profiling tools can help to identify compute-intensive algorithms. These algorithms are sometimes called bottlenecks, hotspots or choke-points. Examples of such choke points are: streaming IO, highly complex math functions, operations using extremely large block processing, etc.
-* Adding dedicated and customized hardware to offload these compute-intensive functions greatly improve throughput. These "hot-spot" function are moved to FPGA. This function is also mentioned as "**action**" in the following description. 
-* **Software/hardware partition**: After isolating the functions to run on FPGA side, the parameters need to be nailed down. It can be described as a `job` data structure. Learning the examples (See in "**Examples**" tab) as an start. A few [libosnap API functions] help you manipulate the FPGA card and the software/hardware interface. 
-* **Work on the hardware action:** Write the "hardware action" in a supported programming language, such as Vivado HLS or Verilog/VHDL. Together with the software part which invokes this hardware action, OC-Accel supports running co-simulation to verify the correctness. After the co-simulation is done, generate the FPGA bit image. 
+* Adding dedicated and customized hardware to offload these compute-intensive functions greatly improve throughput. These "hot-spot" functions are moved to FPGA. These functions are also called "**actions**" in this description. 
+* **Software/hardware partition**: After isolating the functions to run on FPGA side, the parameters need to be nailed down. This can be described as a `job` data structure. Learn the examples (see "**Examples**" tab) for a start. A few [libosnap API functions] will help you manipulate the FPGA card and the software/hardware interface. 
+* **Work on the hardware action:** Write the "hardware action" in a supported programming language, such as Vivado HLS or Verilog/VHDL. Together with the software part which invokes this hardware action, OC-Accel supports running co-simulation to verify correctness. After the co-simulation is done, generate the FPGA bit image. 
 * The development environment for OC-Accel is Linux with Xilinx Vivado installed. You can also install other supported simulators to get better simulation speed.
 * The FPGA card (target hardware) is **NOT** required during architecture development.
 
@@ -55,13 +55,13 @@ Generally, creating an accelerator includes the steps as below:
 
 [repository structure]: ./repository/
 
-Now let's have a glance at the diagram of OC-Accel framework. For more details about the directories, files and design hierarchy, see in [repository structure] page.
+Now let's have a glance at the diagram of OC-Accel framework. For more details about the directories, files and design hierarchy, see the [repository structure] page.
 
 ![oc-accel-bridge](pictures/oc-accel-bridge.svg)
 
 The framework hardware consists of:
 
-* TLx/DLx: Transaction layer and datalink layer of OpenCAPI device.
+* TLx/DLx: Transaction layer and Datalink layer of OpenCAPI device.
 * cfg: Config subsystem of OpenCAPI
 * snap_core: In Bridge mode, it provides the protocol translation for two directions. 
     * Module "mmio" converts TLx commands from Host Server to AXI4-Lite slave interface.
@@ -112,14 +112,14 @@ For FPGA vendors, it's easy to enable a new FPGA card with OpenCAPI interface to
 
 ## Supported Servers for deployment
 
-OpenCAPI interface needs the support on processor side. Today you can run OpenCAPI acceleration on POWER9 servers with LaGrange or Monza processors installed. Today you can choose:
+OpenCAPI interface needs the support on the processor side. Today you can run OpenCAPI acceleration on POWER9 servers with LaGrange or Monza processors installed. Today you can choose:
 
-LaGrange processor based systems:
+LaGrange processor-based systems:
 
 * IPS FP5290
-* Wisrton Mihawk
+* Wistron Mihawk
 
-Monza processor based systems:
+Monza processor-based systems:
 
 * IBM AC922 (an Acorn card is also required.)
 
@@ -132,7 +132,7 @@ Submit an "Issue" on the GitHub.
 There are two ways: 
 
 1. Use the "Search" button on the menu bar (up right). Or search the opened webpage by `Ctrl+F`.
-2. Git clone this repository and use `grep` or any of your favorite tools to search "web-doc" folder in a terminal. All of the contents on this website are plain text so you can search them easily. For example:
+2. Git clone this repository and use `grep` or any of your favorite tools to search "web-doc" folder in a terminal. All content on this website is plain text so you can search easily. For example:
 
 ```
 cd web-doc
@@ -145,9 +145,9 @@ grep KEYWORD * -r
 [Migration Guide]: user-guide/9-migrate
 [here]: https://github.com/open-power/snap/#31-fpga-card-selection
 
-OpenCAPI is actually the third generation of [CAPI technology]. That's why its version starts from OpenCAPI3.0. The same acceleration framework for CAPI1.0 and CAPI2.0 is also an open-source git repository at <https://github.com/open-power/snap>.
+OpenCAPI is actually the third generation of [CAPI technology]. That's why its version starts from OpenCAPI3.0. The same acceleration frameworks for CAPI1.0 and CAPI2.0 are called SNAP1.0/2.0 and are available in an open-source git repository at the <https://github.com/open-power/snap> address.
 
-Correspondingly, we call that SNAP1.0/2.0. The supported cards can be found [here].
+The supported cards can be found [here].
 
 * SNAP1.0 runs on POWER8 servers, with PCIe Gen3x8 cards. 
 
@@ -160,12 +160,12 @@ Generally, your actions running on SNAP1.0/2.0 can be moved to OC-Accel directly
 
 # From FPGA to ASIC
 
-OC-Accel, with the [OpenCAPI3.0 Device Reference designs] together, allow people to move design from FPGA to ASIC easily, obtaining higher clock frequency and higher logic density.
+OC-Accel, together with the [OpenCAPI3.0 Device Reference designs], allow people to move their design from FPGA to ASIC easily in order to achieve higher clock frequency and logic density.
 
 [OpenCAPI3.0 Device Reference designs]: https://github.com/OpenCAPI/OpenCAPI3.0_Client_RefDesign
 
 
-OC-Accel has implemented many scripts based on Vivado tool, but all of the components and workflow scripts are open-sourced. The steps of how to construct a project and perform software/hardware co-simulation are clear and easy to manipulate. After replacing some Xilinx IPs (like PLL, RAM, DDR Controller and PHY Serdes) with the selected Foundry IPs, the full oc_fpga_top design is suitable for the ASIC tape out, which brings an even higher-performance OpenCAPI ASIC device.
+OC-Accel has implemented many scripts based on the Vivado tool, but all the components and workflow scripts are open-sourced. The steps to construct a project and perform software/hardware co-simulation are clear and easy to manipulate. After replacing some Xilinx IPs (like PLL, RAM, DDR Controller and PHY Serdes) with the selected Foundry's IPs, the full oc_fpga_top design is suitable for ASIC tape out, resulting in an even higher-performance OpenCAPI ASIC device.
 
 
 
