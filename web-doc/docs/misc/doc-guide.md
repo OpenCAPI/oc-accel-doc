@@ -100,6 +100,9 @@ Now it's time to work with an editor (i.e, typora) to write the documents. You a
 In your `terminal` (MacOS or Linux), or `cmd` (Windows), start a serve process:
 
 ``` bash
+# enter in the directory where mkdocs.yml is located
+cd ~/oc-accel-doc/web-doc
+#launch a local webserver to test your mods
 mkdocs serve
 ```
 

@@ -101,12 +101,12 @@ OC-Accel framework needs a FPGA card with OpenCAPI interface, and <u>a Slim-SAS 
 [Alphadata 9V3]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9v3
 [Alphadata 9H3]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h3
 [Alphadata 9H7]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h7
-
-[New board support]: ./deep-dive/board-package
+[Bittware 250-SoC]: Alphadata9H7https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h7
 
 * [Alphadata 9V3]
 * [Alphadata 9H3]
 * [Alphadata 9H7]
+* [Bittware 250-SoC]
 
 For FPGA vendors, it's easy to enable a new FPGA card with OpenCAPI interface to run OC-Accel, go to [New board support] page to learn how to.
 
@@ -118,10 +118,11 @@ LaGrange processor-based systems:
 
 * IPS FP5290
 * Wistron Mihawk
+* IBM IC922
 
 Monza processor-based systems:
 
-* IBM AC922 (an Acorn card is also required.)
+* IBM AC922 (an Acorn card is also required in place of one GPU to get the OpenCAPI links)
 
 # How to report an issue
 
