@@ -248,7 +248,7 @@
 </ul>
 <h2 id="website-structure">Website Structure</h2>
 <p>First, you need to git clone the oc-accel repository and go to <code>web-doc</code> directory. Make sure you are working on a branch other than master.</p>
-<pre><code class="bash">$ git clone git@github.com:OpenCAPI/oc-accel.git
+<pre><code class="bash">$ git clone git@github.com:OpenCAPI/oc-accel-doc.git
 $ cd oc-accel/web-doc
 Create a branch if needed:
   $ git branch &lt;new-branch-name&gt;
@@ -287,7 +287,10 @@ $ git checkout &lt;A branch other than master&gt;
 <p>On your local desktop, edit markdown files under <code>web-doc/docs</code> folder. If you want to add/delete/rename the files, you also need to edit <code>mkdocs.yml</code></p>
 <p>Now it's time to work with an editor (i.e, typora) to write the documents. You also may need to learn some markdown syntax. Don't worry, that's easy. And please turn on the "spell checking" in your Markdown editor.</p>
 <p>In your <code>terminal</code> (MacOS or Linux), or <code>cmd</code> (Windows), start a serve process:</p>
-<pre><code class="bash">mkdocs serve
+<pre><code class="bash"># enter in the directory where mkdocs.yml is located
+cd ~/oc-accel-doc/web-doc
+#launch a local webserver to test your mods
+mkdocs serve
 </code></pre>
 
 <p>Then open a web browser, input <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a>. So whenever you save any markdown files, you can check the generated website immediately.</p>
@@ -382,7 +385,7 @@ mkdocs gh-deploy
                 </p>
                 <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
                 <div id="mkdocs-search-results"></div>
