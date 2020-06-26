@@ -101,7 +101,7 @@ OC-Accel framework needs a FPGA card with OpenCAPI interface, and <u>a Slim-SAS 
 [Alphadata 9V3]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9v3
 [Alphadata 9H3]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h3
 [Alphadata 9H7]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h7
-[Bittware 250-SoC]: Alphadata9H7https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h7
+[Bittware 250-SoC]: https://www.bittware.com/fpga/250-soc/
 
 * [Alphadata 9V3]
 * [Alphadata 9H3]
