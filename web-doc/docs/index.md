@@ -85,14 +85,18 @@ For more information, please refer to "**Deep Dive**" tab on the menu bar.
 
 Development is usually done on a **Linux (x86) computer**. 
 
-* [Xilinx Vivado]: OC-Accel currently supports Xilinx FPGA devices exclusively. For synthesis, simulation model and image build, the Xilinx Vivado 2018.3 or newer tool suites are recommended.
+* [Xilinx Vivado]: OC-Accel currently supports Xilinx FPGA devices exclusively. For synthesis, simulation model and image build, the Xilinx Vivado 2019.2 or newer tool suites are recommended.
 * Build process: Building the code and running the make environment requires the usual development tools `gcc, make, sed, awk`. If not installed already, the installer package `build-essential` will set up the most important tools.
-* Configuring the OC-Accel framework will call a standalone tool that is based on the Linux kernel [kconfig] tool. The `ncurses` library must be installed to use the menu-driven user interface for `kconfig`.
-* `pyhton` is optional but suggested to install. 2.7.x is fine.
+* Configuring the OC-Accel framework will call a standalone tool that is based on the Linux kernel [kconfig] tool. The `ncurses` library must be installed to use the simple menu-driven user interface for `kconfig`.
+* `python` is optional but suggested to install. 2.7.x is fine.
 * Simulators: You can use the build-in simulation `xsim` from Xilinx Vivado, or you can also use other simulators like Cadence `irun` or `xcelium`. 
 * For simulation, OC-Accel also relies on the `xterm` program.
+* Check the [System Firmware setup] page
 
 [kconfig]: https://github.com/guillon/kconfig
+[System Firmware setup]: ./system_firmware_setup
+
+
 
 ## Supported FPGA cards
 
@@ -148,7 +152,7 @@ grep KEYWORD * -r
 
 OpenCAPI is actually the third generation of [CAPI technology]. That's why its version starts from OpenCAPI3.0. The same acceleration frameworks for CAPI1.0 and CAPI2.0 are called SNAP1.0/2.0 and are available in an open-source git repository at the <https://github.com/open-power/snap> address.
 
-The supported cards can be found [here].
+The SNAP1.0/2.0 supported cards can be found [here].
 
 * SNAP1.0 runs on POWER8 servers, with PCIe Gen3x8 cards. 
 

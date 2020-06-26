@@ -190,7 +190,7 @@ First, you should commit and push your changes of source files (in `web-doc`) to
 Then you can simply publish website with just one step:
 
 ``` bash
-cd <PATH>/oc-accel/web-doc
+cd <PATH>/oc-accel-doc/web-doc
 mkdocs gh-deploy
 ```
 
