@@ -53,7 +53,7 @@ You can simply edit the markdown (.md) files by any text editor, but it's better
 First, you need to git clone the oc-accel repository and go to `web-doc` directory. Make sure you are working on a branch other than master.
 
 ``` bash
-$ git clone git@github.com:OpenCAPI/oc-accel.git
+$ git clone git@github.com:OpenCAPI/oc-accel-doc.git
 $ cd oc-accel/web-doc
 Create a branch if needed:
   $ git branch <new-branch-name>
