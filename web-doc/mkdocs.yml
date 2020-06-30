@@ -30,10 +30,12 @@ nav:
     - 'Registers': 'deep-dive/registers.md'
     - 'Hardware Logic': 'deep-dive/hardware-logic.md'
     - 'New Board Support': 'deep-dive/board-package.md'
+  - Appl. Notes:
+    - 'OC-AD9V3 installation in AC922'
   - Misc:
     - 'Document Guide': 'misc/doc-guide.md'
 theme:
-  name: yeti
+  name: mkdocs
 # Code block colors: Dark
 #  hljs_style: hybrid
 #  hljs_style: monokai
