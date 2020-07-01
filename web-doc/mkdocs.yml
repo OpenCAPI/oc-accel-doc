@@ -23,7 +23,8 @@ nav:
   - Examples:
     - 'hdl_example': 'actions-doc/hdl_example.md'
     - 'hdl_single_engine': 'actions-doc/hdl_single_engine.md'
-    - 'hls_helloworld': 'actions-doc/hls_helloworld.md'
+    - 'hls_helloworld_512': 'actions-doc/hls_helloworld_512.md'
+    - 'hls_helloworld_1024': 'actions-doc/hls_helloworld_1024.md'
     - 'hls_memcopy_1024': 'actions-doc/hls_memcopy_1024.md'
   - Deep Dive:
     - 'Software API': 'deep-dive/software-api.md'

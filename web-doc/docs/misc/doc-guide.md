@@ -78,7 +78,7 @@ nav:
   - Examples:
     - 'hdl_example': 'actions-doc/hdl-example.md'
     - 'hdl_helloworld': 'actions-doc/hdl-helloworld.md'
-    - 'hls_helloworld': 'actions-doc/hls-helloworld.md'
+    - 'hls_helloworld_1024': 'actions-doc/hls-helloworld_1024.md'
     - 'hls_memcopy': 'actions-doc/hls-memcopy.md'
   - Deep Dive:
     - 'SNAP Software API': 'deep-dive/libosnap.md'

@@ -128,6 +128,12 @@ Monza processor-based systems:
 
 * IBM AC922 (an Acorn card is also required in place of one GPU to get the OpenCAPI links)
 
+Make sure your check the required firmware at [system_firmware_setup]
+
+[system_firmware_setup]: ./system_firmware_setup.md
+
+
+
 # How to report an issue
 
 Submit an "Issue" on the GitHub. 

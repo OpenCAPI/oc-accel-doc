@@ -2,21 +2,6 @@ This page will introduce the basic environmental requests, tools, and general co
 
 # Prepare Environment
 
-## System Firmware Setup
-
-The system should be updated to the latest OP930 firmware release.
-
-This firmware package and instructions for applying it, can be found at [IBM FixCentral] under "8335-GTX" designation.
-
-| Setup             | Command to run                        | Recommended Release                              |
-| ----------------- | ------------------------------------- | ------------------------------------------------ |
-| OS type and level | cat /etc/os-release or lsb_release -a | Ubuntu 18.04 or 20.04 LTS / RH 7.6-ALT or RH 8.2 |
-| RW level          | sudo lsmcode                          | FW920.20 / BMC2.04                               |
-
-[IBM FixCentral]: https://www.ibm.com/support/fixcentral
-
-Note: When using RH7.6 -ALT release is required to support OpenCAPI on P9
-
 ## Basic Tools
 
 Firstly, you need to have an x86 machine for development with [Vivado Tool] and the license.
@@ -28,9 +13,9 @@ export PATH=$PATH:${XILINX_VIVADO}/bin
 ```
 
 !!!Note
-    OC-Accel works on Vivado 2018.2, 2018.3 and 2019.1
+    OC-Accel started on Vivado 2018.2, 2018.3 and 2019.1. It now best runs on 2019.2 for all cards.
 
-    For AD9H3 and AD9H7 cards with HBM, Vivado version is at least 2018.3
+    For AD9H3 and AD9H7 cards with HBM, Vivado version is at least 2019.2
 
 There is a file `setup_tools.ksh` in the root directory for reference. But for the beginning, only Vivado is required.
 
@@ -52,12 +37,8 @@ You may install other simulators to accelerate the speed of simulation. For exam
 
 ```
 git clone https://github.com/OpenCAPI/oc-accel
-cd oc-accel
-git submodule init
-git submodule update
-
-cd ..
-git clone https://github.com/OpenCAPI/ocse
+# note that subdirectory oc-bip containg the boards information will be automatically loaded as a submodule
+# note that ocse (the OC-ACCEL Simulation Engine) is also automatically loaded if required
 ```
 
 It's better to have `ocse` stay in the same directory parallel to `oc-accel`. That is the default path of `$OCSE_ROOT`. Or you need to assign `$OCSE_ROOT` explicitly in `snap_env.sh`.
