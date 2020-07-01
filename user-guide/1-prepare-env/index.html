@@ -113,7 +113,11 @@
 </li>
                                     
 <li>
-    <a href="../../actions-doc/hls_helloworld/" class="dropdown-item">hls_helloworld</a>
+    <a href="../../actions-doc/hls_helloworld_512/" class="dropdown-item">hls_helloworld_512</a>
+</li>
+                                    
+<li>
+    <a href="../../actions-doc/hls_helloworld_1024/" class="dropdown-item">hls_helloworld_1024</a>
 </li>
                                     
 <li>
@@ -201,10 +205,6 @@
             
             <li class="nav-item" data-level="1"><a href="#prepare-environment" class="nav-link">Prepare Environment</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#system-firmware-setup" class="nav-link">System Firmware Setup</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
             <li class="nav-item" data-level="2"><a href="#basic-tools" class="nav-link">Basic Tools</a>
               <ul class="nav flex-column">
               </ul>
@@ -244,31 +244,6 @@
 
 <p>This page will introduce the basic environmental requests, tools, and general commands to run OC-Accel flow.</p>
 <h1 id="prepare-environment">Prepare Environment</h1>
-<h2 id="system-firmware-setup">System Firmware Setup</h2>
-<p>The system should be updated to the latest OP930 firmware release.</p>
-<p>This firmware package and instructions for applying it, can be found at <a href="https://www.ibm.com/support/fixcentral">IBM FixCentral</a> under "8335-GTX" designation.</p>
-<table>
-<thead>
-<tr>
-<th>Setup</th>
-<th>Command to run</th>
-<th>Recommended Release</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OS type and level</td>
-<td>cat /etc/os-release or lsb_release -a</td>
-<td>Ubuntu 18.04 or 20.04 LTS / RH 7.6-ALT or RH 8.2</td>
-</tr>
-<tr>
-<td>RW level</td>
-<td>sudo lsmcode</td>
-<td>FW920.20 / BMC2.04</td>
-</tr>
-</tbody>
-</table>
-<p>Note: When using RH7.6 -ALT release is required to support OpenCAPI on P9</p>
 <h2 id="basic-tools">Basic Tools</h2>
 <p>Firstly, you need to have an x86 machine for development with <a href="https://www.xilinx.com/support/download.html">Vivado Tool</a> and the license.</p>
 <pre><code>export XILINX_VIVADO=&lt;...path...&gt;/Xilinx/Vivado/&lt;VERSION&gt;
@@ -278,8 +253,8 @@ export PATH=$PATH:${XILINX_VIVADO}/bin
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>OC-Accel works on Vivado 2018.2, 2018.3 and 2019.1</p>
-<p>For AD9H3 and AD9H7 cards with HBM, Vivado version is at least 2018.3</p>
+<p>OC-Accel started on Vivado 2018.2, 2018.3 and 2019.1. It now best runs on 2019.2 for all cards.</p>
+<p>For AD9H3 and AD9H7 cards with HBM, Vivado version is at least 2019.2</p>
 </div>
 <p>There is a file <code>setup_tools.ksh</code> in the root directory for reference. But for the beginning, only Vivado is required.</p>
 <p>Make sure you have <code>gcc</code>, <code>make</code>, <code>sed</code>, <code>awk</code>, <code>xterm</code> and <code>python</code> installed.
@@ -287,12 +262,8 @@ export PATH=$PATH:${XILINX_VIVADO}/bin
 <p>You may install other simulators to accelerate the speed of simulation. For example, <a href="https://www.cadence.com/content/cadence-www/global/en_US/home/tools/system-design-and-verification/simulation-and-testbench-verification/xcelium-parallel-simulator.html">Cadence xcelium</a>. See in <a href="../6-co-simulation/">co-simulation</a> for more information.</p>
 <h2 id="clone-github-repositories">Clone Github Repositories</h2>
 <pre><code>git clone https://github.com/OpenCAPI/oc-accel
-cd oc-accel
-git submodule init
-git submodule update
-
-cd ..
-git clone https://github.com/OpenCAPI/ocse
+# note that subdirectory oc-bip containg the boards information will be automatically loaded as a submodule
+# note that ocse (the OC-ACCEL Simulation Engine) is also automatically loaded if required
 </code></pre>
 
 <p>It's better to have <code>ocse</code> stay in the same directory parallel to <code>oc-accel</code>. That is the default path of <code>$OCSE_ROOT</code>. Or you need to assign <code>$OCSE_ROOT</code> explicitly in <code>snap_env.sh</code>.</p>
