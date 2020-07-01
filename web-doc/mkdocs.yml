@@ -31,7 +31,7 @@ nav:
     - 'Hardware Logic': 'deep-dive/hardware-logic.md'
     - 'New Board Support': 'deep-dive/board-package.md'
   - Appl. Notes:
-    - 'OC-AD9V3 installation in AC922'
+    - 'OC-AD9V3 installation in AC922': 'apps_notes/Installing_an_OC-AD9V3_on_AC922.md'
   - Misc:
     - 'Document Guide': 'misc/doc-guide.md'
 theme:
