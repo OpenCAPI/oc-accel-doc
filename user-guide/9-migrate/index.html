@@ -252,7 +252,7 @@
 <h2 id="data-width-change">Data width change</h2>
 <p>The AXI data port width of OC-Accel is 1024bit. But the actions developed in SNAP (CAPI1.0/2.0) use 512b. </p>
 <p>Please select 512b in Kconfig Menu. Then a dwidth_converter will be inserted automatically.</p>
-<p>![dwidtch-convertor] (pictures/9-dwidth-converter.svg)</p>
+<p><img alt="9-dwidth-converter" src="../pictures/9-dwidth-converter.svg" /></p>
 <p>All of the AXI4 features in SNAP are supported by OC-Accel, and it has added more. Read <a href="../../deep-dive/hardware-logic/">OC-Accel AXI4 feature list</a> for more details. </p>
 <h2 id="clock-frequency">Clock frequency</h2>
 <p>The default clock frequency in SNAP (CAPI1.0/2.0) was <strong>250MHz</strong>. There was no asynchronous logic between capi2-bsp, snap_core and action_wrapper so the frequency had to be adjusted together. </p>
@@ -354,7 +354,7 @@ static struct snap_funcs software_funcs = {
 };
 </code></pre>
 
-<p><strong>These functions have been deleted.</strong> The original purpose of <code>SNAP_CONFIG=CPU</code> is to provide a way to fall back to software execution when FPGA is not available. However, this actually can be easily done by higher level of application control, for example: </p>
+<p><strong>These functions have been removed.</strong> The original purpose of <code>SNAP_CONFIG=CPU</code> was to provide a way to fall back to software execution when FPGA is not available. However, this actually can be easily done by higher level of application control, for example: </p>
 <pre><code class="C">if (!snap_card_alloc_dev()) //Failed to open FPGA card
     call_original_software_function
 </code></pre>
@@ -362,7 +362,7 @@ static struct snap_funcs software_funcs = {
 <p>So there is no need to rewrite the original software function at all.</p>
 <p>The corresponding concept is <code>SNAP_CONFIG=FPGA</code> and it becomes the ONLY working mode in OC-Accel. So the variable <code>SNAP_CONFIG</code> has been deleted.</p>
 <h2 id="open-the-card">Open the card</h2>
-<p>OpenCAPI device name has a slight difference to SNAP1/2.</p>
+<p>OpenCAPI device name is slightly different compared to SNAP1/2.</p>
 <pre><code class="C">// Allocate the card that will be used
 if(card_no == 0)
     snprintf(device, sizeof(device)-1, &quot;IBM,oc-snap&quot;);
@@ -387,6 +387,9 @@ card = snap_card_alloc_dev(device, SNAP_VENDOR_ID_IBM, SNAP_DEVICE_ID_SNAP);
 <p class="admonition-title">Note</p>
 <p>These changes are only for HLS Actions</p>
 </div>
+<h3 id="action-types-convention">Action types convention</h3>
+<p>0x1014 is IBM's reference, action's IDs begining with a 2 (eg 0x1014<strong>2</strong>002 are conventionnaly HDL like actions (where actions is described with hardware design languages), while those with a 3 (eg 0x1014<strong>3</strong>008) are HLS like (actions are described using HLS tool)</p>
+<h3 id="snap-application-modificications">SNAP Application modificications</h3>
 <p>In <code>actions/&lt;hls_xxx&gt;/include/xxx.h</code>, define your ACTION_TYPE and RELEASE_LEVEL as following:</p>
 <pre><code class="C">// ------------ MUST READ -----------
 // ACTION_TYPE and RELEASE_LEVEL are automatically handled. 
@@ -394,14 +397,14 @@ card = snap_card_alloc_dev(device, SNAP_VENDOR_ID_IBM, SNAP_DEVICE_ID_SNAP);
 // 2. They will be extracted by hardware/setup/patch_version.sh
 // 3. And put into snap_global_vars.v
 // 4. Used by hardware/hls/action_wrapper.v
-#define ACTION_TYPE               0x10141008
+#define ACTION_TYPE               0x10143008
 #define RELEASE_LEVEL             0x00000022
 // For snap_maint, Action descriptions are decoded with the help of software/tools/snap_actions.h
 // Please modify this file so snap_maint can recognize this action.
 // ------------ MUST READ -----------
 </code></pre>
 
-<p>In <code>snap_attach_action</code>, just use <code>ACTION_TYPE</code>: </p>
+<p><code>In actions/&lt;hls_xxx&gt;/sw/xxx.c</code> when using  <code>snap_attach_action</code>, just use <code>ACTION_TYPE</code>: </p>
 <pre><code>action = snap_attach_action(card, ACTION_TYPE, action_irq, 60);
 </code></pre>
 
