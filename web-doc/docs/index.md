@@ -87,8 +87,9 @@ Development is usually done on a **Linux (x86) computer**.
 
 * [Xilinx Vivado]: OC-Accel currently supports Xilinx FPGA devices exclusively. For synthesis, simulation model and image build, the Xilinx Vivado 2019.2 or newer tool suites are recommended.
 * Build process: Building the code and running the make environment requires the usual development tools `gcc, make, sed, awk`. If not installed already, the installer package `build-essential` will set up the most important tools.
-* Configuring the OC-Accel framework will call a standalone tool that is based on the Linux kernel [kconfig] tool. The `ncurses` library must be installed to use the simple menu-driven user interface for `kconfig`.
-* `python` is optional but suggested to install. 2.7.x is fine.
+* Configuring the OC-Accel framework will automatically call a standalone tool that is based on the Linux kernel [kconfig] tool. The `ncurses` library must be installed to use the simple menu-driven user interface for `kconfig`.
+* For basic examples, `python` is optional but suggested to install. 2.7.x is fine to use optional configurations scripts.
+* When using the python based examples, `swig` will be used to define a local environment.
 * Simulators: You can use the build-in simulation `xsim` from Xilinx Vivado, or you can also use other simulators like Cadence `irun` or `xcelium`. 
 * For simulation, OC-Accel also relies on the `xterm` program.
 * Check the [System Firmware setup] page

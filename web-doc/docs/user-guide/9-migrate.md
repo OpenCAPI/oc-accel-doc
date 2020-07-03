@@ -5,7 +5,7 @@ The AXI data port width of OC-Accel is 1024bit. But the actions developed in SNA
 
 Please select 512b in Kconfig Menu. Then a dwidth_converter will be inserted automatically.
 
-![dwidtch-convertor] (pictures/9-dwidth-converter.svg)
+![9-dwidth-converter](./pictures/9-dwidth-converter.svg)
 
 All of the AXI4 features in SNAP are supported by OC-Accel, and it has added more. Read [OC-Accel AXI4 feature list] for more details. 
 
@@ -24,7 +24,7 @@ The default clock frequency for **action_wrapper** in OC-Accel is **200MHz**. As
 
 | SNAP (CAPI1.0/2.0) | OC-Accel (OpenCAPI3.0)|
 | ----    | ---- |
-| libcxl  | libocxl | 
+| libcxl  | libocxl |
 | libsnap | libosnap |
 
 
@@ -34,15 +34,15 @@ Many headers have changed from "snap" to "osnap" to avoid conflicts.
 
 | SNAP (CAPI1.0/2.0) | OC-Accel (OpenCAPI3.0) |
 | --- | --- |
-| snap_types.h | osnap_types.h | 
+| snap_types.h | osnap_types.h |
 | snap_tools.h | osnap_tools.h |
-| snap_queue.h | osnap_queue.h | 
-| snap_internal.h | osnap_internal.h| 
+| snap_queue.h | osnap_queue.h |
+| snap_internal.h | osnap_internal.h|
 | snap_hls_if.h | osnap_hls_if.h |
-| snap_m_regs.h | osnap_global_regs.h| 
+| snap_m_regs.h | osnap_global_regs.h|
 | snap_s_regs.h | N/A |
 | snap_regs.h | N/A |
-| libsnap.h | libosnap.h | 
+| libsnap.h | libosnap.h |
 
 
 There is a big change of the Register Map. OC-Accel has simplified and enlarged the Register Layout. 
@@ -83,7 +83,7 @@ static struct snap_funcs software_funcs = {
 	.card_ioctl = sw_card_ioctl,
 };
 ```
-**These functions have been deleted.** The original purpose of `SNAP_CONFIG=CPU` is to provide a way to fall back to software execution when FPGA is not available. However, this actually can be easily done by higher level of application control, for example: 
+**These functions have been removed.** The original purpose of `SNAP_CONFIG=CPU` was to provide a way to fall back to software execution when FPGA is not available. However, this actually can be easily done by higher level of application control, for example: 
 
 ``` C
 if (!snap_card_alloc_dev()) //Failed to open FPGA card
@@ -96,7 +96,7 @@ The corresponding concept is `SNAP_CONFIG=FPGA` and it becomes the ONLY working 
 
 ## Open the card
 
-OpenCAPI device name has a slight difference to SNAP1/2.
+OpenCAPI device name is slightly different compared to SNAP1/2.
 ``` C
 // Allocate the card that will be used
 if(card_no == 0)
@@ -125,6 +125,12 @@ if(action_irq)
 !!!Note
     These changes are only for HLS Actions
 
+### Action types convention
+
+0x1014 is IBM's reference, action's IDs begining with a 2 (eg 0x1014**2**002 are conventionnaly HDL like actions (where actions is described with hardware design languages), while those with a 3 (eg 0x1014**3**008) are HLS like (actions are described using HLS tool)
+
+### SNAP Application modificications
+
 In `actions/<hls_xxx>/include/xxx.h`, define your ACTION_TYPE and RELEASE_LEVEL as following:
 
 ``` C
@@ -134,14 +140,16 @@ In `actions/<hls_xxx>/include/xxx.h`, define your ACTION_TYPE and RELEASE_LEVEL 
 // 2. They will be extracted by hardware/setup/patch_version.sh
 // 3. And put into snap_global_vars.v
 // 4. Used by hardware/hls/action_wrapper.v
-#define ACTION_TYPE               0x10141008
+#define ACTION_TYPE               0x10143008
 #define RELEASE_LEVEL             0x00000022
 // For snap_maint, Action descriptions are decoded with the help of software/tools/snap_actions.h
 // Please modify this file so snap_maint can recognize this action.
 // ------------ MUST READ -----------
 ```
 
-In `snap_attach_action`, just use `ACTION_TYPE`: 
+
+
+`In actions/<hls_xxx>/sw/xxx.c` when using  `snap_attach_action`, just use `ACTION_TYPE`: 
 
 ```
 action = snap_attach_action(card, ACTION_TYPE, action_irq, 60);

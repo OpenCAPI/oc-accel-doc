@@ -4,7 +4,7 @@ This page will introduce the basic environmental requests, tools, and general co
 
 ## Basic Tools
 
-Firstly, you need to have an x86 machine for development with [Vivado Tool] and the license.
+Firstly, you need to have an x86 machine for development with [Vivado Tool] and the license (Vivado is not available on Power)
 
 ```
 export XILINX_VIVADO=<...path...>/Xilinx/Vivado/<VERSION>

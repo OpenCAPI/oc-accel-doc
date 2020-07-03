@@ -3,20 +3,23 @@
 ## snap_config
 ```
 cd oc-accel
+# either run automated python script
 ./ocaccel_workflow.py
+# or run step by step :
+make snap_config
 ```
 Then a KConfig window will popped up. If it doesn't, check [Required tools] and search 'kconfig' on the homepage.
 
 [Required tools]: ../../#required-tools-for-development
 
 
-![snap-config-blue](./pictures/2-snap-config-blue.png)
+![snap-config-blue](./pictures/2-kconfig_main_menu.png)
 
 Select HLS HelloWorld in "Action Type".
 
-![select-helloworld](./pictures/2-select-helloworld.png)
+![select-helloworld](./pictures/2-kconfig_hello_1024_menu.png)
 
-There are some other choices listed in the menu. Please input `OCSE_ROOT` path. Select `xsim` (the default simulator).
+There are some other choices listed in the menu. Please check `OCSE_ROOT` path if default is not used. Select `xsim` (the default Vivado simulator).
 
 To select a TRUE/FALSE feature, press "Y" or "N". After everything done, move cursor to "Exit".
 
@@ -31,8 +34,18 @@ export TIMING_LABLIMIT="-200"
 export OCSE_ROOT=<path_to_ocse>/ocse
 ```
 
+- ACTION_ROOT should refer to your selected choice in the previous menu
+
+- TIMINGS_LABLIMIT is refering to the hardware acceptation criteria. Should the hardware implementation not satisfy delay rules, for lab evaluation, we can afford to have some timings not fully respected in extreme conditions (voltages, temperature, etc ...).
+
+  Having a -200ns is generally considered fair for evaluation purposes.
+
+  Note that **0ns should be the production limit.** The actual value is reported at the end of the hardware preparation.
+
+- Finaly check the **OC**-accel **S**imulation **E**ngine location.
 
 ## Simulation
+
 **ocaccel-workflow.py** continues running and prints:
 
 ```
