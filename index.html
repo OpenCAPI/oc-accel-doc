@@ -121,7 +121,19 @@
 </li>
                                     
 <li>
+    <a href="actions-doc/hls_memcopy_512/" class="dropdown-item">hls_memcopy_512</a>
+</li>
+                                    
+<li>
     <a href="actions-doc/hls_memcopy_1024/" class="dropdown-item">hls_memcopy_1024</a>
+</li>
+                                    
+<li>
+    <a href="actions-doc/hls_image_filter/" class="dropdown-item">hls_image_filter</a>
+</li>
+                                    
+<li>
+    <a href="actions-doc/hls_helloworld_python/" class="dropdown-item">hls_helloworld_python</a>
 </li>
                                 </ul>
                             </li>
@@ -323,8 +335,9 @@ Generally, creating an accelerator includes the following steps:</p>
 <ul>
 <li><a href="https://www.xilinx.com/support/download.html">Xilinx Vivado</a>: OC-Accel currently supports Xilinx FPGA devices exclusively. For synthesis, simulation model and image build, the Xilinx Vivado 2019.2 or newer tool suites are recommended.</li>
 <li>Build process: Building the code and running the make environment requires the usual development tools <code>gcc, make, sed, awk</code>. If not installed already, the installer package <code>build-essential</code> will set up the most important tools.</li>
-<li>Configuring the OC-Accel framework will call a standalone tool that is based on the Linux kernel <a href="https://github.com/guillon/kconfig">kconfig</a> tool. The <code>ncurses</code> library must be installed to use the simple menu-driven user interface for <code>kconfig</code>.</li>
-<li><code>python</code> is optional but suggested to install. 2.7.x is fine.</li>
+<li>Configuring the OC-Accel framework will automatically call a standalone tool that is based on the Linux kernel <a href="https://github.com/guillon/kconfig">kconfig</a> tool. The <code>ncurses</code> library must be installed to use the simple menu-driven user interface for <code>kconfig</code>.</li>
+<li>For basic examples, <code>python</code> is optional but suggested to install. 2.7.x is fine to use optional configurations scripts.</li>
+<li>When using the python based examples, <code>swig</code> will be used to define a local environment.</li>
 <li>Simulators: You can use the build-in simulation <code>xsim</code> from Xilinx Vivado, or you can also use other simulators like Cadence <code>irun</code> or <code>xcelium</code>. </li>
 <li>For simulation, OC-Accel also relies on the <code>xterm</code> program.</li>
 <li>Check the <a href="./system_firmware_setup">System Firmware setup</a> page</li>

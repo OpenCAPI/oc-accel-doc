@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>New Board Support - OC-Accel Doc</title>
+        <title>hls_helloworld_python - OC-Accel Doc</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -100,61 +100,61 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../actions-doc/hdl_example/" class="dropdown-item">hdl_example</a>
+    <a href="../hdl_example/" class="dropdown-item">hdl_example</a>
 </li>
                                     
 <li>
-    <a href="../../actions-doc/hdl_single_engine/" class="dropdown-item">hdl_single_engine</a>
+    <a href="../hdl_single_engine/" class="dropdown-item">hdl_single_engine</a>
 </li>
                                     
 <li>
-    <a href="../../actions-doc/hls_helloworld_512/" class="dropdown-item">hls_helloworld_512</a>
+    <a href="../hls_helloworld_512/" class="dropdown-item">hls_helloworld_512</a>
 </li>
                                     
 <li>
-    <a href="../../actions-doc/hls_helloworld_1024/" class="dropdown-item">hls_helloworld_1024</a>
+    <a href="../hls_helloworld_1024/" class="dropdown-item">hls_helloworld_1024</a>
 </li>
                                     
 <li>
-    <a href="../../actions-doc/hls_memcopy_512/" class="dropdown-item">hls_memcopy_512</a>
+    <a href="../hls_memcopy_512/" class="dropdown-item">hls_memcopy_512</a>
 </li>
                                     
 <li>
-    <a href="../../actions-doc/hls_memcopy_1024/" class="dropdown-item">hls_memcopy_1024</a>
+    <a href="../hls_memcopy_1024/" class="dropdown-item">hls_memcopy_1024</a>
 </li>
                                     
 <li>
-    <a href="../../actions-doc/hls_image_filter/" class="dropdown-item">hls_image_filter</a>
+    <a href="../hls_image_filter/" class="dropdown-item">hls_image_filter</a>
 </li>
                                     
 <li>
-    <a href="../../actions-doc/hls_helloworld_python/" class="dropdown-item">hls_helloworld_python</a>
+    <a href="./" class="dropdown-item active">hls_helloworld_python</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Deep Dive <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../software-api/" class="dropdown-item">Software API</a>
+    <a href="../../deep-dive/software-api/" class="dropdown-item">Software API</a>
 </li>
                                     
 <li>
-    <a href="../registers/" class="dropdown-item">Registers</a>
+    <a href="../../deep-dive/registers/" class="dropdown-item">Registers</a>
 </li>
                                     
 <li>
-    <a href="../hardware-logic/" class="dropdown-item">Hardware Logic</a>
+    <a href="../../deep-dive/hardware-logic/" class="dropdown-item">Hardware Logic</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">New Board Support</a>
+    <a href="../../deep-dive/board-package/" class="dropdown-item">New Board Support</a>
 </li>
                                 </ul>
                             </li>
@@ -185,12 +185,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../hardware-logic/" class="nav-link">
+                                <a rel="prev" href="../hls_image_filter/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../apps_notes/Installing_an_OC-AD9V3_on_AC922/" class="nav-link">
+                                <a rel="next" href="../../deep-dive/software-api/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -215,7 +215,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#enable-a-new-fpga-card-to-oc-accel" class="nav-link">Enable a new FPGA card to OC-Accel</a>
+            <li class="nav-item" data-level="1"><a href="#hls_helloworld_python" class="nav-link">hls_helloworld_python</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -224,13 +224,12 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="enable-a-new-fpga-card-to-oc-accel">Enable a new FPGA card to OC-Accel</h1>
-<p>Create a folder in <code>hardware/oc-bip/board_support_packages/&lt;NEW_CARD&gt;</code></p>
-<p>Call the <code>make</code> process under <code>hardware/oc-bip/&lt;NEW_CARD&gt;</code></p>
-<p>Add the CARD_TYPE, and other specific IPs in OC-Accel <code>hardware/setup</code></p>
-<p>Modify the related CARD_TYPE related information in <code>software</code></p>
-<p>Add the card choice in Kconfig Menu <code>scripts/Kconfig</code></p>
-<p>TODO: More details to be put down.</p></div>
+<h1 id="hls_helloworld_python">hls_helloworld_python</h1>
+<p>This example uses a python described application (running on the host) to exercise an "hls" written action (the part running in the FPGA).</p>
+<p>The action is the exact same action as in the helloworld_1024 example.</p>
+<p>It can be checked in /action.Kconfig file that the ACTION_HALF_WIDTH bloc is not used for this example, so the interface uses the OpenCAPI 1024 bit bus.</p>
+<p>So the binary file to load into the FPGA is the same as the helloworld_1024 binary file.</p>
+<p>Usage is still described in the oc-accel repo at : https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_helloworld_python/README.md</p></div>
             </div>
         </div>
 
