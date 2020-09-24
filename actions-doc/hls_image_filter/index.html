@@ -221,6 +221,14 @@
             
             <li class="nav-item" data-level="1"><a href="#hls_image_filter" class="nav-link">hls_image_filter</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#code-location" class="nav-link">Code location:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#in-short" class="nav-link">In short:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -229,12 +237,15 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="hls_image_filter">hls_image_filter</h1>
+<p><img alt="oc-accel-bar" src="/../../docs/actions-doc/hls_image_filter.assets/oc-accel-bar.png" /></p>
+<h2 id="code-location">Code location:</h2>
+<p>Code can be found at:<a href="https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_image_filter/">https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_image_filter/</a> </p>
+<h2 id="in-short">In short:</h2>
 <p>This is an action is an example converted from CAPI2 and thus using HLS, 512 bits bus wide towards OpenCAPI interface which is 1024 bits wide.</p>
 <p>To achieve this a 1024 to 512b converter is introduced, as P9 OpenCAPI uses a 1024 bits wide bus.</p>
 <p>This allows older actions to be converted in a snap at the cost of lower performance.</p>
 <p>The goal is to convert into grayscale the pixels from a bitmap file when they contains too much red component. Other pixels are left unmodified.</p>
-<p><img alt="oc-accel-bar" src="../../pictures/oc-accel-bar.png" /></p>
-<p>![(/../../docs/actions-doc/hls_image_filter.assets/tiger.png)<img alt="tiger" src="../hls_image_filter.assets/tiger.png" /></p>
+<p><img alt="tiger" src="../hls_image_filter.assets/tiger.png" /></p>
 <p><img alt="" src="../hls_image_filter.assets/tiger_reference.png" /></p></div>
             </div>
         </div>
