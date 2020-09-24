@@ -29,7 +29,7 @@ To select a TRUE/FALSE feature, press "Y" or "N". After everything done, move cu
 
 Then it starts to execute many steps to build a simulation model. It needs several minutes. While waiting for it, open another terminal tab and try to get familiar with some environmental variables. Open `snap_env.sh` and check the very basic ones:
 ``` bash
-export ACTION_ROOT=<path_of_oc-accel>/actions/hls_helloworld
+export ACTION_ROOT=<path_of_oc-accel>/actions/hls_helloworld_1024
 export TIMING_LABLIMIT="-200"
 export OCSE_ROOT=<path_to_ocse>/ocse
 ```
@@ -46,30 +46,37 @@ export OCSE_ROOT=<path_to_ocse>/ocse
 
 ## Simulation
 
+If your were running in script mode:
+
 **ocaccel-workflow.py** continues running and prints:
+
+or simply run:
+
+`make sim`
+
+
 
 ```
 SNAP Configured
 You've got configuration like:
-	ACTION_ROOT	/afs/vlsilab.boeblingen.ibm.com/data/vlsi/eclipz/c14/usr/luyong/p9nd2/oc_dev/oc-accel/actions/hls_helloworld
+	ACTION_ROOT	/home/castella/oc-accel/actions/hls_helloworld_1024
 	FPGACARD	AD9V3
 	FPGACHIP	xcvu3p-ffvc1517-2-e
 	SIMULATOR	xsim
 	CAPI_VER	opencapi30
 	OCSE_ROOT	../ocse
 --------> Environment Check
-vivado	 installed as	/afs/bb/proj/fpga/xilinx/Vivado/2018.3/bin/vivado
-gcc	 installed as	/bin/gcc
-xterm	 installed as	/bin/xterm
-OCSE path /afs/vlsilab.boeblingen.ibm.com/data/vlsi/eclipz/c14/usr/luyong/p9nd2/oc_dev/ocse is valid
-SNAP ROOT /afs/vlsilab.boeblingen.ibm.com/data/vlsi/eclipz/c14/usr/luyong/p9nd2/oc_dev/oc-accel is valid
+gcc	 installed as	/usr/bin/gcc
+vivado	 installed as	/opt/Xilinx/Vivado/2019.2/bin/vivado
+xterm	 installed as	/usr/bin/xterm
+OCSE path /home/castella/ocse is valid
+SNAP ROOT /home/castella/oc-accel is valid
 Environment check PASSED
 --------> Make the simulation model
-Runnig ... check ./snap_workflow.make_model.log for details of full progress
-[CREATE_SNAP_IPs.....] start - [===========                  ] 37%
-
+Runnig ... check ./ocaccel_workflow.make_model.log for details of full progress
+FINISHED! - [=============================] 100%
 ```
-Then a Xterm window will popped up. (If it doesn't, check if you have installed it by typing `xterm` in your terminal.)
+Then a Xterm window will pop up. (If it doesn't, check if you have installed it by typing `xterm` in your terminal.)
 ![xterm-window](./pictures/2-xterm-window.png)
 
 This Xterm window is where you run your application (software part). You can run anything as many times as you want in the xterm window, just like running in the terminal of a real server with FPGA card plugged.

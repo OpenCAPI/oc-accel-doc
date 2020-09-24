@@ -25,7 +25,12 @@ nav:
     - 'hdl_single_engine': 'actions-doc/hdl_single_engine.md'
     - 'hls_helloworld_512': 'actions-doc/hls_helloworld_512.md'
     - 'hls_helloworld_1024': 'actions-doc/hls_helloworld_1024.md'
+    - 'hls_memcopy_512' : 'actions-doc/hls_memcopy_512.md'
     - 'hls_memcopy_1024': 'actions-doc/hls_memcopy_1024.md'
+    - 'hls_image_filter': 'actions-doc/hls_image_filter.md'
+    - 'hls_helloworld_python': 'actions-doc/hls_helloworld_python.md'
+    - 'hls_decimal_mult': 'actions-doc/hls_decimal_mult.md'
+
   - Deep Dive:
     - 'Software API': 'deep-dive/software-api.md'
     - 'Registers': 'deep-dive/registers.md'
