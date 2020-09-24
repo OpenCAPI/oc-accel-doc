@@ -135,6 +135,10 @@
 <li>
     <a href="./" class="dropdown-item active">hls_helloworld_python</a>
 </li>
+                                    
+<li>
+    <a href="../hls_decimal_mult/" class="dropdown-item">hls_decimal_mult</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -190,7 +194,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../deep-dive/software-api/" class="nav-link">
+                                <a rel="next" href="../hls_decimal_mult/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -217,6 +221,18 @@
             
             <li class="nav-item" data-level="1"><a href="#hls_helloworld_python" class="nav-link">hls_helloworld_python</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#code-location" class="nav-link">Code location:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#in-short" class="nav-link">In short:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#users-guide" class="nav-link">Users' Guide:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -225,11 +241,138 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="hls_helloworld_python">hls_helloworld_python</h1>
-<p>This example uses a python described application (running on the host) to exercise an "hls" written action (the part running in the FPGA).</p>
+<h2 id="code-location">Code location:</h2>
+<p>Code can be found at:<a href="https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_helloworld_python/">https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_helloworld_python/</a> </p>
+<h2 id="in-short">In short:</h2>
+<p>This example provides a simple base allowing to discover OC-ACCEL. It uses a python described application (running on the host) to exercise an "hls" written action (the part running in the FPGA).</p>
 <p>The action is the exact same action as in the helloworld_1024 example.</p>
 <p>It can be checked in /action.Kconfig file that the ACTION_HALF_WIDTH bloc is not used for this example, so the interface uses the OpenCAPI 1024 bit bus.</p>
-<p>So the binary file to load into the FPGA is the same as the helloworld_1024 binary file.</p>
-<p>Usage is still described in the oc-accel repo at :<a href="https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_helloworld_python/README.md">https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_helloworld_python/README.md</a> </p></div>
+<p>Hence the binary file to load into the FPGA is the same as the helloworld_1024 binary file.</p>
+<h2 id="users-guide">Users' Guide:</h2>
+<p>Python code is changing characters case of a user phrase</p>
+<ul>
+<li>​ code can be executed on the CPU (will transform all characters to lower case)</li>
+<li>​    code can be simulated (will transform all characters to upper case in simulation)</li>
+<li>​    code can then run in hardware when the FPGA is programmed (will transform all characters to upper case in hardware)</li>
+</ul>
+<p>The example code uses the copy mechanism to get/put the file from/to system host memory to/from DDR FPGA attached memory</p>
+<h3 id="prerequisites">Prerequisites:</h3>
+<p>Some packages may need to be installed on your system:</p>
+<pre><code># Installing python development library, swig and curl
+sudo apt-get install python3-dev python3-venv swig curl
+</code></pre>
+
+<h3 id="get-started-compilation">Get started - Compilation:</h3>
+<p>To get started use the following steps:</p>
+<pre><code>git clone https://github.com/OpenCAPI/oc-accel.git #if using regular https method
+git git@github.com:OpenCAPI/oc-accel.git  # if using ssh method with privileges
+git clone https://github.com/OpenCAPI/ocse
+cd oc-accel
+make snap_config        #select (X) HLS_helloworld_python 
+vim snap_env.sh -&gt; export SNAP_ROOT=/home/~/oc-accel  #or your oc-accel directory
+# Check ocse PATH if not default ~/ocse
+. snap_env.sh
+make software           # this will compile any required tools
+cd actions/hls_helloworld_python/sw
+python3 -m venv env     # to create a local dev environment
+                        # note you will have a &quot;env&quot; before the prompt to remind
+                        # you the local environment you work in
+source env/bin/activate # 
+pip3 install -r requirements.txt # to be improved : some errors might occur depending on environment
+make pywrap  # to compile the appropriate libraries for SWIG
+</code></pre>
+
+<h3 id="get-started-simulation">Get started - Simulation:</h3>
+<p>To launch a Python shell and use the OCSE (RTL simulation)</p>
+<ul>
+<li>Run action simulation in your swig env</li>
+</ul>
+<pre><code>cd ${SNAP_ROOT}
+make sim 
+</code></pre>
+
+<ul>
+<li>On the xTerm that pops-up:</li>
+</ul>
+<pre><code>oc_maint -vvv
+
+LD_LIBRARY_PATH=$OCSE_ROOT/libocxl/ python3
+# once inside python call the libs
+import sys
+import os
+
+snap_action_sw=os.environ['SNAP_ROOT'] + &quot;/actions/hls_helloworld_python/sw&quot;
+print(snap_action_sw)
+sys.path.append(snap_action_sw)
+
+import snap_helloworld_python
+
+input = &quot;Hello world. This is my first CAPI SNAP experience with Python. It's extremely fun&quot;
+output = &quot;11111111111111111111111111111111111111111111111111111111111111111111111111111111111111&quot;
+
+out, output = snap_helloworld_python.uppercase(input)
+
+print(&quot;Output from FPGA:&quot;+output)
+
+print(&quot;Output from CPU :&quot;+input.upper())
+
+exit() # from python shell
+
+exit # from xTerm
+</code></pre>
+
+<h3 id="_1"></h3>
+<h3 id="get-started-simulation-with-jupyter-notebook">Get started -Simulation with Jupyter Notebook</h3>
+<p>To launch a Jupyter Notebook and use the OCSE (RTL simulation)</p>
+<ul>
+<li>Run action simulation</li>
+</ul>
+<pre><code>cd ${SNAP_ROOT}
+make sim 
+</code></pre>
+
+<ul>
+<li>On the xTerm that pops-up:</li>
+</ul>
+<pre><code>oc_maint -vvv
+
+cp ../../../../actions/hls_helloworld_python/sw/snap_helloworld_python.py .
+cp ../../../../actions/hls_helloworld_python/sw/trieres_helloworld_cosim.ipynb .
+
+# For Jupyter:
+jupyter notebook trieres_helloworld_cosim.ipynb # and follow the instrunctions: Select every cell and run it with Ctrl+d
+
+# For Jupyter Lab:
+jupyter-lab trieres_helloworld_cosim.ipynb # and follow the instrunctions: Select every cell and run it with Ctrl+d
+
+Ctrl+c # kill Jupyter Notebook / Jupyter Lab
+
+exit # from xTerm
+</code></pre>
+
+<h3 id="_2"></h3>
+<h3 id="get-started-excution-on-p9">Get started - Excution on P9</h3>
+<p>To launch a Jupyter Notebook on P9 (on the FPGA card)</p>
+<ul>
+<li>Ensure you have compiled oc-accel's software on P9</li>
+</ul>
+<pre><code>cd ${SNAP_ROOT}
+make software
+</code></pre>
+
+<ul>
+<li>Continue as any action (you may need sudo when execution jupyter to have valid access rights for the card):</li>
+</ul>
+<pre><code>sudo oc_maint -vvv
+
+cd ${SNAP_ROOT}/actions/hls_helloworld_python/sw/
+
+sudo jupyter notebook trieres_helloworld.ipynb # and follow the instrunctions: Select every cell and run it with Ctrl+d
+
+Ctrl+c # kill Jupyter Notebook
+
+exit # from xTerm
+</code></pre></div>
             </div>
         </div>
 
