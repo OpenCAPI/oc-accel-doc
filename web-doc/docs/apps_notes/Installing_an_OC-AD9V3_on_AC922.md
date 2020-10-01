@@ -133,13 +133,16 @@ Important: libocxl requires root privileges to allow card exchanges (like reset,
 
 When using the card without sudo privileges, you get an normal error.
 
-Your administrator can provide user privileges as mentionned here:
+Your administrator can provide user privileges using this process:
 
-[https://github.com/OpenCAPI/oc-accel/blob/ef19522eae56f22fe3937a79b669855fc6c68b4c/software/tools/oc_maint.c#L117]: https://github.com/OpenCAPI/oc-accel/blob/ef19522eae56f22fe3937a79b669855fc6c68b4c/software/tools/oc_maint.c#L117
+- Permanently create a /etc/udev/rules.d/20-ocaccel.rules file including:
 
-https://github.com/OpenCAPI/oc-accel/blob/ef19522eae56f22fe3937a79b669855fc6c68b4c/software/tools/oc_maint.c#L117
+  ```
+  SUBSYSTEM=="ocxl", DEVPATH=="*/ocxl/IBM,oc-snap*", MODE="666", RUN="/bin/chmod 666 %S/%p/global_mmio_area"
+  ```
 
-
+- Reboot
+  
 
 ## Check that the cards are recognized as accelerators
 
@@ -201,7 +204,7 @@ sudo oc-flash-script my_user_image.bin
 Depending on the size of the FPGA board Flash devices, you may need 1or 2 binary files. AD9V3 card needs 2 binary files noted as primary and secondary. You will so call the loader with the 2 files in the following order:
 
 ```
-sudo oc-flash-script my_user_image_primary.binmy_user_image_secondary.bin
+sudo oc-flash-script my_user_image_primary.bin my_user_image_secondary.bin
 ```
 
 

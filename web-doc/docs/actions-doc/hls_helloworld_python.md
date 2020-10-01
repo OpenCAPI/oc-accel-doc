@@ -1,4 +1,6 @@
 # hls_helloworld_python
+![oc-accel-bar](../pictures/oc-accel-bar.png)
+
 ## Code location:
 
 Code can be found at:[https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_helloworld_python/](https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_helloworld_python/) 

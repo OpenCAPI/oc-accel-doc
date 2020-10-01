@@ -38,6 +38,7 @@ nav:
     - 'New Board Support': 'deep-dive/board-package.md'
   - Appl. Notes:
     - 'OC-AD9V3 installation in AC922': 'apps_notes/Installing_an_OC-AD9V3_on_AC922.md'
+    - 'OC-AD9H7 installation in IC922': 'apps_notes/Installing_an_OC-AD9H7_on_IC922.md'
   - Misc:
     - 'Document Guide': 'misc/doc-guide.md'
 theme:
