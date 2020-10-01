@@ -169,6 +169,10 @@
 <li>
     <a href="./" class="dropdown-item active">OC-AD9V3 installation in AC922</a>
 </li>
+                                    
+<li>
+    <a href="../Installing_an_OC-AD9H7_on_IC922/" class="dropdown-item">OC-AD9H7 installation in IC922</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -194,7 +198,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../misc/doc-guide/" class="nav-link">
+                                <a rel="next" href="../Installing_an_OC-AD9H7_on_IC922/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -377,8 +381,14 @@ sudo make install
 <h2 id="privileges">Privileges</h2>
 <p>Important: libocxl requires root privileges to allow card exchanges (like reset, oc_maint, usage in general).</p>
 <p>When using the card without sudo privileges, you get an normal error.</p>
-<p>Your administrator can provide user privileges as mentionned here:</p>
-<p>https://github.com/OpenCAPI/oc-accel/blob/ef19522eae56f22fe3937a79b669855fc6c68b4c/software/tools/oc_maint.c#L117</p>
+<p>Your administrator can provide user privileges using this process:</p>
+<ul>
+<li>Permanently create a /etc/udev/rules.d/20-ocaccel.rules file including:</li>
+</ul>
+<p><code>SUBSYSTEM=="ocxl", DEVPATH=="*/ocxl/IBM,oc-snap*", MODE="666", RUN="/bin/chmod 666 %S/%p/global_mmio_area"</code></p>
+<ul>
+<li>Reboot</li>
+</ul>
 <h2 id="check-that-the-cards-are-recognized-as-accelerators">Check that the cards are recognized as accelerators</h2>
 <p>Check that the cards are recognized by the Firmware and the OS</p>
 <pre><code>lspci|grep accel
@@ -414,7 +424,7 @@ If no card is found with this command, then your 9V3 card may not have a OpenCAP
 </code></pre>
 
 <p>Depending on the size of the FPGA board Flash devices, you may need 1or 2 binary files. AD9V3 card needs 2 binary files noted as primary and secondary. You will so call the loader with the 2 files in the following order:</p>
-<pre><code>sudo oc-flash-script my_user_image_primary.binmy_user_image_secondary.bin
+<pre><code>sudo oc-flash-script my_user_image_primary.bin my_user_image_secondary.bin
 </code></pre>
 
 <h2 id="running-the-test-image-if-card-has-been-already-programmed-with-a-oc-image">Running the Test Image if card has been already programmed with a OC image</h2>
