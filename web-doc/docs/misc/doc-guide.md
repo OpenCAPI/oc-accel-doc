@@ -78,7 +78,7 @@ nav:
   - Examples:
     - 'hdl_example': 'actions-doc/hdl-example.md'
     - 'hdl_helloworld': 'actions-doc/hdl-helloworld.md'
-    - 'hls_helloworld': 'actions-doc/hls-helloworld.md'
+    - 'hls_helloworld_1024': 'actions-doc/hls-helloworld_1024.md'
     - 'hls_memcopy': 'actions-doc/hls-memcopy.md'
   - Deep Dive:
     - 'SNAP Software API': 'deep-dive/libosnap.md'
@@ -100,6 +100,9 @@ Now it's time to work with an editor (i.e, typora) to write the documents. You a
 In your `terminal` (MacOS or Linux), or `cmd` (Windows), start a serve process:
 
 ``` bash
+# enter in the directory where mkdocs.yml is located
+cd ~/oc-accel-doc/web-doc
+#launch a local webserver to test your mods
 mkdocs serve
 ```
 
@@ -187,7 +190,7 @@ First, you should commit and push your changes of source files (in `web-doc`) to
 Then you can simply publish website with just one step:
 
 ``` bash
-cd <PATH>/oc-accel/web-doc
+cd <PATH>/oc-accel-doc/web-doc
 mkdocs gh-deploy
 ```
 

@@ -50,13 +50,15 @@ We have several examples as references. Current action example list is:
 |------|--------|-------------|
 |[hdl_example] | VHDL | 512b hdl_example inherited from SNAP1/2. Optional FPGA DDR.|
 |[hdl_single_engine] | Verilog | 1024b example to send AXI read/write commands. Used to measure bandwidth and latency. No FPGA DDR.|
-|[hls_helloworld] | C/C++(HLS) | 512b example to read data from host, convert to CAPITAL case and write back. No FPGA DDR.|
+|[hls_helloworld_512] | C/C++(HLS) | 512b example to read data from host, convert to CAPITAL case and write back. No FPGA DDR.|
+| [hls_helloworld_1024] | C/C++(HLS) | 1024b example to read data from host, convert to CAPITAL case and write back. No FPGA DDR. |
 |[hls_memcopy_1024] | C/C++(HLS) | 1024b example to do memcopy. Enabled FPGA DDR. |
 
 
 [hdl_example]: ../../actions-doc/hdl_example/
 [hdl_single_engine]: ../../actions-doc/hdl_single_engine/
-[hls_helloworld]: ../../actions-doc/hls_helloworld/
+[hls_helloworld_512]: ../../actions-doc/hls_helloworld_512/
+[hls_helloworld_1024]: ../../actions-doc/hls_helloworld_1024/
 [hls_memcopy_1024]: ../../actions-doc/hls_memcopy_1024/
 
 According to the action category, copy the folder of a proper example from `actions` and name it.

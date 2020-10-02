@@ -1,12 +1,13 @@
 site_name: OC-Accel Doc
 repo_name: GitHub
-repo_url: https://github.com/OpenCAPI/oc-accel
+repo_url: https://github.com/OpenCAPI/oc-accel-doc
 edit_uri: ""  
 
 nav:
   - About:
     - 'Overview': 'index.md'
     - 'About the repository': 'repository.md'
+    - 'System Firmware Setup': 'system_firmware_setup.md'
   - User Guide:
           - '(0) Steps in a glance': 'user-guide/0-steps.md'
           - '(1) Prepare environment': 'user-guide/1-prepare-env.md'
@@ -22,17 +23,26 @@ nav:
   - Examples:
     - 'hdl_example': 'actions-doc/hdl_example.md'
     - 'hdl_single_engine': 'actions-doc/hdl_single_engine.md'
-    - 'hls_helloworld': 'actions-doc/hls_helloworld.md'
+    - 'hls_helloworld_512': 'actions-doc/hls_helloworld_512.md'
+    - 'hls_helloworld_1024': 'actions-doc/hls_helloworld_1024.md'
+    - 'hls_memcopy_512' : 'actions-doc/hls_memcopy_512.md'
     - 'hls_memcopy_1024': 'actions-doc/hls_memcopy_1024.md'
+    - 'hls_image_filter': 'actions-doc/hls_image_filter.md'
+    - 'hls_helloworld_python': 'actions-doc/hls_helloworld_python.md'
+    - 'hls_decimal_mult': 'actions-doc/hls_decimal_mult.md'
+
   - Deep Dive:
     - 'Software API': 'deep-dive/software-api.md'
     - 'Registers': 'deep-dive/registers.md'
     - 'Hardware Logic': 'deep-dive/hardware-logic.md'
     - 'New Board Support': 'deep-dive/board-package.md'
+  - Appl. Notes:
+    - 'OC-AD9V3 installation in AC922': 'apps_notes/Installing_an_OC-AD9V3_on_AC922.md'
+    - 'OC-AD9H7 installation in IC922': 'apps_notes/Installing_an_OC-AD9H7_on_IC922.md'
   - Misc:
     - 'Document Guide': 'misc/doc-guide.md'
 theme:
-  name: yeti
+  name: mkdocs
 # Code block colors: Dark
 #  hljs_style: hybrid
 #  hljs_style: monokai

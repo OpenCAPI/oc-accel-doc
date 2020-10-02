@@ -85,14 +85,19 @@ For more information, please refer to "**Deep Dive**" tab on the menu bar.
 
 Development is usually done on a **Linux (x86) computer**. 
 
-* [Xilinx Vivado]: OC-Accel currently supports Xilinx FPGA devices exclusively. For synthesis, simulation model and image build, the Xilinx Vivado 2018.3 or newer tool suites are recommended.
+* [Xilinx Vivado]: OC-Accel currently supports Xilinx FPGA devices exclusively. For synthesis, simulation model and image build, the Xilinx Vivado 2019.2 or newer tool suites are recommended.
 * Build process: Building the code and running the make environment requires the usual development tools `gcc, make, sed, awk`. If not installed already, the installer package `build-essential` will set up the most important tools.
-* Configuring the OC-Accel framework will call a standalone tool that is based on the Linux kernel [kconfig] tool. The `ncurses` library must be installed to use the menu-driven user interface for `kconfig`.
-* `pyhton` is optional but suggested to install. 2.7.x is fine.
+* Configuring the OC-Accel framework will automatically call a standalone tool that is based on the Linux kernel [kconfig] tool. The `ncurses` library must be installed to use the simple menu-driven user interface for `kconfig`.
+* For basic examples, `python` is optional but suggested to install. 2.7.x is fine to use optional configurations scripts.
+* When using the python based examples, `swig` will be used to define a local environment.
 * Simulators: You can use the build-in simulation `xsim` from Xilinx Vivado, or you can also use other simulators like Cadence `irun` or `xcelium`. 
 * For simulation, OC-Accel also relies on the `xterm` program.
+* Check the [System Firmware setup] page
 
 [kconfig]: https://github.com/guillon/kconfig
+[System Firmware setup]: ./system_firmware_setup
+
+
 
 ## Supported FPGA cards
 
@@ -101,12 +106,12 @@ OC-Accel framework needs a FPGA card with OpenCAPI interface, and <u>a Slim-SAS 
 [Alphadata 9V3]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9v3
 [Alphadata 9H3]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h3
 [Alphadata 9H7]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h7
-
-[New board support]: ./deep-dive/board-package
+[Bittware 250-SoC]: https://www.bittware.com/fpga/250-soc/
 
 * [Alphadata 9V3]
 * [Alphadata 9H3]
 * [Alphadata 9H7]
+* [Bittware 250-SoC]
 
 For FPGA vendors, it's easy to enable a new FPGA card with OpenCAPI interface to run OC-Accel, go to [New board support] page to learn how to.
 
@@ -118,10 +123,17 @@ LaGrange processor-based systems:
 
 * IPS FP5290
 * Wistron Mihawk
+* IBM IC922
 
 Monza processor-based systems:
 
-* IBM AC922 (an Acorn card is also required.)
+* IBM AC922 (an Acorn card is also required in place of one GPU to get the OpenCAPI links)
+
+Make sure your check the required firmware at [system_firmware_setup]
+
+[system_firmware_setup]: ./system_firmware_setup.md
+
+
 
 # How to report an issue
 
@@ -147,7 +159,7 @@ grep KEYWORD * -r
 
 OpenCAPI is actually the third generation of [CAPI technology]. That's why its version starts from OpenCAPI3.0. The same acceleration frameworks for CAPI1.0 and CAPI2.0 are called SNAP1.0/2.0 and are available in an open-source git repository at the <https://github.com/open-power/snap> address.
 
-The supported cards can be found [here].
+The SNAP1.0/2.0 supported cards can be found [here].
 
 * SNAP1.0 runs on POWER8 servers, with PCIe Gen3x8 cards. 
 
