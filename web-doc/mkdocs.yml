@@ -27,6 +27,7 @@ nav:
     - 'hls_helloworld_1024': 'actions-doc/hls_helloworld_1024.md'
     - 'hls_memcopy_512' : 'actions-doc/hls_memcopy_512.md'
     - 'hls_memcopy_1024': 'actions-doc/hls_memcopy_1024.md'
+    - 'hls_hbm_memcopy_1024': 'actions-doc/hls_hbm_memcopy_1024.md'
     - 'hls_image_filter': 'actions-doc/hls_image_filter.md'
     - 'hls_helloworld_python': 'actions-doc/hls_helloworld_python.md'
     - 'hls_decimal_mult': 'actions-doc/hls_decimal_mult.md'
@@ -42,7 +43,7 @@ nav:
   - Misc:
     - 'Document Guide': 'misc/doc-guide.md'
 theme:
-  name: mkdocs
+  name: mkdocs 
 # Code block colors: Dark
 #  hljs_style: hybrid
 #  hljs_style: monokai
