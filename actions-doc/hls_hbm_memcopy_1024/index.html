@@ -229,7 +229,15 @@
             
             <li class="nav-item" data-level="1"><a href="#hls_hbm_memcopy_1024" class="nav-link">hls_hbm_memcopy_1024</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#hw_test" class="nav-link">hw_test</a>
+            <li class="nav-item" data-level="2"><a href="#note-on-hbm-usage-in-oc-accel" class="nav-link">Note on HBM usage in OC-ACCEL:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bandwidth-evaluation-test" class="nav-link">Bandwidth Evaluation Test</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#hw_throughput_test" class="nav-link">hw_throughput_test</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -243,6 +251,18 @@
 <h1 id="hls_hbm_memcopy_1024">hls_hbm_memcopy_1024</h1>
 <p>This is an action using HLS, 1024b and HBM memory found on fpga used on cards like OC-9Hx. 1024b is the optimum configuration as P9 OpenCAPI uses a 1024 bits wide bus.</p>
 <p>It can be checked in <em>action/Kconfig</em> file that the ACTION_HALF_WIDTH bloc is not used for this example, so the interface uses the OpenCAPI 1024 bit bus.</p>
+<h2 id="note-on-hbm-usage-in-oc-accel">Note on HBM usage in OC-ACCEL:</h2>
+<p>OC-9H3 and OC-9H7 cards for example each contain 8GB of HBM reachable through up to 32 AXI buses connected to 256MB HBM memories. 
+The test done here exercises only 1 HBM.</p>
+<p>As all these HBM can be accessed independently in parallel, this means that the overall throughout of the 8GB of HBM can be multiplied by 32. </p>
+<p>The HBM can also be configured in different manners (One 8GB HBM, multiple access to 256MB modules,...).</p>
+<p>The default choice in Kconfig menu is 12 HBM memories set in parallel.
+Reducing to 1 memory can easily be done by modifying at the same time:</p>
+<ul>
+<li>in the Kconfig menu</li>
+<li>in the hls_hbm_memcopy_1024.cpp code changing the parameter #define HBM_AXI_IF_NB to 1.</li>
+</ul>
+<h2 id="bandwidth-evaluation-test">Bandwidth Evaluation Test</h2>
 <p>This generic test can be also used to evaluate the throughput to/from FPGA and LCL memories (local can be DDR or HBM depending on cards used).</p>
 <p>It reports bandwidth of:</p>
 <ul>
@@ -251,7 +271,7 @@
 <li>FPGA (HBM -&gt; RAM)</li>
 <li>FPGA (RAM -&gt; HBM)</li>
 </ul>
-<h2 id="hw_test">hw_test</h2>
+<h2 id="hw_throughput_test">hw_throughput_test</h2>
 <p>Example on IC922 with a OC-AD9H3 card:</p>
 <pre><code>$ cd actions/hls_hbm_memcopy_1024/tests
 $ sudo ./hw_throughput_test.sh -dINCR
