@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>hdl_example - OC-Accel Doc</title>
+        <title>hls_hbm_memcopy_1024 - OC-Accel Doc</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -105,7 +105,7 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active">hdl_example</a>
+    <a href="../hdl_example/" class="dropdown-item">hdl_example</a>
 </li>
                                     
 <li>
@@ -129,7 +129,7 @@
 </li>
                                     
 <li>
-    <a href="../hls_hbm_memcopy_1024/" class="dropdown-item">hls_hbm_memcopy_1024</a>
+    <a href="./" class="dropdown-item active">hls_hbm_memcopy_1024</a>
 </li>
                                     
 <li>
@@ -197,12 +197,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../../user-guide/10-tips/" class="nav-link">
+                                <a rel="prev" href="../hls_memcopy_1024/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../hdl_single_engine/" class="nav-link">
+                                <a rel="next" href="../hls_image_filter/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -227,8 +227,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#hdl_example" class="nav-link">hdl_example</a>
+            <li class="nav-item" data-level="1"><a href="#hls_hbm_memcopy_1024" class="nav-link">hls_hbm_memcopy_1024</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#hw_test" class="nav-link">hw_test</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -236,8 +240,63 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="hdl_example">hdl_example</h1>
-<p>This is the 512b VHDL design inherited from SNAP1/2.</p></div>
+<h1 id="hls_hbm_memcopy_1024">hls_hbm_memcopy_1024</h1>
+<p>This is an action using HLS, 1024b and HBM memory found on fpga used on cards like OC-9Hx. 1024b is the optimum configuration as P9 OpenCAPI uses a 1024 bits wide bus.</p>
+<p>It can be checked in <em>action/Kconfig</em> file that the ACTION_HALF_WIDTH bloc is not used for this example, so the interface uses the OpenCAPI 1024 bit bus.</p>
+<p>This generic test can be also used to evaluate the throughput to/from FPGA and LCL memories (local can be DDR or HBM depending on cards used).</p>
+<p>It reports bandwidth of:</p>
+<ul>
+<li>Host -&gt; FPGA_RAM</li>
+<li>FPGA_RAM -&gt; Host</li>
+<li>FPGA (HBM -&gt; RAM)</li>
+<li>FPGA (RAM -&gt; HBM)</li>
+</ul>
+<h2 id="hw_test">hw_test</h2>
+<p>Example on IC922 with a OC-AD9H3 card:</p>
+<pre><code>$ cd actions/hls_hbm_memcopy_1024/tests
+$ sudo ./hw_throughput_test.sh -dINCR
+</code></pre>
+
+<pre><code>+-------------------------------------------------------------------------------+
+|            OC-Accel hls_hbm_memcopy_1024 Throughput (MBytes/s)                |
++-------------------------------------------------------------------------------+
+       bytes   Host-&gt;FPGA_RAM   FPGA_RAM-&gt;Host   FPGA(HBM-&gt;RAM)   FPGA(RAM-&gt;HBM)
+ -------------------------------------------------------------------------------
+         512            0.739            0.742            0.741            9.481
+        1024           17.965           18.963            1.488            1.482
+        2048            2.955            2.934            2.968            3.012
+        4096            5.945            5.885            5.902            5.911
+        8192           11.924           11.907           11.703          148.945
+       16384          292.571          292.571          227.556           23.406
+       32768           46.612           47.080           46.217          555.390
+       65536          897.753         1110.780         1024.000          101.292
+      131072          186.447          185.918          185.918          199.805
+      262144          403.298          366.635          359.594         2759.411
+      524288         6393.756         5825.422          673.892          682.667
+     1048576         1396.240         7231.559         1216.445         1299.351
+     2097152        12409.183         8774.695         5475.593         5282.499
+     4194304         4832.147         4185.932         2166.479         2075.361
+     8388608         4639.717         4269.012         3063.772         4080.062
+    16777216        10343.536         9805.503         5027.634         4178.634
+    33554432        10485.760        10277.008         5053.378         4919.283
+    67108864        13166.346        13560.086         5627.106         5445.822
+   134217728        15080.644        16192.270         5969.477         5760.912
+   268435456        16460.354        17956.750         6062.776         5929.392
+   536870912        17014.893        19000.917
+  1073741824        17391.630        19322.677
+ok
+Test OK
+</code></pre>
+<p>To get the best results, it may be useful to ensure you have the ocapi link attached to the core where the program is executed. If you have 2 nodes (check with numactl -s), you can try the 4 following combinations:</p>
+<pre><code>sudo numactl -m0 -N0 ./oc-accel/actions/hls_hbm_memcopy_1024/tests/hw_throughput_test.sh -d INCR
+sudo numactl -m8 -N0 ./oc-accel/actions/hls_hbm_memcopy_1024/tests/hw_throughput_test.sh -d INCR
+sudo numactl -m0 -N8 ./oc-accel/actions/hls_hbm_memcopy_1024/tests/hw_throughput_test.sh -d INCR
+sudo numactl -m8 -N8 ./oc-accel/actions/hls_hbm_memcopy_1024/tests/hw_throughput_test.sh -d INCR
+</code></pre>
+
+<p>Note:</p>
+<p>"-m" stands for memory: allocate selected memory  from  nodes </p>
+<p>"-N" stands for nodes: execute command on the CPUs of selected nodes</p></div>
             </div>
         </div>
 
