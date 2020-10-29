@@ -6,7 +6,7 @@ Configuration Registers link the software and hardware together. User applicatio
 The OpenCAPI3.0 device memory map concepts (BAR, MMIO Global, MMIO Per PASID, and also memory space) are specified with respect to **OpenCAPI configuration space specification**. Here is a conceptual memory map:
 
  ![general-map](pictures/reg-general-map.svg)
- 
+
  For OC-Accel: 
 
  * It only supports 1 AFU
@@ -15,7 +15,7 @@ The OpenCAPI3.0 device memory map concepts (BAR, MMIO Global, MMIO Per PASID, an
  * It only uses BAR0
  * Global MMIO Offset = 0, Size = 2GB
  * Per PASID MMIO Offset = 2GB, Stride Size = 4MB
-  
+
 So the above memory map is specified to:
 
 ![oc-mmio](pictures/reg-oc-mmio.svg)
@@ -44,27 +44,27 @@ The lower 32bits, also called mmio_address, is processed in OC-Accel.
 
 | mmio_address[30:8] | mmio_address [7:0] | Abbr. | Register Name |
 |--------------------|--------------------|-------|---------------|
-| 0x0  (Basic)              | 0x00               | IVR   | Implementation Version Register| 
+| 0x0  (Basic)              | 0x00               | IVR   | Implementation Version Register|
 |                    | 0x08               | BDR   | Build Date Register |
-|                    | 0x10               | SCR   | SNAP Command Register | 
-|                    | 0x18               | SSR   | SNAP Status Register | 
-|                    | 0x30               | CAP  | Capacity Register | 
-| 0x1A0 (Debug)             | 0x00               | DBG_CLR| Clear Debug Register | 
-|                    | 0x08               | CNT_TLX_CMD| Number of TLX Commands | 
-|                    | 0x10               | CNT_TLX_RSP| Number of TLX Responses | 
-|                    | 0x18               | CNT_TLX_RTY| Number of TLX Retry Responses | 
-|                    | 0x20               | CNT_TLX_FAIL| Number of TLX Fail Responses | 
-|                    | 0x28               | CNT_TLX_XLP| Number of TLX Translate Pending Responses | 
-|                    | 0x30               | CNT_TLX_XLD| Number of TLX Translate Done Responses | 
-|                    | 0x38               | CNT_TLX_XLR| Number of TLX Translate Retry Responses | 
-|                    | 0x40               | CNT_AXI_CMD| Number of total AXI Commands | 
-|                    | 0x48               | CNT_AXI_RSP| Number of total AXI Responses | 
-|                    | 0x50               | BUF_CNT    | Counts in data buffers | 
-|                    | 0x58               | TRAFIIC_IDLE| No traffic over a period  | 
-|                    | 0x60               | TLX_IDLE_LIM| Length of the period for TLX "no traffic"| 
-|                    | 0x68               | AXI_IDLE_LIM| Length of the period for AXI "no traffic" | 
-| 0x1C0 (FIR)        | 0x00               | FIFO_OVFL | FIFO Overflow Status | 
-|                    | 0x08               | FIR_TLX| Errors on TLX interface  | 
+|                    | 0x10               | SCR   | SNAP Command Register |
+|                    | 0x18               | SSR   | SNAP Status Register |
+|                    | 0x30               | CAP  | Capacity Register |
+| 0x1A0 (Debug)             | 0x00               | DBG_CLR| Clear Debug Register |
+|                    | 0x08               | CNT_TLX_CMD| Number of TLX Commands |
+|                    | 0x10               | CNT_TLX_RSP| Number of TLX Responses |
+|                    | 0x18               | CNT_TLX_RTY| Number of TLX Retry Responses |
+|                    | 0x20               | CNT_TLX_FAIL| Number of TLX Fail Responses |
+|                    | 0x28               | CNT_TLX_XLP| Number of TLX Translate Pending Responses |
+|                    | 0x30               | CNT_TLX_XLD| Number of TLX Translate Done Responses |
+|                    | 0x38               | CNT_TLX_XLR| Number of TLX Translate Retry Responses |
+|                    | 0x40               | CNT_AXI_CMD| Number of total AXI Commands |
+|                    | 0x48               | CNT_AXI_RSP| Number of total AXI Responses |
+|                    | 0x50               | BUF_CNT    | Counts in data buffers |
+|                    | 0x58               | TRAFIIC_IDLE| No traffic over a period  |
+|                    | 0x60               | TLX_IDLE_LIM| Length of the period for TLX "no traffic"|
+|                    | 0x68               | AXI_IDLE_LIM| Length of the period for AXI "no traffic" |
+| 0x1C0 (FIR)        | 0x00               | FIFO_OVFL | FIFO Overflow Status |
+|                    | 0x08               | FIR_TLX| Errors on TLX interface  |
 
 
 !!!Note
@@ -123,12 +123,12 @@ The lower 32bits, also called mmio_address, is processed in OC-Accel.
 |3 |RO| SNAP fatal error: some bits are asserted in FIR registers|
 |2 |RO| SNAP AXI side busy (?)|
 |1 |RO| SNAP TLX side busy (?)|
-|0 |RO| SNAP idle: Data buffers in snap_core are empty| 
+|0 |RO| SNAP idle: Data buffers in snap_core are empty|
 
 
 ### SNAP Capability Register (CAP)
 
-* Offset: 0x20
+* Offset: 0x30
 * Define the capability of the card
 
 Bitwise definition
@@ -220,14 +220,14 @@ mmio_address[30:22] means PASID. That means, the first process opens the OC Devi
 The user can freely define and implement the Action registers if it is written in Verilog/VHDL. However, there are still a registers that are recommended to implement. They are: 
 
 
-| mmio_address [21:0] | Abbr. | Register Name| 
-| ------------------- | --- | --------------| 
-| 0x00                | ACR | Action Control Register | 
-| 0x04                | IER | Interrupt Enable Register | 
+| mmio_address [21:0] | Abbr. | Register Name|
+| ------------------- | --- | --------------|
+| 0x00                | ACR | Action Control Register |
+| 0x04                | IER | Interrupt Enable Register |
 | 0x10                | ATR | Action Type Register |
-| 0x14                | AVR | Action Version Register | 
-| 0x18                | ISL | Interrupt Handle SRC Address Low | 
-| 0x1C                | ISH | Interrupt Handle SRC Address High | 
+| 0x14                | AVR | Action Version Register |
+| 0x18                | ISL | Interrupt Handle SRC Address Low |
+| 0x1C                | ISH | Interrupt Handle SRC Address High |
 | 0x30 -> end         |     | Reserved and can be freely used |
 
 ### Action Control Register (ACR)
@@ -287,21 +287,21 @@ The user can freely define and implement the Action registers if it is written i
 
 OC-Accel has already defined the Action Register Layout for HLS Actions.  
 
-| mmio_address [21:0] | Abbr. | Register Name| 
-| ------------------- | --- | --------------| 
-| 0x00                | ACR | Action Control Register | 
+| mmio_address [21:0] | Abbr. | Register Name|
+| ------------------- | --- | --------------|
+| 0x00                | ACR | Action Control Register |
 | 0x04                | IER | Global Interrupt Enable Register |
-| 0x08                | IIE | IP Interrupt Enable | 
+| 0x08                | IIE | IP Interrupt Enable |
 | 0x0C                | IIS | IP Interrupt Status |
 | 0x10                | ATR | Action Type Register |
 | 0x14                | AVR | Action Release Register |
-| 0x18                | ISL | Interrupt Handle SRC Address Low | 
-| 0x1C                | ISH | Interrupt Handle SRC Address High | 
+| 0x18                | ISL | Interrupt Handle SRC Address Low |
+| 0x1C                | ISH | Interrupt Handle SRC Address High |
 | 0x100                 | CONTROL1 | sat + flags + seq |
 | 0x104                 | CONTROL2 | Return Code |
 | 0x108                 | CONTROL3 | Reserved |
 | 0x10C                 | CONTROL4 | Reserved |
-| 0x110 - 0x178         |   | Job Data Registers (108 bytes)| 
+| 0x110 - 0x178         |   | Job Data Registers (108 bytes)|
 
 !!!Note
     0x00 to 0x0C are defined by Xilinx Document UG902.
@@ -320,7 +320,7 @@ OC-Accel has already defined the Action Register Layout for HLS Actions.
 |2 |RO| Action Idle |
 |1 |RO/Clear on Read| Action Done |
 |0 |RW/Clear on Read| Start Action|
- 
+
 ### Global Interrupt Enable (IER)
 
 * offset: 0x04
