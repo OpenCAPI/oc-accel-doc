@@ -232,6 +232,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#building-in-docker-containers" class="nav-link">Building in Docker Containers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#known-issues-and-todo" class="nav-link">Known issues and TODO</a>
               <ul class="nav flex-column">
               </ul>
@@ -244,6 +249,11 @@
 <h1 id="ila-debug">ILA Debug</h1>
 <p>Enable <code>ILA_DEBUG</code> in Kconfig Menu. 
 Add your ILA core.</p>
+<h1 id="building-in-docker-containers">Building in Docker Containers</h1>
+<p>When using the Xilinx Vivado Toolchain in a Docker Container, issues may arise if the container does not feature a proper <code>init</code> process.
+The subprocess management for individual build steps like Synthesis seems to rely on orphaned processes being joined by <code>init</code>.
+If this does not happen, the entire build can freeze.</p>
+<p>Therefore you should take care to start Docker containers intended for building <code>oc-accel</code> with <code>--init</code> <a href="https://docs.docker.com/engine/reference/run/#specify-an-init-process">(documentation)</a> or include <code>init: true</code> in a <code>docker-compose.yml</code> <a href="https://docs.docker.com/compose/compose-file/#init">(documentation)</a>.</p>
 <h1 id="known-issues-and-todo">Known issues and TODO</h1>
 <p>Features to be supported: </p>
 <ul>
