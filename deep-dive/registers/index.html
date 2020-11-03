@@ -272,6 +272,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#acronyms" class="nav-link">Acronyms</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -302,8 +306,8 @@
 <h2 id="address-layout">Address Layout</h2>
 <p>OC-Accel registers have two categories: </p>
 <ul>
-<li><strong>Global Registers</strong>, 8B, defined in Global MMIO space. Use <code>snap_global_read/write64()</code> to access them.</li>
-<li><strong>Action Registers</strong>, 4B, defined in Per PASID MMIO space. Use <code>snap_action_read/write32()</code> to access them. </li>
+<li><strong>Global Registers</strong>, 8B, defined in Global MMIO space. Use <code>snap_global_read/write64()</code> to access them. They are 64 bits wide since directly extracted from oc_cfg block.</li>
+<li><strong>Action Registers</strong>, 4B, defined in Per PASID MMIO space. Use <code>snap_action_read/write32()</code> to access them. They are 32 bits wide since converted into AXI-lite protocol.</li>
 </ul>
 <p>The higher 32bits of tlx_afu_cmd_pa (Physical Address) should be matched with BAR0. </p>
 <p>The lower 32bits, also called mmio_address, is processed in OC-Accel. </p>
@@ -348,6 +352,18 @@
 <td>0x30</td>
 <td>CAP</td>
 <td>Capacity Register</td>
+</tr>
+<tr>
+<td></td>
+<td>0x40</td>
+<td>FRT</td>
+<td>Free Running Timer (Up Time Counter) Register</td>
+</tr>
+<tr>
+<td></td>
+<td>0x50</td>
+<td>USR</td>
+<td>User Defined Code Register</td>
 </tr>
 <tr>
 <td>0x1A0 (Debug)</td>
@@ -668,6 +684,50 @@
 <td></td>
 <td></td>
 <td>0x32 : AD9H7</td>
+</tr>
+</tbody>
+</table>
+<h3 id="snap-free-running-timer-frt">SNAP Free Running Timer  (FRT)</h3>
+<ul>
+<li>Offset: 0x40</li>
+<li>is updated at each mmio clock</li>
+</ul>
+<p>Bitwise definition</p>
+<table>
+<thead>
+<tr>
+<th>Bits</th>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>63..0</td>
+<td>RO</td>
+<td>Counter value (mmio clock ticks since last reset)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="snap-user-defined-code-register-usr">SNAP User Defined Code Register (USR)</h3>
+<ul>
+<li>Offset: 0x50</li>
+<li>Allows user to write a 64 bits wide user defined code in this register to ease debugging versions without modifying  the release. (for the time being it is hand written in hardware/setup/patch-version.sh) Use <em>oc_maint -u</em> to read it in simulation or on actual hardware.</li>
+</ul>
+<p>Bitwise definition</p>
+<table>
+<thead>
+<tr>
+<th>Bits</th>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>63..0</td>
+<td>RO</td>
+<td>64 bits (can represent 8 ASCII char) user defined code</td>
 </tr>
 </tbody>
 </table>
@@ -1280,7 +1340,12 @@ For example:</p>
     struct snap_addr in;    /* input data */
     struct snap_addr out;   /* offset table */
 } helloworld_job_t;
-</code></pre></div>
+</code></pre>
+
+<h2 id="acronyms">Acronyms</h2>
+<ul>
+<li>PASID : Process Address Space ID</li>
+</ul></div>
             </div>
         </div>
 
