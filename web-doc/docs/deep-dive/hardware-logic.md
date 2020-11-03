@@ -17,7 +17,7 @@ Under oc_function, **framework_afu** can be replaced by other reference AFUs lik
 
 It has following clock domains: 
 
-* **clk_tlx**: 400MHz (Don't change)
+* **clk_tlx**: 400MHz (Doesn't change)
 * **clk_afu**: 200MHz (Adjustable)
 * **clk_act**: 200MHz (Adjustable)
 * **Other**: Depending on the requirements of peripheral IPs

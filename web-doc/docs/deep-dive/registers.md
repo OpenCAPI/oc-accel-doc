@@ -28,10 +28,8 @@ hardware/oc-bip/config_subsystem/cfg_descriptor.v
 
 OC-Accel registers have two categories: 
 
-* **Global Registers**, 8B, defined in Global MMIO space. Use `snap_global_read/write64()` to access them.
-* **Action Registers**, 4B, defined in Per PASID MMIO space. Use `snap_action_read/write32()` to access them. 
-
-
+* **Global Registers**, 8B, defined in Global MMIO space. Use `snap_global_read/write64()` to access them. They are 64 bits wide since directly extracted from oc_cfg block.
+* **Action Registers**, 4B, defined in Per PASID MMIO space. Use `snap_action_read/write32()` to access them. They are 32 bits wide since converted into AXI-lite protocol.
 
 The higher 32bits of tlx_afu_cmd_pa (Physical Address) should be matched with BAR0. 
 
@@ -49,6 +47,8 @@ The lower 32bits, also called mmio_address, is processed in OC-Accel.
 |                    | 0x10               | SCR   | SNAP Command Register |
 |                    | 0x18               | SSR   | SNAP Status Register |
 |                    | 0x30               | CAP  | Capacity Register |
+| | 0x40 | FRT | Free Running Timer (Up Time Counter) Register |
+| | 0x50 | USR | User Defined Code Register |
 | 0x1A0 (Debug)             | 0x00               | DBG_CLR| Clear Debug Register |
 |                    | 0x08               | CNT_TLX_CMD| Number of TLX Commands |
 |                    | 0x10               | CNT_TLX_RSP| Number of TLX Responses |
@@ -142,7 +142,27 @@ Bitwise definition
 |||0x31 : AD9V3|
 |||0x32 : AD9H7|
 
+### SNAP Free Running Timer  (FRT)
 
+* Offset: 0x40
+* is updated at each mmio clock
+
+Bitwise definition
+
+| Bits  | Attributes | Description                                       |
+| ----- | ---------- | ------------------------------------------------- |
+| 63..0 | RO         | Counter value (mmio clock ticks since last reset) |
+
+### SNAP User Defined Code Register (USR)
+
+* Offset: 0x50
+* Allows user to write a 64 bits wide user defined code in this register to ease debugging versions without modifying  the release. (for the time being it is hand written in hardware/setup/patch-version.sh) Use *oc_maint -u* to read it in simulation or on actual hardware.
+
+Bitwise definition
+
+| Bits  | Attributes | Description                                            |
+| ----- | ---------- | ------------------------------------------------------ |
+| 63..0 | RO         | 64 bits (can represent 8 ASCII char) user defined code |
 
 ## SNAP Debug Registers
 
@@ -150,6 +170,7 @@ Bitwise definition
 
 !!!Note
     Subject to change.
+
 ### Debug Clear and Debug Counters
 
 DBG_CLR: Clear all of the following debug registers
@@ -385,3 +406,8 @@ typedef struct helloworld_job {
 	struct snap_addr out;   /* offset table */
 } helloworld_job_t;
 ```
+
+## Acronyms
+
+- PASID : Process Address Space ID
+
