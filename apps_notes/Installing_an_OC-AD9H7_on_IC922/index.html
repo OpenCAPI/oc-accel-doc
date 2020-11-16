@@ -257,7 +257,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#standard-programming-of-a-oc-9h7-card-capi-image-already-in-it" class="nav-link">Standard programming of a OC-9H7 card (CAPI image already in it)</a>
+            <li class="nav-item" data-level="2"><a href="#standard-programming-of-an-oc-9h7-card-oc-image-already-in-it" class="nav-link">Standard programming of an OC-9H7 card (OC image already in it)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -354,63 +354,56 @@ If no card is found with this command, then your OC-9H7 card may not have a Open
 
 <h2 id="first-programming-of-a-brand-new-oc-9h7-card-no-capi-image-was-ever-installed">First programming of a brand new OC-9H7 card (no CAPI image was ever installed)</h2>
 <p>There are several ways to program a OC-AD9H7 card. If no CAPI image was ever installed on this board, then you’ll need to follow these following instructions to set it once. Then you’ll be able to go faster using the next paragraph.</p>
-<p>A basic test image for the OC-9H7 card’s FPGA can be obtained from IBM Box. Programming this image onto the card will require Xilinx Vivado version 2018.1 or newer and usbprogrammer. To do so, access the device from Vivado’s hardware manager and follow these steps:</p>
+<p>A basic test image for the OC-9H7 card’s FPGA can be obtained from IBM Box. Programming this image onto the card will require Xilinx Vivado version 2018.1 or newer and a usb cable. To do so, access the device from Vivado’s hardware manager and follow these steps:</p>
 <p>Right click on the "xcvu37p_0" entry in the device list and select "add configuration memory device".</p>
 <p>Select "mt25qu01g-spi-x1_x2_x4_x8" from the list of config mem devices.</p>
 <p>When prompted, choose to program the config mem device.</p>
 <p>In the subsequent menu, select the two .mcs files, followed by the two optional .prm files.</p>
 <p>The programming should complete in a few minutes. Note that the card needs to be power cycled (i.e. by rebooting the system) before the new image will take effect. On some servers the fast reboot service is operational, a complete power cycle is necessary to make sure the card powers off.</p>
-<h2 id="standard-programming-of-a-oc-9h7-card-capi-image-already-in-it">Standard programming of a OC-9H7 card (CAPI image already in it)</h2>
+<h2 id="standard-programming-of-an-oc-9h7-card-oc-image-already-in-it">Standard programming of an OC-9H7 card (OC image already in it)</h2>
 <p>Images for the OC-AD9H7 card’s FPGA will be created from the OC-ACCEL environment and will be placed in  </p>
-<pre><code>~snap/hardware/build/Images
+<pre><code>~/oc-accel/hardware/build/Images
 </code></pre>
 
 <p>Once successfully synthesized. Then using the FPGA Image loader, you will program and reset the FPGA with your binary files using the following command:</p>
-<pre><code>sudo oc-flash-script my_user_image.bin
+<pre><code>sudo oc-flash-script oc_my_user_image.bin
 </code></pre>
 
 <p>Depending on the format of the FPGA board Flash devices, you may need 1or 2 binary files. OC-AD9H7 card needs 2 binary files noted as primary and secondary. You will so call the loader with the 2 files in the following order:</p>
-<pre><code>sudo oc-flash-script my_user_image_primary.bin my_user_image_secondary.bin
+<pre><code>sudo oc-flash-script oc_my_user_image_primary.bin oc_my_user_image_secondary.bin
 </code></pre>
 
 <h2 id="running-the-test-image-if-card-has-been-already-programmed-with-a-oc-image">Running the Test Image if card has been already programmed with a OC image</h2>
-<p>From the snap directory, compile once the software and applications</p>
+<p>From the oc-accel directory, compile once the software and applications</p>
 <pre><code>cd oc-accel
 git pull   # in case you already cloned earlier and want to stay up to date
 make software apps
 </code></pre>
 
-<p>To "locally make" your software  you can set the default ACTION_ROOT variable.</p>
-<p>The default test which has been compiled in the Box’s image is a hls_memcopy example.</p>
-<pre><code>export ACTION_ROOT=${HOME}/oc-accel/actions/hls_memcopy_1024
-</code></pre>
-
-<p>then set all paths automatically sourcing the script as follow:</p>
-<pre><code>source snap_path.sh # Find available card
-
-oc_find_card -v -A ALL    #This should return the card position
-OC-AD9H7 card has been detected in card position: 0
+<p>The default test which has been compiled in the Box’s image is a hls_hbm_memcopy1024 example.</p>
+<pre><code>oc_find_card -v -A ALL    #This should return the card position
+OC-AD9H7 card has been detected in card position: 4
 ...
 </code></pre>
 
 <p>then let OC-ACCEL framework discover the cards and actions with the oc_maint command.</p>
 <p>Mention the card slot number if different from 0 using -C option. </p>
-<p>This command needs to be run almost once after a reset and will return the action stated here as “IBM HLS Memcopy”</p>
-<pre><code>oc_maint -v [-C1]
+<p>This command needs to be run almost once after a reset and will return the action stated here as “HLS HBM Memcopy” (1024b)"</p>
+<pre><code>~/oc-accel/software/tools/oc_maint -v [-C4]
 </code></pre>
 
 <p>You can now:</p>
 <ul>
 <li>Either run the memcopy program doing any transfer you want. </li>
 </ul>
-<p>You will get the explanations on how to use this exampleby typing</p>
-<pre><code>snap_memcopy
+<p>You will get the explanations on how to use this example by typing</p>
+<pre><code>~/oc-accel/actions/hls_hbm_memcopy_1024/sw/snap_hbm_memcopy
 </code></pre>
 
 <ul>
-<li>or run automatic test of hls_memcopy_1024 using</li>
+<li>or run automatic test of hls_hbm_memcopy_1024 using</li>
 </ul>
-<pre><code>./actions/hls_memcopy_1024/tests/hw_throughput.sh -d INCR
+<pre><code>~/oc-accel/actions/hls_hbm_memcopy_1024/tests/hw_throughput.sh -d INCR
 </code></pre>
 
 <p>which will give you the bandwidth measured between FPGA, host memory and on-board for different file size exchanged.</p></div>
