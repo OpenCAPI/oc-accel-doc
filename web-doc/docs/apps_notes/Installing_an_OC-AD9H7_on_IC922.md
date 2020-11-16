@@ -137,7 +137,7 @@ lspci|grep acc
 
 There are several ways to program a OC-AD9H7 card. If no CAPI image was ever installed on this board, then you’ll need to follow these following instructions to set it once. Then you’ll be able to go faster using the next paragraph.
 
-A basic test image for the OC-9H7 card’s FPGA can be obtained from IBM Box. Programming this image onto the card will require Xilinx Vivado version 2018.1 or newer and usbprogrammer. To do so, access the device from Vivado’s hardware manager and follow these steps:
+A basic test image for the OC-9H7 card’s FPGA can be obtained from IBM Box. Programming this image onto the card will require Xilinx Vivado version 2018.1 or newer and a usb cable. To do so, access the device from Vivado’s hardware manager and follow these steps:
 
 Right click on the "xcvu37p_0" entry in the device list and select "add configuration memory device".
 
@@ -151,31 +151,31 @@ The programming should complete in a few minutes. Note that the card needs to be
 
 
 
-## Standard programming of a OC-9H7 card (CAPI image already in it)
+## Standard programming of an OC-9H7 card (OC image already in it)
 
 Images for the OC-AD9H7 card’s FPGA will be created from the OC-ACCEL environment and will be placed in  
 
 ```
-~snap/hardware/build/Images
+~/oc-accel/hardware/build/Images
 ```
 
 Once successfully synthesized. Then using the FPGA Image loader, you will program and reset the FPGA with your binary files using the following command:
 
 ```
-sudo oc-flash-script my_user_image.bin
+sudo oc-flash-script oc_my_user_image.bin
 ```
 
 Depending on the format of the FPGA board Flash devices, you may need 1or 2 binary files. OC-AD9H7 card needs 2 binary files noted as primary and secondary. You will so call the loader with the 2 files in the following order:
 
 ```
-sudo oc-flash-script my_user_image_primary.bin my_user_image_secondary.bin
+sudo oc-flash-script oc_my_user_image_primary.bin oc_my_user_image_secondary.bin
 ```
 
 
 
 ## Running the Test Image if card has been already programmed with a OC image
 
-From the snap directory, compile once the software and applications
+From the oc-accel directory, compile once the software and applications
 
 ```
 cd oc-accel
@@ -183,21 +183,11 @@ git pull   # in case you already cloned earlier and want to stay up to date
 make software apps
 ```
 
-To "locally make" your software  you can set the default ACTION_ROOT variable.
-
-The default test which has been compiled in the Box’s image is a hls_memcopy example.
+The default test which has been compiled in the Box’s image is a hls_hbm_memcopy1024 example.
 
 ```
-export ACTION_ROOT=${HOME}/oc-accel/actions/hls_memcopy_1024
-```
-
-then set all paths automatically sourcing the script as follow:
-
-```
-source snap_path.sh # Find available card
-
 oc_find_card -v -A ALL    #This should return the card position
-OC-AD9H7 card has been detected in card position: 0
+OC-AD9H7 card has been detected in card position: 4
 ...
 ```
 
@@ -205,26 +195,26 @@ then let OC-ACCEL framework discover the cards and actions with the oc_maint com
 
 Mention the card slot number if different from 0 using -C option. 
 
-This command needs to be run almost once after a reset and will return the action stated here as “IBM HLS Memcopy”
+This command needs to be run almost once after a reset and will return the action stated here as “HLS HBM Memcopy” (1024b)"
 
 ```
-oc_maint -v [-C1]
+~/oc-accel/software/tools/oc_maint -v [-C4]
 ```
 
 You can now:
 
 - Either run the memcopy program doing any transfer you want. 
 
-You will get the explanations on how to use this exampleby typing
+You will get the explanations on how to use this example by typing
 
 ```
-snap_memcopy
+~/oc-accel/actions/hls_hbm_memcopy_1024/sw/snap_hbm_memcopy
 ```
 
-- or run automatic test of hls_memcopy_1024 using
+- or run automatic test of hls_hbm_memcopy_1024 using
 
 ```
-./actions/hls_memcopy_1024/tests/hw_throughput.sh -d INCR
+~/oc-accel/actions/hls_hbm_memcopy_1024/tests/hw_throughput.sh -d INCR
 ```
 
 which will give you the bandwidth measured between FPGA, host memory and on-board for different file size exchanged.
