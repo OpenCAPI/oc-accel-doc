@@ -1,5 +1,11 @@
 # hls_helloworld_1024
-High Level Synthesis example.
+## Code location:
+
+Code can be found at:[https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_helloworld_1024/](https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_helloworld_1024/) 
+
+## In short:
+
+This is a basic High Level Synthesis example.
 
 It consists in exchanging a text file with the server host memory and manipulate it in hardware to change the case and return the result into server host memory.
 

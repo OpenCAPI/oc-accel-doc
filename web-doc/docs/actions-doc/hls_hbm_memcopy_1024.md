@@ -1,4 +1,10 @@
 # hls_hbm_memcopy_1024
+## Code location:
+
+Code can be found at:[https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_hbm_memcopy_1024/](https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_hbm_memcopy_1024/) 
+
+## Overview:
+
 This is an action using HLS, 1024b and HBM memory found on fpga used on cards like OC-9Hx. 1024b is the optimum configuration as P9 OpenCAPI uses a 1024 bits wide bus.
 
 It can be checked in *action/Kconfig* file that the ACTION_HALF_WIDTH bloc is not used for this example, so the interface uses the OpenCAPI 1024 bit bus.

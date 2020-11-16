@@ -12,15 +12,15 @@ export XILINXD_LICENSE_FILE=<pointer to Xilinx license>
 export PATH=$PATH:${XILINX_VIVADO}/bin
 ```
 
+There is a file `setup_tools.ksh` in the root directory for reference. But for the beginning, only Vivado is required.
+
 !!!Note
-    OC-Accel started on Vivado 2018.2, 2018.3 and 2019.1. It now best runs on 2019.2 for all cards.
+    OC-Accel started on Vivado 2018.2, 2018.3 and 2019.1. It now best runs on 2019.2/2020.1 for all cards.
 
     For AD9H3 and AD9H7 cards with HBM, Vivado version is at least 2019.2
 
-There is a file `setup_tools.ksh` in the root directory for reference. But for the beginning, only Vivado is required.
+If required install `gcc`, `make`, `sed`, `awk`, `xterm` and `python` .
 
-Make sure you have `gcc`, `make`, `sed`, `awk`, `xterm` and `python` installed.
-`setup_tools.ksh`
 
 You may install other simulators to accelerate the speed of simulation. For example, [Cadence xcelium]. See in [co-simulation] for more information.
 

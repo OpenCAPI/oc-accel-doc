@@ -3,7 +3,7 @@
 OpenCAPI QuickStart OC-AD9H7 on IC922
 
 By IBM Systems Group
-October, 2020
+November, 2020
 
 Authors : OpenCAPI Support Team - Montpellier, FRANCE
 
@@ -19,7 +19,12 @@ The supplier reference is ADM-PCIE-9H7, we will use OC-AD9H7 in OC-ACCEL.
 
 Unlike CAPI2.0, OpenCAPI (OC) doesn’t use PCI links, however, the card requires PCIe power supply and mechanical socket to work.
 An OC card can thus be theoretically installed in any PCIe socket.
-As the OC card can also be used in CAPI2 mode, Figure 1 indicates the slots where is can be placed for CAPI2/OpenCAPI dual usage. Note that since OC-AD9H7 is 3/4 height it can only be placed in slots 4 and 9.
+As the OC card can also be used in CAPI2 mode, Figure 1 indicates the slots where is can be placed for CAPI2/OpenCAPI dual usage. 
+
+Note that since OC-AD9H7 is 3/4 height it can only be placed in slots 4 and 9 using:
+
+- either a special Wistron riser
+- or a mechanically modified original riser.
 
 ![](./IC922_9h7_slots.png)
 
@@ -171,7 +176,9 @@ Depending on the format of the FPGA board Flash devices, you may need 1or 2 bina
 sudo oc-flash-script oc_my_user_image_primary.bin oc_my_user_image_secondary.bin
 ```
 
-
+!!!Note
+    At the time of writing oc-utils doesn't support online programming of OC-AD9H7 yet.
+JTAG programming is required.
 
 ## Running the Test Image if card has been already programmed with a OC image
 

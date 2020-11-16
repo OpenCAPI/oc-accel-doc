@@ -116,7 +116,7 @@ ocse.parms  sim.log          terminal.log         tout     xsaet.tcl    xsim.log
 
 And you can use following command to open the waveform.
 ```
-xsim top.wdb -gui &
+./display_traces
 ```
 ![waveform](./pictures/2-waveform.png)
 
