@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>hls_memcopy_1024 - OC-Accel Doc</title>
+        <title>hls_hbm_memcopy_512 - OC-Accel Doc</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -121,11 +121,7 @@
 </li>
                                     
 <li>
-    <a href="../hls_memcopy_512/" class="dropdown-item">hls_memcopy_512</a>
-</li>
-                                    
-<li>
-    <a href="./" class="dropdown-item active">hls_memcopy_1024</a>
+    <a href="./" class="dropdown-item active">hls_hbm_memcopy_512</a>
 </li>
                                     
 <li>
@@ -197,7 +193,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../hls_memcopy_512/" class="nav-link">
+                                <a rel="prev" href="../hls_helloworld_1024/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -227,8 +223,16 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#hls_memcopy_1024" class="nav-link">hls_memcopy_1024</a>
+            <li class="nav-item" data-level="1"><a href="#hls_hbm_memcopy_512" class="nav-link">hls_hbm_memcopy_512</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#code-location" class="nav-link">Code location:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#overview" class="nav-link">Overview:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#hw_test" class="nav-link">hw_test</a>
               <ul class="nav flex-column">
               </ul>
@@ -240,26 +244,31 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="hls_memcopy_1024">hls_memcopy_1024</h1>
-<p>This is an action using HLS, 1024b. This is the optimum configuration as P9 OpenCAPI uses a 1024 bits wide bus.</p>
-<p>It can be checked in /action.Kconfig file that the ACTION_HALF_WIDTH bloc is not used for this example, so the interface uses the OpenCAPI 1024 bit bus.</p>
+<h1 id="hls_hbm_memcopy_512">hls_hbm_memcopy_512</h1>
+<h2 id="code-location">Code location:</h2>
+<p>Code can be found at:<a href="https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_hbm_memcopy_512/">https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_hbm_memcopy_512/</a> </p>
+<h2 id="overview">Overview:</h2>
+<p>This is an action using HLS, 512 bits bus wide towards OpenCAPI interface which is 1024 bits wide.</p>
+<p>To achieve this a 1024 to 512b converter is introduced, as P9 OpenCAPI uses a 1024 bits wide bus.</p>
+<p>It can be checked in /action.Kconfig file that the ACTION_HALF_WIDTH bloc is set for this example, so the interface will implement the half width converter.</p>
+<p>This allows older actions to be converted in a snap at the cost of lower performance.</p>
 <p>This generic test can be also used to evaluate the throughput to/from FPGA and LCL memories (local can be DDR or HBM depending on cards used).</p>
 <p>It reports bandwidth of:</p>
 <ul>
 <li>Host -&gt; FPGA_RAM</li>
 <li>FPGA_RAM -&gt; Host</li>
-<li>FPGA (DDR -&gt; RAM)</li>
-<li>FPGA (RAM -&gt; DDR)</li>
+<li>FPGA (LCL -&gt; RAM)</li>
+<li>FPGA (RAM -&gt; LCL)</li>
 </ul>
 <h2 id="hw_test">hw_test</h2>
 <p>Example on IC922 with a OC-AD9V3 card:</p>
-<pre><code>$ cd actions/hls_memcopy_1024/tests
+<pre><code>$ cd actions/hls_memcopy_512/tests
 $ sudo ./hw_throughput_test.sh -dINCR
 </code></pre>
 
-<pre><code>Build Date:  [00000008] 0000202009150921
+<pre><code>Build Date:  [00000008] 0000202009150920
 +-------------------------------------------------------------------------------+
-|            OC-Accel hls_memcopy_1024 Throughput (MBytes/s)                    |
+|            OC-Accel hls_memcopy_512  Throughput (MBytes/s)                    |
 +-------------------------------------------------------------------------------+
 +------------LCL stands for DDR or HBM memory accordingto hardware--------------+
 
@@ -267,26 +276,26 @@ $ sudo ./hw_throughput_test.sh -dINCR
  -------------------------------------------------------------------------------
 </code></pre>
 
-<pre><code>     512            8.828           10.240           10.240           11.907
-    1024           23.814           20.480            1.484            1.476
-    2048            3.225            2.926            2.985            2.985
-    4096            5.971            6.554            6.491           80.314
-    8192           11.924            6.192            6.141            6.466
-   16384           12.337           12.911           12.921           12.870
-   32768           24.768           24.693           24.787           25.863
-   65536           49.461           95.118           92.959          102.721
-  131072          204.800          188.052          188.322           97.815
-  262144          195.484          203.055          195.193          202.741
-  524288          404.856          399.305          380.194          383.251
- 1048576          759.838         1351.258          775.574          741.567
- 2097152         1457.368         1408.430         1402.777         1391.607
- 4194304         2720.042         4185.932         4096.000         4096.000
- 8388608         7483.147         6732.430         6091.945         6061.133
-16777216         7584.637        10292.771         6193.140         6181.730
-33554432        10525.230        13584.790         9683.819         9703.422
-67108864        13899.930        16615.218        10789.206        10764.977
-134217728        17563.168        16927.447        11443.237        11411.131
-268435456        17688.156        20650.470        11786.409        11749.265
+<pre><code>     512           10.240           10.240           10.449           10.449
+    1024            1.497           20.480           21.333           25.600
+    2048           40.960           41.796           42.667           41.796
+    4096           81.920           81.920           83.592           83.592
+    8192          132.129           11.855           11.872           11.977
+   16384           23.918          321.255           12.319           12.319
+   32768           24.582           46.946           47.628           47.628
+   65536           94.432           95.394           94.980           94.980
+  131072          188.593          189.959          187.782          186.979
+  262144          370.260          366.635          372.364          371.309
+  524288          717.220          729.191          718.203          717.220
+ 1048576         1354.749         1361.787         1353.001         1476.868
+ 2097152         2621.440         2427.259         2441.388         2467.238
+ 4194304         4084.035         2523.649         2520.615         2593.880
+ 8388608         4167.217         4120.141         4158.953         4136.394
+16777216         6028.464         8140.328         7084.973         8101.022
+33554432         9877.666         8212.049         7983.448         8152.194
+67108864         9884.941         9565.117         9774.084         9765.551
+134217728        10507.925        10888.110        10844.124        10824.883
+268435456        12041.244        11543.625        11482.887        11460.336
 </code></pre>
 <p>To get the best results, it may be useful to ensure you have the ocapi link attached to the core where the program is executed. If you have 2 nodes (check with numactl -s), you can try the 4 following combinations:</p>
 <pre><code>sudo numactl -m0 -N0 ./oc-accel/actions/hls_memcopy_1024/tests/hw_throughput_test.sh -d INCR

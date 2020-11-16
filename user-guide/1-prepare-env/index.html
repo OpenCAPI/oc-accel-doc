@@ -121,11 +121,7 @@
 </li>
                                     
 <li>
-    <a href="../../actions-doc/hls_memcopy_512/" class="dropdown-item">hls_memcopy_512</a>
-</li>
-                                    
-<li>
-    <a href="../../actions-doc/hls_memcopy_1024/" class="dropdown-item">hls_memcopy_1024</a>
+    <a href="../../actions-doc/hls_hbm_memcopy_512/" class="dropdown-item">hls_hbm_memcopy_512</a>
 </li>
                                     
 <li>
@@ -275,14 +271,13 @@ export XILINXD_LICENSE_FILE=&lt;pointer to Xilinx license&gt;
 export PATH=$PATH:${XILINX_VIVADO}/bin
 </code></pre>
 
+<p>There is a file <code>setup_tools.ksh</code> in the root directory for reference. But for the beginning, only Vivado is required.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>OC-Accel started on Vivado 2018.2, 2018.3 and 2019.1. It now best runs on 2019.2 for all cards.</p>
+<p>OC-Accel started on Vivado 2018.2, 2018.3 and 2019.1. It now best runs on 2019.2/2020.1 for all cards.</p>
 <p>For AD9H3 and AD9H7 cards with HBM, Vivado version is at least 2019.2</p>
 </div>
-<p>There is a file <code>setup_tools.ksh</code> in the root directory for reference. But for the beginning, only Vivado is required.</p>
-<p>Make sure you have <code>gcc</code>, <code>make</code>, <code>sed</code>, <code>awk</code>, <code>xterm</code> and <code>python</code> installed.
-<code>setup_tools.ksh</code></p>
+<p>If required install <code>gcc</code>, <code>make</code>, <code>sed</code>, <code>awk</code>, <code>xterm</code> and <code>python</code> .</p>
 <p>You may install other simulators to accelerate the speed of simulation. For example, <a href="https://www.cadence.com/content/cadence-www/global/en_US/home/tools/system-design-and-verification/simulation-and-testbench-verification/xcelium-parallel-simulator.html">Cadence xcelium</a>. See in <a href="../6-co-simulation/">co-simulation</a> for more information.</p>
 <h2 id="clone-github-repositories">Clone Github Repositories</h2>
 <pre><code>git clone https://github.com/OpenCAPI/oc-accel
