@@ -245,10 +245,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#privileges" class="nav-link">Privileges</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
             <li class="nav-item" data-level="2"><a href="#check-that-the-cards-are-recognized-as-accelerators" class="nav-link">Check that the cards are recognized as accelerators</a>
               <ul class="nav flex-column">
               </ul>
@@ -353,42 +349,7 @@ Make sure you place 2 GPUs on one socket and one adapter on the other one, which
 <p>Information come from Alphadata web site:</p>
 <p>[<a href="https://www.alpha-data.com/pdfs/adm-pcie-9v3.pdf">https://www.alpha-data.com/pdfs/adm-pcie-9v3.pdf</a></p>
 <h2 id="setup-tools-on-the-power-server-environment">Setup tools on the POWER server environment</h2>
-<p>Setup the followings to get your environment on the Power server</p>
-<p>1)  Clone the oc-accel framework (no contribution mode)</p>
-<pre><code>git clone https://github.com/OpenCAPI/oc-accel.git
-</code></pre>
-
-<p>Clone the oc-accel framework (contribution mode using ssh)</p>
-<pre><code>git clone git@github.com:OpenCAPI/oc-accel.git
-</code></pre>
-
-<p>2)  Install the libocxl libraries + reboot the server after installation. </p>
-<p>(for ubuntu) </p>
-<pre><code>sudo apt-get install libocxl-dev
-</code></pre>
-
-<p>(for RHEL) </p>
-<pre><code>sudo yum install libocxl-devel
-</code></pre>
-
-<p>(libcxl-devel package is provided by RedHat Optional repository) <br />
-3)  Clone the FPGA Image loader</p>
-<pre><code>sudo git clone  https://github.ibm.com/OC-Enablement/oc-utils/ 
-cd oc_utils
-sudo make install 
-</code></pre>
-
-<h2 id="privileges">Privileges</h2>
-<p>Important: libocxl requires root privileges to allow card exchanges (like reset, oc_maint, usage in general).</p>
-<p>When using the card without sudo privileges, you get an normal error.</p>
-<p>Your administrator can provide user privileges using this process:</p>
-<ul>
-<li>Permanently create a /etc/udev/rules.d/20-ocaccel.rules file including:</li>
-</ul>
-<p><code>SUBSYSTEM=="ocxl", DEVPATH=="*/ocxl/IBM,oc-snap*", MODE="666", RUN="/bin/chmod 666 %S/%p/global_mmio_area"</code></p>
-<ul>
-<li>Reboot</li>
-</ul>
+<p>A general procedure is available <a href="../setup_power_tools/">here</a></p>
 <h2 id="check-that-the-cards-are-recognized-as-accelerators">Check that the cards are recognized as accelerators</h2>
 <p>Check that the cards are recognized by the Firmware and the OS</p>
 <pre><code>lspci|grep accel
