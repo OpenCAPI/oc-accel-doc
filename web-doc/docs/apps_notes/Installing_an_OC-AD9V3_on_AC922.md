@@ -88,61 +88,7 @@ Information come from Alphadata web site:
 
 ## Setup tools on the POWER server environment
 
-Setup the followings to get your environment on the Power server
-
-1)	Clone the oc-accel framework (no contribution mode)
-
-```
-git clone https://github.com/OpenCAPI/oc-accel.git
-```
-
- Clone the oc-accel framework (contribution mode using ssh)
-
-```
-git clone git@github.com:OpenCAPI/oc-accel.git
-```
-
-2)	Install the libocxl libraries + reboot the server after installation. 
-
-(for ubuntu) 
-
-```
-sudo apt-get install libocxl-dev
-```
-
-(for RHEL) 
-
-```
-sudo yum install libocxl-devel
-```
-
-(libcxl-devel package is provided by RedHat Optional repository)   
-3)	Clone the FPGA Image loader
-
-```
-sudo git clone  https://github.ibm.com/OC-Enablement/oc-utils/ 
-cd oc_utils
-sudo make install 
-```
-
-
-
-## Privileges
-
-Important: libocxl requires root privileges to allow card exchanges (like reset, oc_maint, usage in general).
-
-When using the card without sudo privileges, you get an normal error.
-
-Your administrator can provide user privileges using this process:
-
-- Permanently create a /etc/udev/rules.d/20-ocaccel.rules file including:
-
-  ```
-  SUBSYSTEM=="ocxl", DEVPATH=="*/ocxl/IBM,oc-snap*", MODE="666", RUN="/bin/chmod 666 %S/%p/global_mmio_area"
-  ```
-
-- Reboot
-  
+A general procedure is available [here](../setup_power_tools/ )
 
 ## Check that the cards are recognized as accelerators
 
