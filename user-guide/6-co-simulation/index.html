@@ -177,6 +177,10 @@
 <li>
     <a href="../../apps_notes/Installing_an_OC-AD9H7_on_IC922/" class="dropdown-item">OC-AD9H7 installation in IC922</a>
 </li>
+                                    
+<li>
+    <a href="../../apps_notes/How_Data_is_Managed/" class="dropdown-item">How Data is Managed in OC-ACCEL</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -324,28 +328,36 @@
 <p>All of the simulation related logs, files and waveforms can be found in the <code>simout</code> directory.</p>
 <p>After each simulation, a soft link named as <code>latest</code> will be created pointing to the <code>simout</code> of the latest simulation.</p>
 <h2 id="check-the-waveform">Check the Waveform</h2>
-<p>By default, <code>ocaccel_workflow.py</code> enables waveform dumping. The waveform can be found in the following directory:</p>
-<p>For Vivado <code>xsim</code>:</p>
+<p>By default, <code>ocaccel_workflow.py</code> enables waveform dumping.</p>
+<p>The command <a href="https://github.com/OpenCAPI/oc-accel/blob/master/display_traces">display_traces</a> opens the simulator in waveform view  (including default chronograms).</p>
+<p>For further reference,  waveform can be found in the following directory:</p>
+<ul>
+<li>For Vivado <code>xsim</code>:</li>
+</ul>
 <pre><code>&lt;...&gt;/hardware/sim/xsim/&lt;timestamp&gt;.&lt;rand_num&gt;/top.wdb
 </code></pre>
 
-<p>For Cadence <code>xcelium</code>:</p>
+<ul>
+<li>For Cadence <code>xcelium</code>:</li>
+</ul>
 <pre><code>&lt;...&gt;/hardware/sim/xcelium/timestamp&gt;.&lt;rand_num&gt;/capiWave/
 </code></pre>
 
 <p>To control the simulator specific waveform dumping options (written in tcl), please edit the following files:</p>
-<p>For Vivado <code>xsim</code>:</p>
+<ul>
+<li>For Vivado <code>xsim</code>:</li>
+</ul>
 <pre><code>&lt;...&gt;/hardware/sim/xsaet.tcl
 </code></pre>
 
-<p>For Cadence <code>xcelium</code>:</p>
+<ul>
+<li>For Cadence <code>xcelium</code>:</li>
+</ul>
 <pre><code>&lt;...&gt;/hardware/sim/ncaet.tcl
 </code></pre>
 
-<p>To disable the waveform dumping, use the following command options in <code>ocaccel_workflow.py</code>:</p>
-<pre><code>./ocaccel_workflow.py --no_wave
-</code></pre>
-
+<p>To disable the waveform dumping, use the following command options in <code>ocaccel_workflow.py</code>:
+- <code>./ocaccel_workflow.py --no_wave</code></p>
 <h2 id="recompile-for-small-design-changes">Recompile for small design changes</h2>
 <p>If you have modified the design just a little bit (no file name and hierarchy changed), you can just simply rerun the compile script under: </p>
 <pre><code>&lt;...&gt;/hardware/sim/xsim/top.sh

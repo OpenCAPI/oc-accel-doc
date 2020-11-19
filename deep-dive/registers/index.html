@@ -177,6 +177,10 @@
 <li>
     <a href="../../apps_notes/Installing_an_OC-AD9H7_on_IC922/" class="dropdown-item">OC-AD9H7 installation in IC922</a>
 </li>
+                                    
+<li>
+    <a href="../../apps_notes/How_Data_is_Managed/" class="dropdown-item">How Data is Managed in OC-ACCEL</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -312,6 +316,21 @@
 <p>The higher 32bits of tlx_afu_cmd_pa (Physical Address) should be matched with BAR0. </p>
 <p>The lower 32bits, also called mmio_address, is processed in OC-Accel. </p>
 <p><img alt="mmio-address" src="../pictures/reg-mmio-address.svg" /></p>
+<p>User can use <code>snap_peek</code> (<code>snap_poke</code>) to read (write) these registers:</p>
+<ul>
+<li>Read OC global BDR register (Build date register):</li>
+</ul>
+<pre><code> $ snap_peek 0x0008
+ [00000008]  0000202011181128
+</code></pre>
+
+<ul>
+<li>Read OC action ATR register (Action ID):</li>
+</ul>
+<pre><code> $ snap_peek -w32 0x0010
+ [00000010] 10143009
+</code></pre>
+
 <h1 id="global-registers-summary">Global Registers: Summary</h1>
 <table>
 <thead>

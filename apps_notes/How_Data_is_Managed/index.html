@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Software API - OC-Accel Doc</title>
+        <title>How Data is Managed in OC-ACCEL - OC-Accel Doc</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -141,45 +141,45 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Deep Dive <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active">Software API</a>
+    <a href="../../deep-dive/software-api/" class="dropdown-item">Software API</a>
 </li>
                                     
 <li>
-    <a href="../registers/" class="dropdown-item">Registers</a>
+    <a href="../../deep-dive/registers/" class="dropdown-item">Registers</a>
 </li>
                                     
 <li>
-    <a href="../hardware-logic/" class="dropdown-item">Hardware Logic</a>
+    <a href="../../deep-dive/hardware-logic/" class="dropdown-item">Hardware Logic</a>
 </li>
                                     
 <li>
-    <a href="../board-package/" class="dropdown-item">New Board Support</a>
+    <a href="../../deep-dive/board-package/" class="dropdown-item">New Board Support</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Appl. Notes <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../apps_notes/setup_power_tools/" class="dropdown-item">Setup Power Tools</a>
+    <a href="../setup_power_tools/" class="dropdown-item">Setup Power Tools</a>
 </li>
                                     
 <li>
-    <a href="../../apps_notes/Installing_an_OC-AD9V3_on_AC922/" class="dropdown-item">OC-AD9V3 installation in AC922</a>
+    <a href="../Installing_an_OC-AD9V3_on_AC922/" class="dropdown-item">OC-AD9V3 installation in AC922</a>
 </li>
                                     
 <li>
-    <a href="../../apps_notes/Installing_an_OC-AD9H7_on_IC922/" class="dropdown-item">OC-AD9H7 installation in IC922</a>
+    <a href="../Installing_an_OC-AD9H7_on_IC922/" class="dropdown-item">OC-AD9H7 installation in IC922</a>
 </li>
                                     
 <li>
-    <a href="../../apps_notes/How_Data_is_Managed/" class="dropdown-item">How Data is Managed in OC-ACCEL</a>
+    <a href="./" class="dropdown-item active">How Data is Managed in OC-ACCEL</a>
 </li>
                                 </ul>
                             </li>
@@ -201,12 +201,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../../actions-doc/hls_decimal_mult/" class="nav-link">
+                                <a rel="prev" href="../Installing_an_OC-AD9H7_on_IC922/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../registers/" class="nav-link">
+                                <a rel="next" href="../../misc/doc-guide/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -231,17 +231,25 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#oc-accel-software" class="nav-link">OC-Accel Software</a>
+            <li class="nav-item" data-level="1"><a href="#application-note-how-data-is-managed-in-oc-accel" class="nav-link">Application Note : How data is managed in oc-accel</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#environment-variables" class="nav-link">Environment Variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#tools" class="nav-link">Tools</a>
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#apis" class="nav-link">APIs</a>
+            <li class="nav-item" data-level="2"><a href="#foreword" class="nav-link">Foreword</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#overview" class="nav-link">Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#actions-interfaces" class="nav-link">Actions interfaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#axi-data-the-data-highway" class="nav-link">AXI data: the data “highway”</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -252,32 +260,89 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="oc-accel-software">OC-Accel Software</h1>
-<h2 id="environment-variables">Environment Variables</h2>
-<p>To debug libsnap functionality or associated actions, there are currently some environment variables available:</p>
+<h1 id="application-note-how-data-is-managed-in-oc-accel">Application Note : How data is managed in oc-accel</h1>
+<p>By IBM Systems Group
+November, 2020</p>
+<p>Authors : OpenCAPI Support Team - Montpellier, FRANCE</p>
+<h2 id="introduction">Introduction</h2>
+<p>This Guide describes how to use, declare and optimize data variables in the SNAP environment. </p>
+<p>To understand without any ambiguity all the explanation provided in this document, let’s recall the basics:</p>
 <ul>
-<li><strong><em>SNAP_TRACE</em></strong>: <ul>
-<li>0x1 General libsnap trace</li>
-<li>0x2 Enable register read/write trace</li>
-<li>0x4 Enable simulation specific trace</li>
-<li>0x8 Enable action traces. </li>
-<li>For example, use <code>SNAP_TRACE=0xF</code> to enable all above.</li>
-<li>Applications might use more bits above those defined here.</li>
+<li>an <strong>application</strong> is the program running on the host server and executed on a <strong>CPU</strong></li>
+<li>an <strong>action</strong> is the program running on the <strong>FPGA</strong></li>
 </ul>
-</li>
-</ul>
-<h2 id="tools">Tools</h2>
+<h2 id="foreword">Foreword</h2>
+<p>We will use <em>SNAP</em> word from time to time as it was the former name of the framework used with the previous versions of CAPI1.0 &amp; CAPI2.0 technologies. </p>
+<p>Since OpenCAPI (sometimes called CAPI3.0) is the 3rd generation of CAPI, some former SNAP names can be found. Most of them have been changed though (eg <em>snap_maint</em> became <em>oc_maint</em>).</p>
+<h2 id="overview">Overview</h2>
+<p>Even if you use a standard language like C or C++, porting a program on to an FPGA requires understanding some important concepts about how data flows or is accessed. The FPGA has no Operating System which means that standard use of data in code executed on a CPU will require, on an FPGA, a formal read or write access to the physical resource. Understanding this key point will help the user to define not only which <strong>path</strong> to use to exchange data between the application and the action, but also the <strong>way</strong> to access so that you can easily and efficiently access the data.</p>
+<p>This document will successfully go through the following items:</p>
 <ul>
-<li>snap_maint: Currently it just prints information. </li>
-<li>snap_peek: debug tools to read MMIO registers.</li>
-<li>snap_poke: debug tools to write MMIO registers.</li>
+<li>understand the ways for an <strong>action</strong> to exchange data with an <strong>application</strong></li>
+<li>understand the ways for an <strong>action</strong> to exchange data with <strong>all different resources</strong></li>
+<li>understand the control logic used by SNAP to manage different actions</li>
 </ul>
-<h2 id="apis">APIs</h2>
-<p>Refer to: </p>
+<h2 id="actions-interfaces">Actions interfaces</h2>
+<h3 id="configuration-of-an-action-by-an-application">Configuration of an action by an application</h3>
+<p>The first key point to remember is that with OpenCAPI, an action executed on the FPGA doesn’t need a software driver, which means that the application will NOT send the data to the action, since the action will access data on its own. The action will get information from the application as to where the required data is located. 
+A second key point to remember is that, thanks to OpenCAPI, when an address is defined and used in the application, the same address will be usable without any modification in the action.
+In other words, let’s take the example where a user wants to process 2 tables of data in the action, one located in the host server memory and one in the FPGA DDR memory. The application will fill a structure (Action registers) to tell the action where the required data is located, and where the action should write the result. Any other parameters can be added to control the action if needed. </p>
+<p><img alt="" src="/apps_notes/Installing_an_OC-AD9H7_on_IC922.assets/power_action_exchanges.png" /></p>
+<p>This structure exchanged between the application and the action is prepared by the application and sent before starting the processing. We will use the “MMIO” interface to read or write these settings. They can be dynamically changed during the processing since this interface is asynchronous to all other interfaces.</p>
+<h3 id="transferring-data-fromto-an-action">Transferring data from/to an action</h3>
+<p>The primary goal of the OC-ACCEL framework is to simplify the coding of the action which is implemented on the FPGA. Therefore, accessing several types of resources such as Host server memory, FPGA board DDR3 or DDR4, FPGA board Flash/NVMe/HBM memory needs to be standardized for the programmer by abstracting out the lower level details of each resource type. The other reason for this layer of abstraction is to prevent the user having to modify high level code when a new version of a resource type or a new resource type is added to the system. </p>
+<p><img alt="" src="/apps_notes/How_Data_is_Managed.assets/axi_buses.png" /></p>
+<p>A common standard and simple interface, named as AXI4 (Advanced eXtensible Interface release 4.0 developed by ARM), has been chosen to interface all the resources that an action needs to work with. This means that OC-ACCEL provides in its internal logic the driver to interface the different resources. If one (or more) of these resources is not used or not present on the board, the associated AXI driver to this resource can be disabled so that only used logic is implemented. Also, if a new resource is added to the system, the associated AXI driver can be added to the FPGA while the high-level user code stays as is, since it deals with the AXI abstraction layer.</p>
+<p>As described in Xilinx UG761 document, this AXI4 protocol has 3 types:</p>
 <ul>
-<li>include/libosnap.h</li>
-<li>lib/osnap.c</li>
-</ul></div>
+<li>AXI (or AXI_mm) – for high performance memory mapped requirements</li>
+<li>AXI-Lite – for simple, low-throughput memory mapped communication (typically used for control and status registers)  </li>
+<li>AXI-Stream – for high-speed streaming data</li>
+</ul>
+<p>In OC-ACCEL:</p>
+<ul>
+<li><strong>AXI_mm</strong> is used for all data that is exchanged with external resources.</li>
+<li><strong>AXI-Lite</strong> is used for status and control registers (MMIO).</li>
+<li><strong>AXI-stream</strong> is used for example when connecting a network driver.</li>
+</ul>
+<h2 id="axi-data-the-data-highway">AXI data: the data “highway”</h2>
+<p>Let’s start with the AXI data interface which allows data to be exchanged on a high-speed interface.</p>
+<h3 id="types-of-resources">Types of resources</h3>
+<p>Three types of resources can be listed as:</p>
+<ol>
+<li>Common resources: Host server memory:
+   unidirectional port IN + 1 unidirectional port OUT </li>
+<li>FPGA specific resources:FPGA memory, named as BRAM:
+   for example, a Xilinx KU060 has 3.5MB of memory used for user code variables.</li>
+<li>Board specific resources (for example):
+   AlphaData ADM-PCIE-9H3: 
+     HBM, 2 100Gb Ethernet cages
+   Bittware 250-SOC:
+     Zync processor</li>
+</ol>
+<p>Two important points to highlight:</p>
+<ul>
+<li><strong>Action code accesses all resources using a unique AXI protocol</strong> which abstracts out the specific protocols of each of the resources.</li>
+<li><strong>“Board resources” are NOT known or seen by the application</strong> running on the server. These resources can be managed by the Host application or by the action but need to be managed by one or the other.</li>
+</ul>
+<h3 id="size-of-the-interfaces">“Size” of the interfaces</h3>
+<p>To ease the use of these different resources by the action code, and reduce the latency to access them, the choice has been made in SNAP that all resources are accessed with a <strong>data width set to a fixed value defined by “snap_membus_t”</strong>. This data type is defined as follow:
+~oc-accel/actions/include/hls_snap.H:
+This means that a full word read from or written to the host server memory or the FPGA DDR will always be 512 bits / 64 Bytes data in physical size. We will see soon how to deal with this “constraint”.
+2.3 Ports declaration
+All actions provided as examples in SNAP have the “ports” defined the same way. Remember that hls_action is a reserved name that is used by SNAP logic to find the top file of the code.
+~snap/actions/hls_<em>/hw/action_</em>.cpp:
+All unused ports can be commented except the ports of the host memory declared as “din_gmem” and “dout_gmem” which needs to remain active. “din_gmem” is the unidirectional port through which all data read from the Host server memory will enter the action. “dout_gmem” is the unidirectional port through which all data written to the Host server memory will exit the action.
+The port “d_ddrmem” is bidirectional which means that data read from or written to the FPGA board DDR will flow through this port. The port can address DDR3 or DDR4 types of memory since the SNAP logic will adapt automatically the right driver to the right type of DDR (card dependent). 
+The port “d_nvme” is a control port used to define the access to the NVME. All data are read and written through the DDR memory, used as a cache. Therefore, if the action needs data from the NVMe, it sends a read request of X bytes at a NVMe address, and the DDR will be filled with a block containing the data requested. The reason of this architecture is that the NVMe has a large latency and accessing it directly would slow the action program execution. 
+More explanation can be found in the document provided in snap NVME example:
+ https://github.com/open-power/snap/blob/master/actions/hls_nvme_memcopy/doc/UG_SNAP_hls_nvme_memcopy_v1.0.pdf 
+2.4 Ports definition
+In the top-level module hls_action of each hardware action, after their declaration, all the ports are defined as “#pragma HLS INTERFACE m_axi” ports. This type of definition is used for data path using the AXI4 protocol:</p>
+<p>Every port is defined with the name that will be used in the code to access it (din_gmem, dout_gmem, d_ddrmem, d_nvme).  The declaration of the bundle is the prefix of the name of the signal which will be used by the logic to connect to the different physical interfaces through a wrapper. Modifying this bundle name will prevent your logic from being connected to the SNAP wrapper.
+The parameters (slave_depth, max_read_burst_length, max_write_burst_length) are set for the Xilinx HLS tool to overwrite default settings and get the maximum AXI burst (4KB). 
+Refer to Xilinx UG902 Vivado HLS user guide for more details on these options.</p>
+<p><img alt="" src="/apps_notes/Installing_an_OC-AD9H7_on_IC922.assets/panneau-blanc-travaux-350px.jpg" /></p></div>
             </div>
         </div>
 
