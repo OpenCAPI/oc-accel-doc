@@ -38,7 +38,7 @@ The first key point to remember is that with OpenCAPI, an action executed on the
 A second key point to remember is that, thanks to OpenCAPI, when an address is defined and used in the application, the same address will be usable without any modification in the action.
 In other words, let’s take the example where a user wants to process 2 tables of data in the action, one located in the host server memory and one in the FPGA DDR memory. The application will fill a structure (Action registers) to tell the action where the required data is located, and where the action should write the result. Any other parameters can be added to control the action if needed. 
 
-![](/apps_notes/Installing_an_OC-AD9H7_on_IC922.assets/power_action_exchanges.png)
+![](../apps_notes/Installing_an_OC-AD9H7_on_IC922.assets/power_action_exchanges.png)
 
 This structure exchanged between the application and the action is prepared by the application and sent before starting the processing. We will use the “MMIO” interface to read or write these settings. They can be dynamically changed during the processing since this interface is asynchronous to all other interfaces.
 
@@ -48,7 +48,7 @@ This structure exchanged between the application and the action is prepared by t
 
 The primary goal of the OC-ACCEL framework is to simplify the coding of the action which is implemented on the FPGA. Therefore, accessing several types of resources such as Host server memory, FPGA board DDR3 or DDR4, FPGA board Flash/NVMe/HBM memory needs to be standardized for the programmer by abstracting out the lower level details of each resource type. The other reason for this layer of abstraction is to prevent the user having to modify high level code when a new version of a resource type or a new resource type is added to the system. 
 
-![](/apps_notes/How_Data_is_Managed.assets/axi_buses.png)
+![](../apps_notes/How_Data_is_Managed.assets/axi_buses.png)
 
 A common standard and simple interface, named as AXI4 (Advanced eXtensible Interface release 4.0 developed by ARM), has been chosen to interface all the resources that an action needs to work with. This means that OC-ACCEL provides in its internal logic the driver to interface the different resources. If one (or more) of these resources is not used or not present on the board, the associated AXI driver to this resource can be disabled so that only used logic is implemented. Also, if a new resource is added to the system, the associated AXI driver can be added to the FPGA while the high-level user code stays as is, since it deals with the AXI abstraction layer.
 
@@ -131,4 +131,4 @@ Refer to Xilinx UG902 Vivado HLS user guide for more details on these options.
 
 [...]
 
-![](/apps_notes/Installing_an_OC-AD9H7_on_IC922.assets/panneau-blanc-travaux-350px.jpg)
+![](../apps_notes/Installing_an_OC-AD9H7_on_IC922.assets/panneau-blanc-travaux-350px.jpg)

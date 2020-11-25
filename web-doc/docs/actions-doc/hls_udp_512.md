@@ -31,7 +31,7 @@ As CMAC IP is under licence, make sure your license file is up-to-date.
 
 For debug purpose, an internal loopback can be selected, avoiding to use the CMAC layer, thus reducing synthesis and/or routing time.
 
-![](/pictures/eth_loopback_modes.png)
+![](../pictures/eth_loopback_modes.png)
 
 <center>fig 1 : loopback settings</center>
 
