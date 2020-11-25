@@ -245,10 +245,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#users-guide" class="nav-link">Users' Guide:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
             <li class="nav-item" data-level="2"><a href="#prerequisites" class="nav-link">Prerequisites:</a>
               <ul class="nav flex-column">
               </ul>
@@ -257,7 +253,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#in-short_1" class="nav-link">In SHORT</a>
+            <li class="nav-item" data-level="2"><a href="#some-details" class="nav-link">Some Details</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -276,14 +272,6 @@
 <p>This example allows to use a CMAC providing high speed data transfer capability.</p>
 <p>Sample packets are internally generated and sent to the CMAC layer. The test expects packets to be externally loopback returned to compare them and thus check the complete path.</p>
 <p>It can be checked in /action.Kconfig file that the ACTION_HALF_WIDTH bloc is used for this example, so the interface uses the OpenCAPI 512 bit bus.</p>
-<h2 id="users-guide">Users' Guide:</h2>
-<p>Python code is changing characters case of a user phrase</p>
-<ul>
-<li>​ code can be executed on the CPU (will transform all characters to lower case)</li>
-<li>​    code can be simulated (will transform all characters to upper case in simulation)</li>
-<li>​    code can then run in hardware when the FPGA is programmed (will transform all characters to upper case in hardware)</li>
-</ul>
-<p>The example code uses the copy mechanism to get/put the file from/to system host memory to/from DDR FPGA attached memory</p>
 <h2 id="prerequisites">Prerequisites:</h2>
 <p>As CMAC IP is under licence, make sure your license file is up-to-date.</p>
 <h2 id="loopback-modes">Loopback modes</h2>
@@ -294,7 +282,7 @@
 <p class="admonition-title">Note</p>
 <p>In simulation the CMAC bloc is always in loopback mode when selected.</p>
 </div>
-<h2 id="in-short_1">In SHORT</h2>
+<h2 id="some-details">Some Details</h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Only one CMAC bloc is available and only in OC-AD9H3 card at the time of writing.</p>
