@@ -106,13 +106,13 @@ To generate a FPGA bitstream (binary image), the top design file is `oc_fpga_top
 
 ![deploy-and-run](pictures/deploy-and-run.svg)
 
-When FPGA bit image is generated, use the tool `oc-flash-script` in [oc-utils] (TODO: update link) to download it from Power9 host server to the FPGA flash. After reboot, the bit image takes effect and you can ask application to call FPGA acceleration, with the help of `libosnap` and `libocxl`.
+When FPGA bit image is generated, use the tool `oc-flash-script` in [oc-utils] to download it from Power9 host server to the FPGA flash. After reboot, the bit image takes effect and you can ask application to call FPGA acceleration, with the help of `libosnap` and `libocxl`.
 
 [libocxl] need to be installed. Please follow the README file on its homepage.
 
 Application software and libosnap need to be compiled on Power9 host server also. For more information, please refer to [User-guide: deploy].
 
 [libocxl]: https://github.com/OpenCAPI/libocxl
-[oc-utils]: https://github.ibm.com/OC-Enablement/oc-utils/
+[oc-utils]: https://github.com/OpenCAPI/oc-utils.git
 [User-guide: deploy]: ../user-guide/8-deploy/
 

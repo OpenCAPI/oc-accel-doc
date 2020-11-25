@@ -13,16 +13,6 @@ Sample packets are internally generated and sent to the CMAC layer. The test exp
 
 It can be checked in /action.Kconfig file that the ACTION_HALF_WIDTH bloc is used for this example, so the interface uses the OpenCAPI 512 bit bus.
 
-## Users' Guide:
-
-Python code is changing characters case of a user phrase
-
-- ​	code can be executed on the CPU (will transform all characters to lower case)
-- ​    code can be simulated (will transform all characters to upper case in simulation)
-- ​    code can then run in hardware when the FPGA is programmed (will transform all characters to upper case in hardware)
-
-The example code uses the copy mechanism to get/put the file from/to system host memory to/from DDR FPGA attached memory
-
 ## Prerequisites:
 
 As CMAC IP is under licence, make sure your license file is up-to-date.
@@ -42,13 +32,13 @@ For debug purpose, an internal loopback can be selected, avoiding to use the CMA
 !!!Note
     In simulation the CMAC bloc is always in loopback mode when selected.
 
-## In SHORT
+## Some Details
 
 !!!Note
     Only one CMAC bloc is available and only in OC-AD9H3 card at the time of writing.
 
 The main application software will tune the number of packets to read, the MAC Address and the IP of the FPGA.
-All these exchanged data are contained in a structure defined in https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_udp_512/include/action_udp.H and shared with the hardware.
+All these exchanged data are contained in a structure defined in https://github.com/OpenCAPI/oc-accel/tree/master/actions/hls_udp_512/include/action_udp.H and shared with the hardware.
 
 In return hardware will provide simple statistics.
 
@@ -74,5 +64,5 @@ The hardware is defined using a C description in
 
 https://github.com/OpenCAPI/oc-accel/tree/emac_2020_1/actions/hls_udp_512/hw
 
-The example uses streams to echange with global memory, and output (input) hardware built packets into (from) CMAC.
+The example uses streams to output (input) hardware built packets into (from) CMAC.
 

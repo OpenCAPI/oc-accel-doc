@@ -93,7 +93,7 @@ Two important points to highlight:
 
 To ease the use of these different resources by the action code, and reduce the latency to access them, the choice has been made in OC-ACCEL that all resources are accessed with a **data width set to a fixed value defined by “snap_membus_XXX_t”**. This XXX depends on the chosen bus width and data type are defined in this file:
 
-https://github.com/OpenCAPI/oc-accel/blob/master/actions/include/hls_snap_1024.H
+[https://github.com/OpenCAPI/oc-accel/blob/master/actions/include/hls_snap_1024.H](https://github.com/OpenCAPI/oc-accel/blob/master/actions/include/hls_snap_1024.H)
 
 This means that a full word read from or written to the host server memory or the FPGA DDR will either be 512 bits / 64 Bytes or 1024 bits / 128 bytes data in physical size. We will see soon how to deal with this “constraint”.
 

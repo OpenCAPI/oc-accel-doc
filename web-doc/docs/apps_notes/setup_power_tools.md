@@ -60,7 +60,7 @@ sudo dnf install libocxl-devel
 3)	Clone the FPGA Image loader
 
 ```
-sudo git clone  https://github.ibm.com/OC-Enablement/oc-utils/ 
+sudo git clone  https://github.com/OpenCAPI/oc-utils.git 
 cd oc_utils
 sudo make install 
 ```
