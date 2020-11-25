@@ -331,7 +331,7 @@ In other words, let’s take the example where a user wants to process 2 tables 
 </ul>
 <h3 id="size-of-the-interfaces">“Size” of the interfaces</h3>
 <p>To ease the use of these different resources by the action code, and reduce the latency to access them, the choice has been made in OC-ACCEL that all resources are accessed with a <strong>data width set to a fixed value defined by “snap_membus_XXX_t”</strong>. This XXX depends on the chosen bus width and data type are defined in this file:</p>
-<p>https://github.com/OpenCAPI/oc-accel/blob/master/actions/include/hls_snap_1024.H</p>
+<p><a href="https://github.com/OpenCAPI/oc-accel/blob/master/actions/include/hls_snap_1024.H">https://github.com/OpenCAPI/oc-accel/blob/master/actions/include/hls_snap_1024.H</a></p>
 <p>This means that a full word read from or written to the host server memory or the FPGA DDR will either be 512 bits / 64 Bytes or 1024 bits / 128 bytes data in physical size. We will see soon how to deal with this “constraint”.</p>
 <h3 id="ports-declaration">Ports declaration</h3>
 <p>All actions provided as examples in OC-ACCEL have the “ports” defined the same way. Remember that hls_action is a reserved name that is used by OC-ACCEL logic to find the top file of the code.

@@ -288,7 +288,7 @@
 <p>Only one CMAC bloc is available and only in OC-AD9H3 card at the time of writing.</p>
 </div>
 <p>The main application software will tune the number of packets to read, the MAC Address and the IP of the FPGA.
-All these exchanged data are contained in a structure defined in https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_udp_512/include/action_udp.H and shared with the hardware.</p>
+All these exchanged data are contained in a structure defined in https://github.com/OpenCAPI/oc-accel/tree/master/actions/hls_udp_512/include/action_udp.H and shared with the hardware.</p>
 <p>In return hardware will provide simple statistics.</p>
 <pre><code>/* Data structure used to exchange information between action and application */
 /* Size limit is 108 Bytes */
@@ -309,7 +309,7 @@ typedef struct rx100G_job {
 
 <p>The hardware is defined using a C description in </p>
 <p>https://github.com/OpenCAPI/oc-accel/tree/emac_2020_1/actions/hls_udp_512/hw</p>
-<p>The example uses streams to echange with global memory, and output (input) hardware built packets into (from) CMAC.</p></div>
+<p>The example uses streams to output (input) hardware built packets into (from) CMAC.</p></div>
             </div>
         </div>
 
