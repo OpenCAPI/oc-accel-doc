@@ -37,6 +37,25 @@ The lower 32bits, also called mmio_address, is processed in OC-Accel.
 
 ![mmio-address](pictures/reg-mmio-address.svg)
 
+User can use `snap_peek` (`snap_poke`) to read (write) these registers:
+
+- Read OC global BDR register (Build date register):
+
+```
+ $ snap_peek 0x0008
+ [00000008]  0000202011181128
+```
+
+-  Read OC action ATR register (Action ID):
+
+
+```
+ $ snap_peek -w32 0x0010
+ [00000010] 10143009
+```
+
+
+
 # Global Registers: Summary
 
 

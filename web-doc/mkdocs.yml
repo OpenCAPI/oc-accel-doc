@@ -30,6 +30,7 @@ nav:
     - 'hls_image_filter': 'actions-doc/hls_image_filter.md'
     - 'hls_helloworld_python': 'actions-doc/hls_helloworld_python.md'
     - 'hls_decimal_mult': 'actions-doc/hls_decimal_mult.md'
+    - 'hls_udp_512': 'actions-doc/hls_udp_512.md'
 
   - Deep Dive:
     - 'Software API': 'deep-dive/software-api.md'
@@ -40,6 +41,7 @@ nav:
     - 'Setup Power Tools': 'apps_notes/setup_power_tools.md'
     - 'OC-AD9V3 installation in AC922': 'apps_notes/Installing_an_OC-AD9V3_on_AC922.md'
     - 'OC-AD9H7 installation in IC922': 'apps_notes/Installing_an_OC-AD9H7_on_IC922.md'
+    - 'How Data is Managed in OC-ACCEL': 'apps_notes/How_Data_is_Managed.md'
   - Misc:
     - 'Document Guide': 'misc/doc-guide.md'
 theme:

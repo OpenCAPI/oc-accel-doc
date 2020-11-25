@@ -12,7 +12,11 @@ export XILINXD_LICENSE_FILE=<pointer to Xilinx license>
 export PATH=$PATH:${XILINX_VIVADO}/bin
 ```
 
-There is a file `setup_tools.ksh` in the root directory for reference. But for the beginning, only Vivado is required.
+There is a file `
+
+[setup_tools.ksh](https://github.com/OpenCAPI/oc-accel/blob/master/setup_tools.ksh)
+
+` in the root directory for reference. But for the beginning, only Vivado is required.
 
 !!!Note
     OC-Accel started on Vivado 2018.2, 2018.3 and 2019.1. It now best runs on 2019.2/2020.1 for all cards.

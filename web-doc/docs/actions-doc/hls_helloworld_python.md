@@ -40,11 +40,14 @@ To get started use the following steps:
 
 ```
 git clone https://github.com/OpenCAPI/oc-accel.git #if using regular https method
-git git@github.com:OpenCAPI/oc-accel.git  # if using ssh method with privileges
+#git git@github.com:OpenCAPI/oc-accel.git  # if using ssh method with privileges
 git clone https://github.com/OpenCAPI/ocse
 cd oc-accel
 make snap_config        #select (X) HLS_helloworld_python 
-vim snap_env.sh -> export SNAP_ROOT=/home/~/oc-accel  #or your oc-accel directory
+# if you come back and use a new environment use 
+. ./snap_path.sh # to set the SNAP_ROOT path
+# either manually restore the path kile this :
+vim snap_env.sh # -> export SNAP_ROOT=/home/~/oc-accel  #or your oc-accel directory
 # Check ocse PATH if not default ~/ocse
 . snap_env.sh
 make software           # this will compile any required tools
@@ -139,7 +142,10 @@ To launch a Jupyter Notebook on P9 (on the FPGA card)
 - Ensure you have compiled oc-accel's software on P9
 
 ```
-cd ${SNAP_ROOT}
+git clone https://github.com/OpenCAPI/oc-accel.git #if using regular https method
+#git git@github.com:OpenCAPI/oc-accel.git  # if using ssh method with privileges
+cd <your oc-accel dir>
+. ./snap_path  # this will set the SNAP_ROOT variable to your oc-accel dir
 make software
 ```
 

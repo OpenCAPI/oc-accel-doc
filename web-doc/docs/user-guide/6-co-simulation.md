@@ -15,6 +15,7 @@ Co-simulation in OpenCAPI acceleration framework consists of three processes as 
 * Process 1 runs OCSE (OpenCAPI Simulation Engine)
 * Process 2 runs user application.
   
+
 The three processes are communicated via sockets.
 
 ![co-simulation overview](./pictures/6-overview.svg)
@@ -29,7 +30,7 @@ The file structure and module level hierarchy is covered in [top hierarchy in si
 
 The basic flow of running co-simulation has been covered in [simulation section of running helloworld]. Please refer to it for a quick getting started.
 
-[simulation section of running helloworld]: ../../user-guide/2-run-helloworld/#simulation  
+[simulation section of running helloworld]: ../../user-guide/2-run-helloworld/#simulation
 
 To start the co-simulation, the simplest way is to use `ocaccel_workflow.py` with its rich command line options.
 
@@ -82,34 +83,43 @@ After each simulation, a soft link named as `latest` will be created pointing to
 
 ## Check the Waveform
 
-By default, `ocaccel_workflow.py` enables waveform dumping. The waveform can be found in the following directory:
+By default, `ocaccel_workflow.py` enables waveform dumping.
 
-For Vivado `xsim`:
+The command [display_traces](https://github.com/OpenCAPI/oc-accel/blob/master/display_traces) opens the simulator in waveform view  (including default chronograms).
+
+For further reference,  waveform can be found in the following directory:
+
+- For Vivado `xsim`:
+
 ```
 <...>/hardware/sim/xsim/<timestamp>.<rand_num>/top.wdb
 ```
 
-For Cadence `xcelium`:
+- For Cadence `xcelium`:
+
 ```
 <...>/hardware/sim/xcelium/timestamp>.<rand_num>/capiWave/
 ```
 
 To control the simulator specific waveform dumping options (written in tcl), please edit the following files:
 
-For Vivado `xsim`:
+- For Vivado `xsim`:
+
 ```
 <...>/hardware/sim/xsaet.tcl
 ```
 
-For Cadence `xcelium`:
+- For Cadence `xcelium`:
+
 ```
 <...>/hardware/sim/ncaet.tcl
 ```
 
 To disable the waveform dumping, use the following command options in `ocaccel_workflow.py`:
-```
-./ocaccel_workflow.py --no_wave
-```
+- ```
+  ./ocaccel_workflow.py --no_wave
+  ```
+
 
 ## Recompile for small design changes
 
@@ -131,11 +141,11 @@ The simulation will be rebuilt and just run `./run_sim` to start the xterm windo
     Be aware of the files having "**_source**" suffixes. If you need to change "FILE", please make the modifications on "FILE_source", then do following: 
 
     `rm -f FILE`
-
+    
     `cd <...>/hardware`
-
+    
     `make snap_preprocess_execute`
-
+    
     So "FILE" will be regenerated from "FILE_source".
 
 
