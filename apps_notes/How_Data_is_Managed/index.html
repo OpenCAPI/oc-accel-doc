@@ -139,6 +139,10 @@
 <li>
     <a href="../../actions-doc/hls_decimal_mult/" class="dropdown-item">hls_decimal_mult</a>
 </li>
+                                    
+<li>
+    <a href="../../actions-doc/hls_udp_512/" class="dropdown-item">hls_udp_512</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -326,22 +330,29 @@ In other words, let’s take the example where a user wants to process 2 tables 
 <li><strong>“Board resources” are NOT known or seen by the application</strong> running on the server. These resources can be managed by the Host application or by the action but need to be managed by one or the other.</li>
 </ul>
 <h3 id="size-of-the-interfaces">“Size” of the interfaces</h3>
-<p>To ease the use of these different resources by the action code, and reduce the latency to access them, the choice has been made in SNAP that all resources are accessed with a <strong>data width set to a fixed value defined by “snap_membus_t”</strong>. This data type is defined as follow:
-~oc-accel/actions/include/hls_snap.H:
-This means that a full word read from or written to the host server memory or the FPGA DDR will always be 512 bits / 64 Bytes data in physical size. We will see soon how to deal with this “constraint”.
-2.3 Ports declaration
-All actions provided as examples in SNAP have the “ports” defined the same way. Remember that hls_action is a reserved name that is used by SNAP logic to find the top file of the code.
-~snap/actions/hls_<em>/hw/action_</em>.cpp:
-All unused ports can be commented except the ports of the host memory declared as “din_gmem” and “dout_gmem” which needs to remain active. “din_gmem” is the unidirectional port through which all data read from the Host server memory will enter the action. “dout_gmem” is the unidirectional port through which all data written to the Host server memory will exit the action.
-The port “d_ddrmem” is bidirectional which means that data read from or written to the FPGA board DDR will flow through this port. The port can address DDR3 or DDR4 types of memory since the SNAP logic will adapt automatically the right driver to the right type of DDR (card dependent). 
-The port “d_nvme” is a control port used to define the access to the NVME. All data are read and written through the DDR memory, used as a cache. Therefore, if the action needs data from the NVMe, it sends a read request of X bytes at a NVMe address, and the DDR will be filled with a block containing the data requested. The reason of this architecture is that the NVMe has a large latency and accessing it directly would slow the action program execution. 
-More explanation can be found in the document provided in snap NVME example:
- https://github.com/open-power/snap/blob/master/actions/hls_nvme_memcopy/doc/UG_SNAP_hls_nvme_memcopy_v1.0.pdf 
-2.4 Ports definition
-In the top-level module hls_action of each hardware action, after their declaration, all the ports are defined as “#pragma HLS INTERFACE m_axi” ports. This type of definition is used for data path using the AXI4 protocol:</p>
-<p>Every port is defined with the name that will be used in the code to access it (din_gmem, dout_gmem, d_ddrmem, d_nvme).  The declaration of the bundle is the prefix of the name of the signal which will be used by the logic to connect to the different physical interfaces through a wrapper. Modifying this bundle name will prevent your logic from being connected to the SNAP wrapper.
+<p>To ease the use of these different resources by the action code, and reduce the latency to access them, the choice has been made in OC-ACCEL that all resources are accessed with a <strong>data width set to a fixed value defined by “snap_membus_XXX_t”</strong>. This XXX depends on the chosen bus width and data type are defined in this file:</p>
+<p>https://github.com/OpenCAPI/oc-accel/blob/master/actions/include/hls_snap_1024.H</p>
+<p>This means that a full word read from or written to the host server memory or the FPGA DDR will either be 512 bits / 64 Bytes or 1024 bits / 128 bytes data in physical size. We will see soon how to deal with this “constraint”.</p>
+<h3 id="ports-declaration">Ports declaration</h3>
+<p>All actions provided as examples in OC-ACCEL have the “ports” defined the same way. Remember that hls_action is a reserved name that is used by OC-ACCEL logic to find the top file of the code.
+~oc-accel/actions/hls_<em>/hw/action_</em>.cpp:
+All unused ports can be commented except the ports of the host memory declared as “din_gmem” and “dout_gmem” which needs to remain active. </p>
+<p>“din_gmem” is the unidirectional port through which all data read from the Host server memory will enter the action. </p>
+<p>“dout_gmem” is the unidirectional port through which all data written to the Host server memory will exit the action.</p>
+<p>The port “d_ddrmem” is bidirectional which means that data read from or written to the FPGA board DDR will flow through this port. </p>
+<p>The port can address DDR3 or DDR4 types of memory since the OC-ACCEL logic will adapt automatically the right driver to the right type of DDR (card dependent). </p>
+<p>The port “d_nvme” is a control port used to define the access to the NVME. All data are read and written through the DDR memory, used as a cache. Therefore, if the action needs data from the NVMe, it sends a read request of X bytes at a NVMe address, and the DDR will be filled with a block containing the data requested. The reason of this architecture is that the NVMe has a large latency and accessing it directly would slow the action program execution. </p>
+<p>More explanation can be found in the document provided in the former CAPI environement SNAP NVME example:
+ https://github.com/open-power/snap/blob/master/actions/hls_nvme_memcopy/doc/UG_SNAP_hls_nvme_memcopy_v1.0.pdf </p>
+<h3 id="ports-definition">Ports definition</h3>
+<p>In the top-level module hls_action of each hardware action, after their declaration, all the ports are defined as </p>
+<p><code>“#pragma HLS INTERFACE m_axi”</code> ports.</p>
+<p>This type of definition is used for data path using the AXI4 protocol:
+Every port is defined with the name that will be used in the code to access it (din_gmem, dout_gmem, d_ddrmem, d_nvme). </p>
+<p>The declaration of the bundle is the prefix of the name of the signal which will be used by the logic to connect to the different physical interfaces through a wrapper. Modifying this bundle name will prevent your logic from being connected to the OC-ACCEL wrapper.
 The parameters (slave_depth, max_read_burst_length, max_write_burst_length) are set for the Xilinx HLS tool to overwrite default settings and get the maximum AXI burst (4KB). 
 Refer to Xilinx UG902 Vivado HLS user guide for more details on these options.</p>
+<p>[...]</p>
 <p><img alt="" src="/apps_notes/Installing_an_OC-AD9H7_on_IC922.assets/panneau-blanc-travaux-350px.jpg" /></p></div>
             </div>
         </div>

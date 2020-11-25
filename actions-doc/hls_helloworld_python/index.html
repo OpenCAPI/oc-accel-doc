@@ -139,6 +139,10 @@
 <li>
     <a href="../hls_decimal_mult/" class="dropdown-item">hls_decimal_mult</a>
 </li>
+                                    
+<li>
+    <a href="../hls_udp_512/" class="dropdown-item">hls_udp_512</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -278,11 +282,14 @@ sudo apt-get install python3-dev python3-venv swig curl
 <h3 id="get-started-compilation">Get started - Compilation:</h3>
 <p>To get started use the following steps:</p>
 <pre><code>git clone https://github.com/OpenCAPI/oc-accel.git #if using regular https method
-git git@github.com:OpenCAPI/oc-accel.git  # if using ssh method with privileges
+#git git@github.com:OpenCAPI/oc-accel.git  # if using ssh method with privileges
 git clone https://github.com/OpenCAPI/ocse
 cd oc-accel
 make snap_config        #select (X) HLS_helloworld_python 
-vim snap_env.sh -&gt; export SNAP_ROOT=/home/~/oc-accel  #or your oc-accel directory
+# if you come back and use a new environment use 
+. ./snap_path.sh # to set the SNAP_ROOT path
+# either manually restore the path kile this :
+vim snap_env.sh # -&gt; export SNAP_ROOT=/home/~/oc-accel  #or your oc-accel directory
 # Check ocse PATH if not default ~/ocse
 . snap_env.sh
 make software           # this will compile any required tools
@@ -369,7 +376,10 @@ exit # from xTerm
 <ul>
 <li>Ensure you have compiled oc-accel's software on P9</li>
 </ul>
-<pre><code>cd ${SNAP_ROOT}
+<pre><code>git clone https://github.com/OpenCAPI/oc-accel.git #if using regular https method
+#git git@github.com:OpenCAPI/oc-accel.git  # if using ssh method with privileges
+cd &lt;your oc-accel dir&gt;
+. ./snap_path  # this will set the SNAP_ROOT variable to your oc-accel dir
 make software
 </code></pre>
 

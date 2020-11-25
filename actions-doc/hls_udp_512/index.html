@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>hdl_example - OC-Accel Doc</title>
+        <title>hls_udp_512 - OC-Accel Doc</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -105,7 +105,7 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active">hdl_example</a>
+    <a href="../hdl_example/" class="dropdown-item">hdl_example</a>
 </li>
                                     
 <li>
@@ -141,7 +141,7 @@
 </li>
                                     
 <li>
-    <a href="../hls_udp_512/" class="dropdown-item">hls_udp_512</a>
+    <a href="./" class="dropdown-item active">hls_udp_512</a>
 </li>
                                 </ul>
                             </li>
@@ -205,12 +205,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../../user-guide/10-tips/" class="nav-link">
+                                <a rel="prev" href="../hls_decimal_mult/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../hdl_single_engine/" class="nav-link">
+                                <a rel="next" href="../../deep-dive/software-api/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -235,8 +235,32 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#hdl_example" class="nav-link">hdl_example</a>
+            <li class="nav-item" data-level="1"><a href="#hls_udp_512" class="nav-link">hls_udp_512</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#code-location" class="nav-link">Code location:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#in-short" class="nav-link">In short:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#users-guide" class="nav-link">Users' Guide:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#prerequisites" class="nav-link">Prerequisites:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#loopback-modes" class="nav-link">Loopback modes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#in-short_1" class="nav-link">In SHORT</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -244,8 +268,60 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="hdl_example">hdl_example</h1>
-<p>This is the 512b VHDL design inherited from SNAP1/2.</p></div>
+<h1 id="hls_udp_512">hls_udp_512</h1>
+<p><img alt="oc-accel-bar" src="../../pictures/oc-accel-bar.png" /></p>
+<h2 id="code-location">Code location:</h2>
+<p>Code can be found at:<a href="https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_udp_512/">https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_udp_512/</a> </p>
+<h2 id="in-short">In short:</h2>
+<p>This example allows to use a CMAC providing high speed data transfer capability.</p>
+<p>Sample packets are internally generated and sent to the CMAC layer. The test expects packets to be externally loopback returned to compare them and thus check the complete path.</p>
+<p>It can be checked in /action.Kconfig file that the ACTION_HALF_WIDTH bloc is used for this example, so the interface uses the OpenCAPI 512 bit bus.</p>
+<h2 id="users-guide">Users' Guide:</h2>
+<p>Python code is changing characters case of a user phrase</p>
+<ul>
+<li>​ code can be executed on the CPU (will transform all characters to lower case)</li>
+<li>​    code can be simulated (will transform all characters to upper case in simulation)</li>
+<li>​    code can then run in hardware when the FPGA is programmed (will transform all characters to upper case in hardware)</li>
+</ul>
+<p>The example code uses the copy mechanism to get/put the file from/to system host memory to/from DDR FPGA attached memory</p>
+<h2 id="prerequisites">Prerequisites:</h2>
+<p>As CMAC IP is under licence, make sure your license file is up-to-date.</p>
+<h2 id="loopback-modes">Loopback modes</h2>
+<p>For debug purpose, an internal loopback can be selected, avoiding to use the CMAC layer, thus reducing synthesis and/or routing time.</p>
+<p><img alt="" src="/pictures/eth_loopback_modes.png" /></p>
+<p><center>fig 1 : loopback settings</center></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In simulation the CMAC bloc is always in loopback mode when selected.</p>
+</div>
+<h2 id="in-short_1">In SHORT</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only one CMAC bloc is available and only in OC-AD9H3 card at the time of writing.</p>
+</div>
+<p>The main application software will tune the number of packets to read, the MAC Address and the IP of the FPGA.
+All these exchanged data are contained in a structure defined in https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_udp_512/include/action_udp.H and shared with the hardware.</p>
+<p>In return hardware will provide simple statistics.</p>
+<pre><code>/* Data structure used to exchange information between action and application */
+/* Size limit is 108 Bytes */
+typedef struct rx100G_job {
+    struct snap_addr out_frame_buffer;
+    uint64_t packets_to_read;
+    uint64_t read_size;
+    uint64_t bad_packets;
+    uint64_t ignored_packets;
+    uint64_t good_packets;
+    uint64_t fpga_mac_addr;
+    uint32_t fpga_ipv4_addr;
+    uint32_t user;
+    uint32_t mode;  
+    uint32_t dummy;    // to align with 8 bytes
+} rx100G_job_t;
+</code></pre>
+
+<p>The hardware is defined using a C description in </p>
+<p>https://github.com/OpenCAPI/oc-accel/tree/emac_2020_1/actions/hls_udp_512/hw</p>
+<p>The example uses streams to echange with global memory, and output (input) hardware built packets into (from) CMAC.</p></div>
             </div>
         </div>
 
