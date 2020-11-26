@@ -167,7 +167,7 @@ You will get the explanations on how to use this example by typing
 - or run automatic test of hls_hbm_memcopy_1024 using
 
 ```
-~/oc-accel/actions/hls_hbm_memcopy_1024/tests/hw_throughput.sh -d INCR
+~/oc-accel/actions/hls_hbm_memcopy_1024/tests/hw_throughput_test.sh -d INCR
 ```
 
 which will give you the bandwidth measured between FPGA, host memory and on-board for different file size exchanged.

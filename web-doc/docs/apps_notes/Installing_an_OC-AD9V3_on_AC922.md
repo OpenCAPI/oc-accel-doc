@@ -206,7 +206,7 @@ snap_memcopy
 - or run automatic test of hls_memcopy_1024 using
 
 ```
-./actions/hls_memcopy_1024/tests/hw_throughput.sh -d INCR
+./actions/hls_memcopy_1024/tests/hw_throughput_test.sh -d INCR
 ```
 
 which will give you the bandwidth measured between FPGA, host memory and on-board for different file size exchanged.
