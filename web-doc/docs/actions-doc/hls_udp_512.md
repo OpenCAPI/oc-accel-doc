@@ -7,9 +7,20 @@ Code can be found at:[https://github.com/OpenCAPI/oc-accel/blob/master/actions/h
 
 ## In short:
 
-This example allows to use a CMAC providing high speed data transfer capability.
+This example:
 
-Sample packets are internally generated and sent to the CMAC layer. The test expects packets to be externally loopback returned to compare them and thus check the complete path.
+- provides a simple base to send and receive data to/from UDP frames
+- allows to use a CMAC providing high speed data transfer capability.
+
+The data inserted in the UDP frame are concatenated in *make_packet* function of *hw/hls_udp.cpp* file.
+
+Internally generated sample packets are then sent through an AXI stream to the ethernet CMAC layer. 
+
+The data extracted are processed and verified in *read_eth_packet* function of *hw/eth_decode.cpp* file.
+
+The test *test/hw_test.sh* expects packets to be internally or externally "loopback" returned to compare them and thus checks the complete CMAC path.
+
+This code is a simplified version of the hls_rx_100G function designed by Paul Sherrer Institute
 
 It can be checked in /action.Kconfig file that the ACTION_HALF_WIDTH bloc is used for this example, so the interface uses the OpenCAPI 512 bit bus.
 
