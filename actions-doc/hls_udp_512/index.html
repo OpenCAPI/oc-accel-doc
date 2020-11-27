@@ -269,8 +269,16 @@
 <h2 id="code-location">Code location:</h2>
 <p>Code can be found at:<a href="https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_udp_512/">https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_udp_512/</a> </p>
 <h2 id="in-short">In short:</h2>
-<p>This example allows to use a CMAC providing high speed data transfer capability.</p>
-<p>Sample packets are internally generated and sent to the CMAC layer. The test expects packets to be externally loopback returned to compare them and thus check the complete path.</p>
+<p>This example:</p>
+<ul>
+<li>provides a simple base to send and receive data to/from UDP frames</li>
+<li>allows to use a CMAC providing high speed data transfer capability.</li>
+</ul>
+<p>The data inserted in the UDP frame are concatenated in <em>make_packet</em> function of <em>hw/hls_udp.cpp</em> file.</p>
+<p>Internally generated sample packets are then sent through an AXI stream to the ethernet CMAC layer. </p>
+<p>The data extracted are processed and verified in <em>read_eth_packet</em> function of <em>hw/eth_decode.cpp</em> file.</p>
+<p>The test <em>test/hw_test.sh</em> expects packets to be internally or externally "loopback" returned to compare them and thus checks the complete CMAC path.</p>
+<p>This code is a simplified version of the hls_rx_100G function designed by Paul Sherrer Institute</p>
 <p>It can be checked in /action.Kconfig file that the ACTION_HALF_WIDTH bloc is used for this example, so the interface uses the OpenCAPI 512 bit bus.</p>
 <h2 id="prerequisites">Prerequisites:</h2>
 <p>As CMAC IP is under licence, make sure your license file is up-to-date.</p>
