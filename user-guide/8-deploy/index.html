@@ -175,6 +175,10 @@
 </li>
                                     
 <li>
+    <a href="../../apps_notes/ofc_debug/" class="dropdown-item">Debug Tool</a>
+</li>
+                                    
+<li>
     <a href="../../apps_notes/Installing_an_OC-AD9V3_on_AC922/" class="dropdown-item">OC-AD9V3 installation in AC922</a>
 </li>
                                     
@@ -270,17 +274,21 @@
 <p>This is the default way to program FPGA. </p>
 <ul>
 <li>Log on to Power9 server, </li>
+<li>make sure you have installed the required OpenCAPI tools : </li>
+<li>A general procedure is available <a href="../../apps_notes/setup_power_tools/">here</a></li>
+<li>
+<p>check the <a href="../../apps_notes/ofc_debug/">debug</a> option of oc-find_card tool.</p>
+</li>
+<li>
+<p>Copy the generated <code>hardware/build/Images/*.bin</code> from the development machine to the Power9 server, and execute: </p>
+</li>
 </ul>
-<pre><code>$ git clone https://github.com/OpenCAPI/oc-utils/
-$ make
-$ sudo make install
+<p>For cards with 8 bit Flash interface (requiring only one bin file):</p>
+<pre><code>    $ sudo oc-flash-script &lt;file.bin&gt; 
 </code></pre>
 
-<ul>
-<li>Copy the generated <code>hardware/build/Images/*.bin</code> from the development machine to Power9 server, and execute: </li>
-</ul>
-<p>For cards with SPIx8 Flash interface:</p>
-<pre><code>$ sudo oc-flash-script &lt;file_primary.bin&gt; &lt;file_secondary.bin&gt;
+<p>​       For cards with 2 x SPIx4 Flash interface (requiring 2 bin files):</p>
+<pre><code>    $ sudo oc-flash-script &lt;file_primary.bin&gt; &lt;file_secondary.bin&gt;
 </code></pre>
 
 <p>A <code>oc-reload</code> script is called automatically if the flash programming succeeds. This script reloads the bitstream from Flash and set up the OpenCAPI links again. </p>
@@ -289,7 +297,7 @@ $ sudo make install
 <p>AD9H7 card doesn't support above scripts temporally. (TODO)</p>
 </div>
 <ul>
-<li>Check if the device is valid: </li>
+<li>Eventually check if the device is valid: </li>
 </ul>
 <pre><code>$ ls /dev/ocxl
 IBM,oc-snap.0007:00:00.1.0
