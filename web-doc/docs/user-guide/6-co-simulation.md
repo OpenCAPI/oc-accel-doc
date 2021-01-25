@@ -151,3 +151,36 @@ The simulation will be rebuilt and just run `./run_sim` to start the xterm windo
 
 However, if your design change is big, you should still start from `./ocaccel_workflow.py`.
 
+## DEBUGING with OCSE
+
+Should you need to investigate in the OCSE POWER emulator, you can:
+
+- set the DEBUG flag in 
+
+[https://github.com/OpenCAPI/oc-accel/blob/98d4d24c861ce336d8cca4ca3bc519b93e5b596e/hardware/Makefile#L446](https://github.com/OpenCAPI/oc-accel/blob/98d4d24c861ce336d8cca4ca3bc519b93e5b596e/hardware/Makefile#L446)
+
+- ```
+  cd ~/ocse;make clean
+  ```
+
+   in your ocse directory
+
+- ```
+  cd ~/oc-accel;make clean
+  ```
+
+   in your oc-accel directory
+
+- rebuild the simulation model with 
+
+  ```
+  make model
+  ```
+
+  run your model
+
+  ```
+  make sim
+  ```
+
+  All exchanges with simulator should appear.

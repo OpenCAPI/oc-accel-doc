@@ -104,12 +104,14 @@ Development is usually done on a **Linux (x86) computer**.
 OC-Accel framework needs a FPGA card with OpenCAPI interface, and <u>a Slim-SAS cable</u> to connect to the server. Today it supports:
 
 [Alphadata 9V3]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9v3
-[Alphadata 9H3]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h3
+[Alphadata 9H3 with default XCVU33P]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h3
+[Alphadata 9H3 with XCVU35P]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h3
 [Alphadata 9H7]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h7
 [Bittware 250-SoC]: https://www.bittware.com/fpga/250-soc/
 
 * [Alphadata 9V3]
-* [Alphadata 9H3]
+* [Alphadata 9H3 with default XCVU33P]
+* [Alphadata 9H3 with XCVU35P] (still under test)
 * [Alphadata 9H7]
 * [Bittware 250-SoC]
 

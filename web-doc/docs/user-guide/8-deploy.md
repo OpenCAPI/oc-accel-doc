@@ -11,18 +11,22 @@ There are two ways to program FPGA:
 This is the default way to program FPGA. 
 
 * Log on to Power9 server, 
+* make sure you have installed the required OpenCAPI tools : 
+  * A general procedure is available [here](../../apps_notes/setup_power_tools/ )
+  * check the [debug](../../apps_notes/ofc_debug/ ) option of oc-find_card tool.
 
-``` 
-$ git clone https://github.com/OpenCAPI/oc-utils/
-$ make
-$ sudo make install
+* Copy the generated `hardware/build/Images/*.bin` from the development machine to the Power9 server, and execute: 
+
+  For cards with 8 bit Flash interface (requiring only one bin file):
+
+```
+	$ sudo oc-flash-script <file.bin> 
 ```
 
-* Copy the generated `hardware/build/Images/*.bin` from the development machine to Power9 server, and execute: 
+​		For cards with 2 x SPIx4 Flash interface (requiring 2 bin files):
 
-For cards with SPIx8 Flash interface:
 ```
-$ sudo oc-flash-script <file_primary.bin> <file_secondary.bin>
+	$ sudo oc-flash-script <file_primary.bin> <file_secondary.bin>
 ```
 
 A `oc-reload` script is called automatically if the flash programming succeeds. This script reloads the bitstream from Flash and set up the OpenCAPI links again. 
@@ -30,7 +34,7 @@ A `oc-reload` script is called automatically if the flash programming succeeds. 
 !!!Warning
     AD9H7 card doesn't support above scripts temporally. (TODO)
 
-* Check if the device is valid: 
+* Eventually check if the device is valid: 
 
 ```
 $ ls /dev/ocxl

@@ -39,6 +39,7 @@ nav:
     - 'New Board Support': 'deep-dive/board-package.md'
   - Appl. Notes:
     - 'Setup Power Tools': 'apps_notes/setup_power_tools.md'
+    - 'Debug Tool': 'apps_notes/ofc_debug.md'
     - 'OC-AD9V3 installation in AC922': 'apps_notes/Installing_an_OC-AD9V3_on_AC922.md'
     - 'OC-AD9H7 installation in IC922': 'apps_notes/Installing_an_OC-AD9H7_on_IC922.md'
     - 'How Data is Managed in OC-ACCEL': 'apps_notes/How_Data_is_Managed.md'
