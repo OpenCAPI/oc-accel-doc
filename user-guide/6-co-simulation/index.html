@@ -271,6 +271,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#debuging-with-ocse" class="nav-link">DEBUGING with OCSE</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -384,7 +388,28 @@
 <p><code>make snap_preprocess_execute</code></p>
 <p>So "FILE" will be regenerated from "FILE_source".</p>
 </div>
-<p>However, if your design change is big, you should still start from <code>./ocaccel_workflow.py</code>.</p></div>
+<p>However, if your design change is big, you should still start from <code>./ocaccel_workflow.py</code>.</p>
+<h2 id="debuging-with-ocse">DEBUGING with OCSE</h2>
+<p>Should you need to investigate in the OCSE POWER emulator, you can:</p>
+<ul>
+<li>set the DEBUG flag in </li>
+</ul>
+<p><a href="https://github.com/OpenCAPI/oc-accel/blob/98d4d24c861ce336d8cca4ca3bc519b93e5b596e/hardware/Makefile#L446">https://github.com/OpenCAPI/oc-accel/blob/98d4d24c861ce336d8cca4ca3bc519b93e5b596e/hardware/Makefile#L446</a></p>
+<ul>
+<li><code>cd ~/ocse;make clean</code></li>
+</ul>
+<p>in your ocse directory</p>
+<ul>
+<li><code>cd ~/oc-accel;make clean</code></li>
+</ul>
+<p>in your oc-accel directory</p>
+<ul>
+<li>rebuild the simulation model with </li>
+</ul>
+<p><code>make model</code></p>
+<p>run your model</p>
+<p><code>make sim</code></p>
+<p>All exchanges with simulator should appear.</p></div>
             </div>
         </div>
 
