@@ -108,11 +108,14 @@ OC-Accel framework needs a FPGA card with OpenCAPI interface, and <u>a Slim-SAS 
 [Alphadata 9H3 with XCVU35P]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h3
 [Alphadata 9H7]: https://www.alpha-data.com/dcp/products.php?product=adm-pcie-9h7
 [Bittware 250-SoC]: https://www.bittware.com/fpga/250-soc/
+[ OpenCAPI Quickstart Installing an OC-AD9H7 on IC922 ]: ./apps_notes/Installing_an_OC-AD9H7_on_IC922/
 
-* [Alphadata 9V3]
+[ OpenCAPI Quickstart Installing an OC-AD9V3 on AC922 ]: ./apps_notes/Installing_an_OC-AD9V3_on_AC922/
+
+* [Alphadata 9V3] See ([OpenCAPI Quickstart Installing an OC-AD9V3 on AC922])
 * [Alphadata 9H3 with default XCVU33P]
 * [Alphadata 9H3 with XCVU35P] (still under test)
-* [Alphadata 9H7]
+* [Alphadata 9H7] See ([OpenCAPI Quickstart Installing an OC-AD9H7 on IC922])
 * [Bittware 250-SoC]
 
 For FPGA vendors, it's easy to enable a new FPGA card with OpenCAPI interface to run OC-Accel, go to [New board support] page to learn how to.

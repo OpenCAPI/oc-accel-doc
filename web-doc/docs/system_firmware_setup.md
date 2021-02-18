@@ -16,6 +16,6 @@ This firmware package and instructions for applying it, can be found at [IBM Fix
 | Setup             | Command to run                        | Recommended Release                                          |
 | ----------------- | ------------------------------------- | ------------------------------------------------------------ |
 | OS type and level | cat /etc/os-release or lsb_release -a | Ubuntu **20.04** LTS / RHEL 8.2 (with patch of oc-reset to work) or **latest 8.3** |
-| FW level          | sudo lsmcode                          | BMC ibm-op940.10 (AC922)<br />BMC ibm-op940.00 (IC922) + skiboot patches (for oc-reset to work) |
+| FW level          | sudo lsmcode                          | BMC ibm-op940.10 (AC922)<br />BMC ibm-op940.20 (IC922)       |
 
 [IBM FixCentral]: https://www.ibm.com/support/fixcentral

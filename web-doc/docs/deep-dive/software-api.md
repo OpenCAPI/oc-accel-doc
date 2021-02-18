@@ -14,7 +14,7 @@ To debug libsnap functionality or associated actions, there are currently some e
 
 
 ## Tools
-* snap_maint: Currently it just prints information. 
+* oc_maint: Currently it just prints information. 
 * snap_peek: debug tools to read MMIO registers.
 * snap_poke: debug tools to write MMIO registers.
 

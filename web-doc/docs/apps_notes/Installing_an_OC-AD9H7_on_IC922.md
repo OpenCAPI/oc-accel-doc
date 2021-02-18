@@ -3,7 +3,7 @@
 OpenCAPI QuickStart OC-AD9H7 on IC922
 
 By IBM Systems Group
-November, 2020
+January 2021
 
 Authors : OpenCAPI Support Team - Montpellier, FRANCE
 
@@ -21,10 +21,20 @@ Unlike CAPI2.0, OpenCAPI (OC) doesn’t use PCI links, however, the card require
 An OC card can thus be theoretically installed in any PCIe socket.
 As the OC card can also be used in CAPI2 mode, Figure 1 indicates the slots where is can be placed for CAPI2/OpenCAPI dual usage. 
 
-Note that since OC-AD9H7 is 3/4 height it can only be placed in slots 4 and 9 using:
+Note that since OC-AD9H7 is 3/4 lenght Double Slot Width full profile X16 PCIe form factor, it can only be placed in slots 4 and 9 using:
 
 - either a special Wistron riser
+
 - or a mechanically modified original riser.
+
+  
+
+!!! Warning
+
+    OC-AD9H7 is not yet directly orderable with an IC922. Specific risers need to be used
+    to host the card.
+
+
 
 ![](./IC922_9h7_slots.png)
 
