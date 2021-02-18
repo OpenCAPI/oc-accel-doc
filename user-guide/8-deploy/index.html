@@ -241,11 +241,11 @@
             
             <li class="nav-item" data-level="1"><a href="#deploy-to-power-server" class="nav-link">Deploy to Power Server</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#program-fpga" class="nav-link">Program FPGA</a>
+            <li class="nav-item" data-level="2"><a href="#setup-power-tools-on-your-server" class="nav-link">Setup POWER tools on your server</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#install-libocxl" class="nav-link">Install libocxl</a>
+            <li class="nav-item" data-level="2"><a href="#program-fpga" class="nav-link">Program FPGA</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -266,18 +266,31 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="deploy-to-power-server">Deploy to Power Server</h1>
+<h2 id="setup-power-tools-on-your-server">Setup POWER tools on your server</h2>
+<p>Follow this <a href="../../apps_notes/setup_power_tools/">guide</a></p>
 <h2 id="program-fpga">Program FPGA</h2>
 <p>There are two ways to program FPGA: 
 * Program Flash
 * Program FPGA chip</p>
 <h3 id="program-flash">Program Flash</h3>
-<p>This is the default way to program FPGA. </p>
+<p>This is the default way to program FPGA, as hardware description is kept in card's flash and reused at each start-up.</p>
 <ul>
-<li>Log on to Power9 server, </li>
-<li>make sure you have installed the required OpenCAPI tools : </li>
-<li>A general procedure is available <a href="../../apps_notes/setup_power_tools/">here</a></li>
+<li>In case the flash doesn't contain an OC-accel image or a snap (CAPI2) image, use the method provided by the card supplier to load the flash</li>
+<li>if the card contains a CAPI2 hardware, use <code>capi-flash-script</code> routine as per:  <a href="https://github.com/ibm-capi/capi-utils">https://github.com/ibm-capi/capi-utils</a></li>
+<li>If the hardware is already an OC-accel hardware please use the following process:</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following steps assume the running code is an OC-accel one.</p>
+</div>
+<ul>
 <li>
-<p>check the <a href="../../apps_notes/ofc_debug/">debug</a> option of oc-find_card tool.</p>
+<p>Log on to Power9 server, </p>
+</li>
+<li>
+<p>make sure you have installed the required OpenCAPI tools : 
+    A general procedure is available <a href="../../apps_notes/setup_power_tools/">here</a>
+    Check the debug option of oc-find_card tool.</p>
 </li>
 <li>
 <p>Copy the generated <code>hardware/build/Images/*.bin</code> from the development machine to the Power9 server, and execute: </p>
@@ -292,10 +305,6 @@
 </code></pre>
 
 <p>A <code>oc-reload</code> script is called automatically if the flash programming succeeds. This script reloads the bitstream from Flash and set up the OpenCAPI links again. </p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>AD9H7 card doesn't support above scripts temporally. (TODO)</p>
-</div>
 <ul>
 <li>Eventually check if the device is valid: </li>
 </ul>
@@ -311,14 +320,12 @@ IBM,oc-snap.0007:00:00.1.0
 </code></pre>
 
 <p>This command will bring the new bitstream working.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Host Flashing and oc-reset require firmware and OS kernel support. Contact your system provider for detailed information. </p>
+<div class="admonition note">
+<p class="admonition-title">NOTE</p>
+<p>oc-reset require lastest firmware and OS kernel (see <a href="./../../system_firmware_setup/">here</a>)</p>
 </div>
-<h2 id="install-libocxl">Install libocxl</h2>
-<p>See <a href="https://github.com/OpenCAPI/libocxl/">https://github.com/OpenCAPI/libocxl/</a></p>
 <h2 id="compile-oc-accel-software-and-actions">Compile OC-Accel software and actions</h2>
-<pre><code>$ git clone https://github.com/&lt;MY_NAME&gt;/oc-accel
+<pre><code>$ git clone https://github.com/Opencapi/oc-accel
 $ make apps
 </code></pre>
 

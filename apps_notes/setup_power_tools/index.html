@@ -241,10 +241,6 @@
             
             <li class="nav-item" data-level="1"><a href="#setup-tools-on-the-power-server-environment" class="nav-link">Setup tools on the POWER server environment</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#privileges" class="nav-link">Privileges</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
         </ul>
@@ -253,16 +249,10 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="setup-tools-on-the-power-server-environment">Setup tools on the POWER server environment</h1>
-<p>Setup the followings to get your environment on the Power server</p>
-<p>1)  Clone the oc-accel framework (in "no contribution" mode)</p>
-<pre><code>git clone https://github.com/OpenCAPI/oc-accel.git
-</code></pre>
-
-<p>Clone the oc-accel framework (in "contribution" mode using ssh)</p>
-<pre><code>git clone git@github.com:OpenCAPI/oc-accel.git
-</code></pre>
-
-<p>2)  Install the libocxl development libraries + reboot the server after installation. </p>
+<p>Steps to setup your environment on the Power server:</p>
+<h3 id="1-check-system-firmware-setup">1) Check System Firmware Setup</h3>
+<p><a href="./../../system_firmware_setup/">Here</a></p>
+<h3 id="2-install-the-libocxl-development-libraries-reboot-the-server-after-installation">2) Install the libocxl development libraries + reboot the server after installation.</h3>
 <p>(for ubuntu) </p>
 <pre><code>sudo apt-get install libocxl-dev
 </code></pre>
@@ -290,13 +280,105 @@ enabled = 1
 </code></pre>
 
 <p>(libocxl-devel package is provided by RedHat Optional repository)   </p>
-<p>3)  Clone the FPGA Image loader</p>
+<h3 id="3-check-card-detection">3) Check card detection</h3>
+<p>Check system OC card detection after startup:</p>
+<pre><code>user@P9server:~$ lspci|grep accel
+0004:00:00.0 Processing accelerators: IBM Device 062b
+0004:00:00.1 Processing accelerators: IBM Device 062b
+0005:00:00.0 Processing accelerators: IBM Device 062b
+0005:00:00.1 Processing accelerators: IBM Device 062b
+0006:00:00.0 Processing accelerators: IBM Device 062b
+0006:00:00.1 Processing accelerators: IBM Device 062b
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this example, we see 3 OC cards having 2 references for each.</p>
+</div>
+<p>Check the creation of the proper system directories:</p>
+<pre><code>user@P9server:~$ll /dev/ocxl/
+total 0
+drwxr-&amp;²xr-x  2 root root    100 Feb 17 04:24 ./
+drwxr-xr-x 22 root root   4000 Feb 15 18:26 ../
+crw-rw-rw-  1 root root 240, 0 Feb 17 01:54 IBM,oc-snap.0004:00:00.1.0
+crw-rw-rw-  1 root root 240, 1 Feb 17 02:28 IBM,oc-snap.0005:00:00.1.0
+crw-rw-rw-  1 root root 240, 2 Feb 17 04:24 IBM,oc-snap.0006:00:00.1.0
+</code></pre>
+
+<h3 id="4-clone-the-fpga-image-loader">4) Clone the FPGA Image loader</h3>
 <pre><code>sudo git clone  https://github.com/OpenCAPI/oc-utils.git 
 cd oc_utils
 sudo make install 
 </code></pre>
 
-<h2 id="privileges">Privileges</h2>
+<p>This will provide oc-reset, oc-reload and oc-flash-script routines.</p>
+<h3 id="5-clone-the-oc-accel-framework">5) Clone the oc-accel framework</h3>
+<p>If you don't need the "contribution" mode:</p>
+<pre><code>git clone https://github.com/OpenCAPI/oc-accel.git
+</code></pre>
+
+<p>If you need the "contribution" mode use ssh:</p>
+<pre><code>git clone git@github.com:OpenCAPI/oc-accel.git
+</code></pre>
+
+<pre><code>cd oc-accel
+
+make software
+</code></pre>
+
+<p>or eventually </p>
+<pre><code>make apps
+</code></pre>
+
+<p>if you want to test some examples</p>
+<h3 id="6-use-oc-tools-to-check-card-contents">6) use OC tools to check card contents:</h3>
+<pre><code>user@p9server:~/oc-accel$ ./software/tools/oc_find_card -v -AALL
+oc_find_card version is 2.7
+
+OC-AD9V3 card has been detected in OPENCAPI card position: 5
+ Device ID    is                                                : 0x062b
+ Sub device   is                                                : 0x060f
+ Image loaded is self defined as                                : factory
+ Virtual Card PCI location is                                   : 0005:00:00.1
+ Card PCI physical slot is                                      : Not Applicable
+
+OC-AD9H3 card has been detected in OPENCAPI card position: 4
+ Device ID    is                                                : 0x062b
+ Sub device   is                                                : 0x0667
+ Image loaded is self defined as                                : factory
+ Virtual Card PCI location is                                   : 0004:00:00.1
+ Card PCI physical slot is                                      : Not Applicable
+
+OC-AD9H7 card has been detected in OPENCAPI card position: 6
+ Device ID    is                                                : 0x062b
+ Sub device   is                                                : 0x0666
+ Image loaded is self defined as                                : factory
+ Virtual Card PCI location is                                   : 0006:00:00.1
+ Card PCI physical slot is                                      : Not Applicable
+
+Total 3 cards detected
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>oc_find_card will also detect potential CAPI2 cards. Don't get confused with cards numbering.</p>
+</div>
+<pre><code>user@p9server:~/oc-accel$ ./software/tools/oc_maint -C4
+castella@pavilly:~/oc-accel$ ./software/tools/oc_maint -v -C4
+OC-ACCEL Card Id: 0x32 Name: OC-AD9H3.  0 HBM AXI interfaces. (Align: 1 Min_DMA: 1)
+OC-ACCEL FPGA Release:       v8.0.0 Distance: 45 GIT: 0xd8bc1c1d
+OC-ACCEL FPGA Build (Y/M/D): 2021/02/17 Time (H:M): 01:00
+OC-ACCEL FPGA Up Time:       100109sec : 1d 3h 48mn 29sec
+   Short |  Action Type |   Level   | Action Name
+   ------+--------------+-----------+------------
+     0     0x10143009     0x00000010  IBM HLS Helloworld_1024   (1024b)
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We observe a OC-AD9H3 card containing a hardware code generated 2021/02/17. with a basic IBM HSL_helloworld_1024 example.</p>
+</div>
+<h3 id="7-privileges">7) Privileges</h3>
 <p>Important: libocxl requires root privileges to allow card exchanges (like oc-reset, oc_maint, usage in general).</p>
 <p>When using the card without sudo privileges, you get an normal error.</p>
 <p>Your administrator can provide user privileges using this process:</p>
