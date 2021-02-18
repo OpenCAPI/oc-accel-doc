@@ -253,33 +253,38 @@
 <h3 id="1-check-system-firmware-setup">1) Check System Firmware Setup</h3>
 <p><a href="./../../system_firmware_setup/">Here</a></p>
 <h3 id="2-install-the-libocxl-development-libraries-reboot-the-server-after-installation">2) Install the libocxl development libraries + reboot the server after installation.</h3>
-<p>(for ubuntu) </p>
-<pre><code>sudo apt-get install libocxl-dev
-</code></pre>
-
-<p>(for RHEL &lt; 8) </p>
-<pre><code>sudo yum install libocxl-devel
-</code></pre>
-
-<p>(for RHEL &gt; 8) </p>
-<p>Check:</p>
+<p>For ubuntu: <code>sudo apt-get install libocxl-dev</code></p>
+<p>For RHEL:</p>
+<ul>
+<li>
+<p><strong><em>if RHEL &lt; 8</em></strong></p>
+</li>
+<li>
+<p><code>sudo yum install libocxl-devel</code></p>
+</li>
+<li>
+<p><strong><em>if RHEL &gt; 8</em></strong> </p>
+<ul>
+<li>Check:</li>
+</ul>
 <p><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/package_manifest/codereadylinuxbuilder-repository">https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/package_manifest/codereadylinuxbuilder-repository</a></p>
-<p>Edit the following file:</p>
-<pre><code>sudo vi /etc/yum.repos.d/redhat.repo
-</code></pre>
-
-<p>and make sure desired repo is enabled </p>
-<pre><code>[codeready-builder-for-rhel-8-ppc64le-rpms]
-name = Red Hat CodeReady Linux Builder for RHEL 8 Power, little endian (RPMs)
-baseurl = https://cdn.redhat.com/content/dist/rhel8/$releasever/ppc64le/codeready-builder/os
-enabled = 1
-</code></pre>
-
-<p>Then install your prefered devel lib:</p>
-<pre><code>sudo dnf install libocxl-devel
-</code></pre>
-
-<p>(libocxl-devel package is provided by RedHat Optional repository)   </p>
+<ul>
+<li>
+<p>Edit the following file:  <code>sudo vi /etc/yum.repos.d/redhat.repo</code></p>
+</li>
+<li>
+<p>and make sure desired repo is enabled:</p>
+</li>
+</ul>
+<p><code>[codeready-builder-for-rhel-8-ppc64le-rpms]</code>
+<code>name = Red Hat CodeReady Linux Builder for RHEL 8 Power, little endian (RPMs)</code>
+<code>baseurl = https://cdn.redhat.com/content/dist/rhel8/$releasever/ppc64le/codeready-builder/os</code>
+<code>enabled = 1</code></p>
+<ul>
+<li>Then install your prefered devel lib: <code>sudo dnf install libocxl-devel</code> (libocxl-devel package is provided by RedHat Optional repository)   </li>
+</ul>
+</li>
+</ul>
 <h3 id="3-check-card-detection">3) Check card detection</h3>
 <p>Check system OC card detection after startup:</p>
 <pre><code>user@P9server:~$ lspci|grep accel
@@ -293,12 +298,12 @@ enabled = 1
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In this example, we see 3 OC cards having 2 references for each.</p>
+<p>In this example, we see 3 OC cards, each one having 2 asssociated virtual slots. 062b device code is related to OC mounting.</p>
 </div>
 <p>Check the creation of the proper system directories:</p>
 <pre><code>user@P9server:~$ll /dev/ocxl/
 total 0
-drwxr-&amp;²xr-x  2 root root    100 Feb 17 04:24 ./
+drwxr-xr-x  2 root root    100 Feb 17 04:24 ./
 drwxr-xr-x 22 root root   4000 Feb 15 18:26 ../
 crw-rw-rw-  1 root root 240, 0 Feb 17 01:54 IBM,oc-snap.0004:00:00.1.0
 crw-rw-rw-  1 root root 240, 1 Feb 17 02:28 IBM,oc-snap.0005:00:00.1.0
@@ -313,24 +318,13 @@ sudo make install
 
 <p>This will provide oc-reset, oc-reload and oc-flash-script routines.</p>
 <h3 id="5-clone-the-oc-accel-framework">5) Clone the oc-accel framework</h3>
-<p>If you don't need the "contribution" mode:</p>
-<pre><code>git clone https://github.com/OpenCAPI/oc-accel.git
-</code></pre>
-
-<p>If you need the "contribution" mode use ssh:</p>
-<pre><code>git clone git@github.com:OpenCAPI/oc-accel.git
-</code></pre>
-
+<p>If you don't need the "contribution" mode:    <code>git clone https://github.com/OpenCAPI/oc-accel.git</code></p>
+<p>If you need the "contribution" mode use ssh: <code>git clone git@github.com:OpenCAPI/oc-accel.git</code></p>
 <pre><code>cd oc-accel
-
 make software
 </code></pre>
 
-<p>or eventually </p>
-<pre><code>make apps
-</code></pre>
-
-<p>if you want to test some examples</p>
+<p>or eventually <code>make apps</code>if you want to test some examples</p>
 <h3 id="6-use-oc-tools-to-check-card-contents">6) use OC tools to check card contents:</h3>
 <pre><code>user@p9server:~/oc-accel$ ./software/tools/oc_find_card -v -AALL
 oc_find_card version is 2.7
@@ -361,10 +355,9 @@ Total 3 cards detected
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>oc_find_card will also detect potential CAPI2 cards. Don't get confused with cards numbering.</p>
+<p>oc_find_card will also detect potential CAPI2 cards. Don't get confused with cards numbering. Here OC card OC-AD9H3 is card #4</p>
 </div>
-<pre><code>user@p9server:~/oc-accel$ ./software/tools/oc_maint -C4
-castella@pavilly:~/oc-accel$ ./software/tools/oc_maint -v -C4
+<pre><code>user@p9server:~/oc-accel$ ./software/tools/oc_maint -C4    # 4 is OC-AD9H3 card number
 OC-ACCEL Card Id: 0x32 Name: OC-AD9H3.  0 HBM AXI interfaces. (Align: 1 Min_DMA: 1)
 OC-ACCEL FPGA Release:       v8.0.0 Distance: 45 GIT: 0xd8bc1c1d
 OC-ACCEL FPGA Build (Y/M/D): 2021/02/17 Time (H:M): 01:00
@@ -376,7 +369,7 @@ OC-ACCEL FPGA Up Time:       100109sec : 1d 3h 48mn 29sec
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We observe a OC-AD9H3 card containing a hardware code generated 2021/02/17. with a basic IBM HSL_helloworld_1024 example.</p>
+<p>We observe a OC-AD9H3 card containing a hardware code generated 2021/02/17 with a basic IBM HSL_helloworld_1024 example.</p>
 </div>
 <h3 id="7-privileges">7) Privileges</h3>
 <p>Important: libocxl requires root privileges to allow card exchanges (like oc-reset, oc_maint, usage in general).</p>
