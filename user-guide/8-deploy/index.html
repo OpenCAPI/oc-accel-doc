@@ -271,8 +271,8 @@
 <h2 id="program-fpga-card">Program FPGA card</h2>
 <p>There are two ways to program an FPGA card:</p>
 <ul>
-<li>Program Flash: the configuration flash contains the code used at poweron.</li>
-<li>Program FPGA chip: (the chip will keep its hardware configuration as long as power is maitained.</li>
+<li>Program card Flash: the configuration flash contains the code used at poweron.</li>
+<li>Program FPGA chip: temporary programming the chip will keep its hardware configuration as long as power is persistent.</li>
 </ul>
 <h3 id="program-flash">Program Flash</h3>
 <p>This is the default way to program FPGA, as hardware description is kept in card's flash and reused at each start-up.
@@ -307,14 +307,14 @@ Check with <code>lspci|grep accel</code> how is the card currently configured.</
 <pre><code>    $ sudo oc-flash-script &lt;file_primary.bin&gt; &lt;file_secondary.bin&gt;
 </code></pre>
 
-<p>A <code>oc-reload</code> script is called automatically if the flash programming succeeds. This script reloads the bitstream from Flash and set up the OpenCAPI links again. </p>
+<p>An <code>oc-reload</code> script is called automatically if the flash programming succeeds. This script reloads the bitstream from Flash and set up the OpenCAPI links again. </p>
 <ul>
-<li>Eventually check if the device is valid: </li>
+<li>
+<p>Eventually check if the device is valid: </p>
+<p><code>$ ls /dev/ocxl</code></p>
+<p><code>IBM,oc-snap.0007:00:00.1.0</code></p>
+</li>
 </ul>
-<pre><code>$ ls /dev/ocxl
-IBM,oc-snap.0007:00:00.1.0
-</code></pre>
-
 <h3 id="program-fpga-chip">Program FPGA chip</h3>
 <p>Not like "programming flash" which permanently stores FPGA image into the flash on the FPGA board, programming FPGA chip is a temporal method and mainly used for debugging purpose. It uses <strong>*.bit</strong> file and the programmed image will be lost if the server is powered off. </p>
 <p>Prepare a laptop/desktop machine and install <strong>Vivado Lab Manager</strong> on a X86 system. Use USB cable to connect it to the FPGA board's USB-JTAG debugging port. Then in Vivado Lab, right click the FPGA device name and select "program device..."</p>
@@ -334,7 +334,7 @@ $ make apps
 
 <p>You can check the FPGA image version, name and build date/time by </p>
 <pre><code>$ cd software/tools
-$ sudo ./oc_maint -vvv
+$ sudo ./oc_maint -vvv -C4  # verbose and OC Card number 4 from oc_find_card
 </code></pre>
 
 <pre><code>[main] Enter
