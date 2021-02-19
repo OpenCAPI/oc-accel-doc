@@ -145,7 +145,7 @@ To launch a Jupyter Notebook on P9 (on the FPGA card)
 git clone https://github.com/OpenCAPI/oc-accel.git #if using regular https method
 #git git@github.com:OpenCAPI/oc-accel.git  # if using ssh method with privileges
 cd <your oc-accel dir>
-. ./snap_path  # this will set the SNAP_ROOT variable to your oc-accel dir
+. ./snap_path.sh  # this will set the SNAP_ROOT variable to your oc-accel dir
 make software
 ```
 

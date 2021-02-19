@@ -12,10 +12,8 @@ For ubuntu: `sudo apt-get install libocxl-dev`
 
 For RHEL:
 
-- ***if RHEL < 8***
-    
-- `	sudo yum install libocxl-devel`
-    
+- ***if RHEL < 8***     `	sudo yum install libocxl-devel`
+  
 - ***if RHEL > 8*** 
     - Check:
 

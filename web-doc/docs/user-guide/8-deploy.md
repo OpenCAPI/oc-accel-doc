@@ -8,8 +8,8 @@ Follow this [guide](../../apps_notes/setup_power_tools/)
 
 There are two ways to program an FPGA card:
 
-* Program Flash: the configuration flash contains the code used at poweron.
-* Program FPGA chip: (the chip will keep its hardware configuration as long as power is maitained.
+* Program card Flash: the configuration flash contains the code used at poweron.
+* Program FPGA chip: temporary programming the chip will keep its hardware configuration as long as power is persistent.
 
 ### Program Flash
 
@@ -43,14 +43,14 @@ Check with `lspci|grep accel` how is the card currently configured.
 	$ sudo oc-flash-script <file_primary.bin> <file_secondary.bin>
 ```
 
-A `oc-reload` script is called automatically if the flash programming succeeds. This script reloads the bitstream from Flash and set up the OpenCAPI links again. 
+An `oc-reload` script is called automatically if the flash programming succeeds. This script reloads the bitstream from Flash and set up the OpenCAPI links again. 
 
 * Eventually check if the device is valid: 
 
-```
-$ ls /dev/ocxl
-IBM,oc-snap.0007:00:00.1.0
-```
+    `$ ls /dev/ocxl`
+    
+    `IBM,oc-snap.0007:00:00.1.0`
+
 
 ### Program FPGA chip
 
@@ -83,7 +83,7 @@ You can check the FPGA image version, name and build date/time by
 
 ```
 $ cd software/tools
-$ sudo ./oc_maint -vvv
+$ sudo ./oc_maint -vvv -C4  # verbose and OC Card number 4 from oc_find_card
 ```
 
 ```
