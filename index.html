@@ -357,14 +357,36 @@ Generally, creating an accelerator includes the following steps:</p>
 <h2 id="required-tools-for-development">Required tools for development</h2>
 <p>Development is usually done on a <strong>Linux (x86) computer</strong>. </p>
 <ul>
-<li><a href="https://www.xilinx.com/support/download.html">Xilinx Vivado</a>: OC-Accel currently supports Xilinx FPGA devices exclusively. For synthesis, simulation model and image build, the Xilinx Vivado 2019.2 or newer tool suites are recommended.</li>
-<li>Build process: Building the code and running the make environment requires the usual development tools <code>gcc, make, sed, awk</code>. If not installed already, the installer package <code>build-essential</code> will set up the most important tools.</li>
-<li>Configuring the OC-Accel framework will automatically call a standalone tool that is based on the Linux kernel <a href="https://github.com/guillon/kconfig">kconfig</a> tool. The <code>ncurses</code> library must be installed to use the simple menu-driven user interface for <code>kconfig</code>.</li>
-<li>For basic examples, <code>python</code> is optional but suggested to install. 2.7.x is fine to use optional configurations scripts.</li>
-<li>When using the python based examples, <code>swig</code> will be used to define a local environment.</li>
-<li>Simulators: You can use the build-in simulation <code>xsim</code> from Xilinx Vivado, or you can also use other simulators like Cadence <code>irun</code> or <code>xcelium</code>. </li>
-<li>For simulation, OC-Accel also relies on the <code>xterm</code> program.</li>
-<li>Check the <a href="./system_firmware_setup">System Firmware setup</a> page</li>
+<li>
+<p><a href="https://www.xilinx.com/support/download.html">Xilinx Vivado</a>: OC-Accel currently supports Xilinx FPGA devices exclusively. For synthesis, simulation model and image build, the Xilinx Vivado 2019.2 up to 2020.1 suites are recommended.</p>
+</li>
+<li>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Xilinx 2020.2 is not supported on HLS projects (HLS moved to vitis HLS) and BW250SOC card.</p>
+</div>
+</li>
+<li>
+<p>Build process: Building the code and running the make environment requires the usual development tools <code>gcc, make, sed, awk</code>. If not installed already, the installer package <code>build-essential</code> will set up the most important tools.</p>
+</li>
+<li>
+<p>Configuring the OC-Accel framework will automatically call a standalone tool that is based on the Linux kernel <a href="https://github.com/guillon/kconfig">kconfig</a> tool. The <code>ncurses</code> library must be installed to use the simple menu-driven user interface for <code>kconfig</code>.</p>
+</li>
+<li>
+<p>For basic examples, <code>python</code> is optional but suggested to install. 2.7.x is fine to use optional configurations scripts.</p>
+</li>
+<li>
+<p>When using the python based examples, <code>swig</code> will be used to define a local environment.</p>
+</li>
+<li>
+<p>Simulators: You can use the build-in simulation <code>xsim</code> from Xilinx Vivado, or you can also use other simulators like Cadence <code>irun</code> or <code>xcelium</code>. </p>
+</li>
+<li>
+<p>For simulation, OC-Accel also relies on the <code>xterm</code> program.</p>
+</li>
+<li>
+<p>Check the <a href="./system_firmware_setup">System Firmware setup</a> page</p>
+</li>
 </ul>
 <h2 id="supported-fpga-cards">Supported FPGA cards</h2>
 <p>OC-Accel framework needs a FPGA card with OpenCAPI interface, and <u>a Slim-SAS cable</u> to connect to the server. Today it supports:</p>
