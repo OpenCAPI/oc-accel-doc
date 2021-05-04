@@ -68,6 +68,7 @@ User can use `snap_peek` (`snap_poke`) to read (write) these registers:
 |                    | 0x30               | CAP  | Capacity Register |
 | | 0x40 | FRT | Free Running Timer (Up Time Counter) Register |
 | | 0x50 | USR | User Defined Code Register |
+| | 0x60 | PRC | Partial Reconfiguration Code |
 | 0x1A0 (Debug)             | 0x00               | DBG_CLR| Clear Debug Register |
 |                    | 0x08               | CNT_TLX_CMD| Number of TLX Commands |
 |                    | 0x10               | CNT_TLX_RSP| Number of TLX Responses |
@@ -182,6 +183,17 @@ Bitwise definition
 | Bits  | Attributes | Description                                            |
 | ----- | ---------- | ------------------------------------------------------ |
 | 63..0 | RO         | 64 bits (can represent 8 ASCII char) user defined code |
+
+### SNAP Partial Reconfiguration Code (PRC)
+
+* Offset: 0x60
+* Oc-accel stores a random code in this register to identify the static configuration and provides a mean to verify dynamic configurations against the static image.
+
+Bitwise definition
+
+| Bits  | Attributes | Description                                                  |
+| ----- | ---------- | ------------------------------------------------------------ |
+| 63..0 | RO         | 64 bits (can represent 8 ASCII char) Partial Reconfiguration Code |
 
 ## SNAP Debug Registers
 
