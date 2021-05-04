@@ -393,6 +393,12 @@
 <td>User Defined Code Register</td>
 </tr>
 <tr>
+<td></td>
+<td>0x60</td>
+<td>PRC</td>
+<td>Partial Reconfiguration Code</td>
+</tr>
+<tr>
 <td>0x1A0 (Debug)</td>
 <td>0x00</td>
 <td>DBG_CLR</td>
@@ -755,6 +761,28 @@
 <td>63..0</td>
 <td>RO</td>
 <td>64 bits (can represent 8 ASCII char) user defined code</td>
+</tr>
+</tbody>
+</table>
+<h3 id="snap-partial-reconfiguration-code-prc">SNAP Partial Reconfiguration Code (PRC)</h3>
+<ul>
+<li>Offset: 0x60</li>
+<li>Oc-accel stores a random code in this register to identify the static configuration and provides a mean to verify dynamic configurations against the static image.</li>
+</ul>
+<p>Bitwise definition</p>
+<table>
+<thead>
+<tr>
+<th>Bits</th>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>63..0</td>
+<td>RO</td>
+<td>64 bits (can represent 8 ASCII char) Partial Reconfiguration Code</td>
 </tr>
 </tbody>
 </table>
