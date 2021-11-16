@@ -160,7 +160,10 @@ Bitwise definition
 |15..8  |RO| Reserved|
 |7..0   |RO| Card type:|
 |||0x31 : AD9V3|
-|||0x32 : AD9H7|
+|||0x32 : AD9H3|
+|||0x33 : AD9H7|
+|||0x34 : BW250SOC|
+|||0x35 : AD9H335|
 
 ### SNAP Free Running Timer  (FRT)
 
@@ -349,6 +352,7 @@ OC-Accel has already defined the Action Register Layout for HLS Actions.
 | 0x14                | AVR | Action Release Register |
 | 0x18                | ISL | Interrupt Handle SRC Address Low |
 | 0x1C                | ISH | Interrupt Handle SRC Address High |
+| 0x20 | ACTION_HBM_IF_NUM | HBM AXI Interface Number |
 | 0x100                 | CONTROL1 | sat + flags + seq |
 | 0x104                 | CONTROL2 | Return Code |
 | 0x108                 | CONTROL3 | Reserved |

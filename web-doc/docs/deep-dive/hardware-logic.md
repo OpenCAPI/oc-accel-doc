@@ -7,6 +7,7 @@ Here is a more detailed diagram for OC-Accel **Bridge** mode.
 
 * **oc_bsp_wrap** and **oc_cfg** come from oc-bip ( [OpenCAPI3.0 Device Reference design] )
 * **oc_function** comes from OC-Accel `hardware/hdl/core`.
+  * oc_action can be issued either from a regular or from a "Partial Reconfiguration (PR)" process. In the latter only this region is build and attached to a previously built base. A PR_code ensures they are compatible.
 
 oc_bsp_wrap has DLX, PHY, TLX, VPD (Virtual Product Data) and flash_sub_system. oc_cfg handles the registers defined in OpenCAPI CFG specification. 
 
@@ -25,6 +26,12 @@ It has following clock domains:
 The blocks with transitional color means it has the clock converter logic or asynchronous clock interfaces. 
 
 A partial reconfiguration region is defined as shown in the dotted box. This area is dynamic area that allows user to change their functional logic and all of the other regions are static in PR (Partial Reconfiguration) Flow.
+
+Click [here] to get PR details.
+
+[here]: ./pr.md
+
+
 
 ## AXI4 feature list
 

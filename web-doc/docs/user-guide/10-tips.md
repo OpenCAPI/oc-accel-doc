@@ -27,6 +27,4 @@ Cleanup work:
 Enrich example lists: 
 
 * Multiple-process example
-* Ethernet example
-* HBM example
 

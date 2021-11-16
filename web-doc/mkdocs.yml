@@ -37,6 +37,7 @@ nav:
     - 'Registers': 'deep-dive/registers.md'
     - 'Hardware Logic': 'deep-dive/hardware-logic.md'
     - 'New Board Support': 'deep-dive/board-package.md'
+    - 'Partial Reconfiguration': 'deep-dive/pr.md'
   - Appl. Notes:
     - 'Setup Power Tools': 'apps_notes/setup_power_tools.md'
     - 'Debug Tool': 'apps_notes/ofc_debug.md'

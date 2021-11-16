@@ -14,6 +14,23 @@ If you just want to start building the bitstream without running simulation, ple
 ./ocaccel_workflow.py --no_make_model --no_run_sim --make_image
 ```
 
+PR case (check [ PR&quot; section​&quot;](../../deep-dive/PR) for more details):
+
+- if you just want to start building a reference image (including a reference base as well as a default action), please run with the following commands:
+
+  ```
+  ./ocaccel_workflow.py --make_cloud_base
+  ```
+
+  if you just want to start building a reference image (including a reference base as well as a default action), please run with the following commands:
+
+- ```
+  ./ocaccel_workflow.py --make_cloud_action
+  ```
+
+!!! note
+    Make sure to maintain coherency between actions and associated base (keep the same PR_code by keeping the base files present when preparing actions)
+
 # Check the Result of FPGA Bitstream
 
 ## Basic Result
