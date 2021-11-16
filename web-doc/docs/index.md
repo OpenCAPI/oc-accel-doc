@@ -85,17 +85,14 @@ For more information, please refer to "**Deep Dive**" tab on the menu bar.
 
 Development is usually done on a **Linux (x86) computer**. 
 
-* [Xilinx Vivado]: OC-Accel currently supports Xilinx FPGA devices exclusively. For synthesis, simulation model and image build, the Xilinx Vivado 2019.2 up to 2020.1 suites are recommended.
-
-* !!! Warning
-      Xilinx 2020.2 is not supported on HLS projects (HLS moved to vitis HLS) and BW250SOC card.
+* [Xilinx Vivado]: OC-Accel currently supports Xilinx FPGA devices exclusively. For synthesis, simulation model and image build, the **Xilinx Vivado 2019.2 up to 2020.2** suites are recommended and tested.
 
 * Build process: Building the code and running the make environment requires the usual development tools `gcc, make, sed, awk`. If not installed already, the installer package `build-essential` will set up the most important tools.
-
   
 
   
-
+  
+  
 * Configuring the OC-Accel framework will automatically call a standalone tool that is based on the Linux kernel [kconfig] tool. The `ncurses` library must be installed to use the simple menu-driven user interface for `kconfig`.
 
 * For basic examples, `python` is optional but suggested to install. 2.7.x is fine to use optional configurations scripts.
