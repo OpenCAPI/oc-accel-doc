@@ -261,6 +261,14 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#programming-the-static-base-image-in-flash" class="nav-link">Programming the static-base image in flash</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#programming-the-dynamic-action-image-directly-in-the-fpga" class="nav-link">Programming the dynamic-action image directly in the FPGA</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#pr-code" class="nav-link">PR code</a>
               <ul class="nav flex-column">
               </ul>
@@ -305,27 +313,27 @@
 <li><code>oc_2021_0924_1714_PR06f_25G_hls_helloworld_1024_OC-AD9H3_21_secondary.bin</code></li>
 <li><code>oc_2021_0924_1714_PR06f_25G_hls_helloworld_1024_OC-AD9H3_21_partial.bin</code> =&gt; used with <code>oc-flash-script</code> to program the FPGA with the dynamic design (this image will be kept in the FPGA as long as card is not powered off or reloaded)</li>
 </ul>
-<p>A <code>xxx_static_routed.dcp</code> file, required for building the dynamic part, is generated in the <code>BASE_DCP</code> directory defined in snap_env.sh file will be named:</p>
+<p>A <code>xxx_static_routed.dcp</code> file, required for building the dynamic part, is generated in the <code>BASE_DCP_DIR</code> directory defined in snap_env.sh file will be named:</p>
 <ul>
 <li><code>oc_AD9H3_PR06f_static_routed</code>    =&gt; this file will be used to build the dynamic partial image (it is independent from the action used since it contains only the static placed and routed code)</li>
 </ul>
 <h2 id="building-the-action-image">Building the action image</h2>
-<p>The action image is built using the <code>make cloud_action</code> command. The only requirement is to have the <code>xxx_static_routed.dcp</code> file generated for the card and available in the <code>BASE_DCP</code> directory defined in <code>snap_env.sh</code> file. </p>
+<p>The action image is built using the <code>make cloud_action</code> command. The only requirement is to have the <code>xxx_static_routed.dcp</code> file generated for the card and available in the <code>BASE_DCP_DIR</code> directory defined in <code>snap_env.sh</code> file. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If there are several dcp files for a card, the system will use the most recent.</p>
+<p>If there are several static routed base/reference <code>xxx_static_routed.dcp</code> files for a card, the system will use the most recent.</p>
 </div>
 <p>User can generate as many action images he wants for a same or different dynamic code
 The images files generated in ~oc-accel/hardware/build/Images will be for example with a hls_hbm_memcopy action for a AD9H3 card:</p>
 <ul>
-<li>`oc_2021_0924_1504_PR06f_25G_hls_hbm_memcopy_1024_HBM_OC-AD9H3_21_partial.bin``   =&gt; used for oc-flash-script programming of the dynamic design</li>
+<li><code>oc_2021_0924_1504_PR06f_25G_hls_hbm_memcopy_1024_HBM_OC-AD9H3_21_partial.bin</code>    =&gt; used for oc-flash-script programming of the dynamic design</li>
 </ul>
-<h3 id="programming-the-static-base-image-in-flash">Programming the static-base image in flash</h3>
+<h2 id="programming-the-static-base-image-in-flash">Programming the static-base image in flash</h2>
 <p>As for any design, check <a href="../../user-guide/8-deploy/">User Guide Deploy step</a>.</p>
-<p>The base primary/secondary images files will be used with the <code>oc-flash-script</code> program to program the Flash (persistent images)</p>
-<h3 id="programming-the-dynamic-action-image-directly-in-the-fpga">Programming the dynamic-action image directly in the FPGA</h3>
+<p>The base primary/secondary images files will be used with the <code>oc-flash-script</code> software to program the Flash (persistent images)</p>
+<h2 id="programming-the-dynamic-action-image-directly-in-the-fpga">Programming the dynamic-action image directly in the FPGA</h2>
 <p>To reprogram dynamically the FPGA with the action image, use the <code>oc-flash-script</code> with the partial.bin image as unique argument. The dynamic part of the FPGA code will be reprogrammed while the static part will be kept alive and unchanged.</p>
-<p>To reload the reference/base image, just do a oc-reload and the code from the Flash will be immediately reloaded in the FPGA</p>
+<p>To reload the reference/base image, just do a <code>oc-reload</code> and the code from the Flash will be immediately reloaded in the FPGA</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Remember that the reference/base image is programmed in the Flash and loaded in the FPGA by a reload or a card reboot, while a dynamic image is programmed in the FPGA meaning that a load or a card reboot will reload the reference image.</p>
@@ -334,11 +342,11 @@ The images files generated in ~oc-accel/hardware/build/Images will be for exampl
 <p>You'll notice that the 3 hex digits randomly generated PR code from the base image is used in all file names to quicker refer to the right static part. </p>
 <p>A hardware control is performed by the oc-flash-script programmer to prevent from programming a dynamic image not coherent with its corresponding static/base/reference image.</p>
 <h2 id="cleaning-processes">Cleaning Processes</h2>
-<h3 id="clean-base_dcp-dir">Clean BASE_DCP dir</h3>
-<p>A <code>make clean_cloud</code> will only clean the BASE_DCP directory defined in <code>snap_env.sh</code> file </p>
+<h3 id="cleaning-all">Cleaning all</h3>
+<p>A <code>make clean_cloud</code> will perform a <code>make clean</code> and will also clean the BASE_DCP_DIR directory defined in <code>snap_env.sh</code> file.</p>
 <h3 id="clean-while-keeping-static-dcp">Clean while keeping static dcp</h3>
 <p>When we want to build action after a base, we need to keep the dcp as a start base for future actions.</p>
-<p>Then we will use a <code>make clean</code> to clean all directories except the <code>BASE_DCP</code> directory containing the required <code>xxx_static_routed.dcp</code> </p></div>
+<p>Then we will use a <code>make clean</code> to clean all directories except the <code>BASE_DCP_DIR</code> directory containing the required <code>xxx_static_routed.dcp</code> </p></div>
             </div>
         </div>
 

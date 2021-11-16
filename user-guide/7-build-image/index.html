@@ -271,6 +271,7 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="build-the-fpga-bitstream">Build the FPGA Bitstream</h1>
+<h3 id="normal-mode">Normal Mode :</h3>
 <p>To build FPGA bitstream, you can simply add the following command line option to <code>ocaccel_workflow.py</code>:</p>
 <pre><code>./ocaccel_workflow.py --make_image
 </code></pre>
@@ -280,15 +281,19 @@
 <pre><code>./ocaccel_workflow.py --no_make_model --no_run_sim --make_image
 </code></pre>
 
-<p>PR case (check <a href="../../deep-dive/PR"> PR&quot; section​&quot;</a> for more details):</p>
+<h3 id="partial-reconfiguration-pr-case-check-the-pr-section-for-more-details">Partial Reconfiguration (PR) case (check the <a href="../../deep-dive/pr/"> PR section​</a> for more details):</h3>
 <ul>
 <li>if you just want to start building a reference image (including a reference base as well as a default action), please run with the following commands:</li>
 </ul>
-<p><code>./ocaccel_workflow.py --make_cloud_base</code></p>
-<p>if you just want to start building a reference image (including a reference base as well as a default action), please run with the following commands:</p>
+<pre><code>./ocaccel_workflow.py --make_cloud_base
+</code></pre>
+
 <ul>
-<li><code>./ocaccel_workflow.py --make_cloud_action</code></li>
+<li>if you just want to start building an action image, please run with the following commands:</li>
 </ul>
+<pre><code>./ocaccel_workflow.py --make_cloud_action
+</code></pre>
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Make sure to maintain coherency between actions and associated base (keep the same PR_code by keeping the base files present when preparing actions)</p>
