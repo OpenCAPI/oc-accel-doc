@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>hls_udp_512 - OC-Accel Doc</title>
+        <title>Partial Reconfiguration - OC-Accel Doc</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -100,73 +100,73 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../hdl_example/" class="dropdown-item">hdl_example</a>
+    <a href="../../actions-doc/hdl_example/" class="dropdown-item">hdl_example</a>
 </li>
                                     
 <li>
-    <a href="../hdl_single_engine/" class="dropdown-item">hdl_single_engine</a>
+    <a href="../../actions-doc/hdl_single_engine/" class="dropdown-item">hdl_single_engine</a>
 </li>
                                     
 <li>
-    <a href="../hls_helloworld_512/" class="dropdown-item">hls_helloworld_512</a>
+    <a href="../../actions-doc/hls_helloworld_512/" class="dropdown-item">hls_helloworld_512</a>
 </li>
                                     
 <li>
-    <a href="../hls_helloworld_1024/" class="dropdown-item">hls_helloworld_1024</a>
+    <a href="../../actions-doc/hls_helloworld_1024/" class="dropdown-item">hls_helloworld_1024</a>
 </li>
                                     
 <li>
-    <a href="../hls_hbm_memcopy_512/" class="dropdown-item">hls_hbm_memcopy_512</a>
+    <a href="../../actions-doc/hls_hbm_memcopy_512/" class="dropdown-item">hls_hbm_memcopy_512</a>
 </li>
                                     
 <li>
-    <a href="../hls_hbm_memcopy_1024/" class="dropdown-item">hls_hbm_memcopy_1024</a>
+    <a href="../../actions-doc/hls_hbm_memcopy_1024/" class="dropdown-item">hls_hbm_memcopy_1024</a>
 </li>
                                     
 <li>
-    <a href="../hls_image_filter/" class="dropdown-item">hls_image_filter</a>
+    <a href="../../actions-doc/hls_image_filter/" class="dropdown-item">hls_image_filter</a>
 </li>
                                     
 <li>
-    <a href="../hls_helloworld_python/" class="dropdown-item">hls_helloworld_python</a>
+    <a href="../../actions-doc/hls_helloworld_python/" class="dropdown-item">hls_helloworld_python</a>
 </li>
                                     
 <li>
-    <a href="../hls_decimal_mult/" class="dropdown-item">hls_decimal_mult</a>
+    <a href="../../actions-doc/hls_decimal_mult/" class="dropdown-item">hls_decimal_mult</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">hls_udp_512</a>
+    <a href="../../actions-doc/hls_udp_512/" class="dropdown-item">hls_udp_512</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Deep Dive <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../deep-dive/software-api/" class="dropdown-item">Software API</a>
+    <a href="../software-api/" class="dropdown-item">Software API</a>
 </li>
                                     
 <li>
-    <a href="../../deep-dive/registers/" class="dropdown-item">Registers</a>
+    <a href="../registers/" class="dropdown-item">Registers</a>
 </li>
                                     
 <li>
-    <a href="../../deep-dive/hardware-logic/" class="dropdown-item">Hardware Logic</a>
+    <a href="../hardware-logic/" class="dropdown-item">Hardware Logic</a>
 </li>
                                     
 <li>
-    <a href="../../deep-dive/board-package/" class="dropdown-item">New Board Support</a>
+    <a href="../board-package/" class="dropdown-item">New Board Support</a>
 </li>
                                     
 <li>
-    <a href="../../deep-dive/pr/" class="dropdown-item">Partial Reconfiguration</a>
+    <a href="./" class="dropdown-item active">Partial Reconfiguration</a>
 </li>
                                 </ul>
                             </li>
@@ -213,12 +213,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../hls_decimal_mult/" class="nav-link">
+                                <a rel="prev" href="../board-package/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../deep-dive/software-api/" class="nav-link">
+                                <a rel="next" href="../../apps_notes/setup_power_tools/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -243,25 +243,29 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#hls_udp_512" class="nav-link">hls_udp_512</a>
+            <li class="nav-item" data-level="1"><a href="#partial-reconfiguration-pr" class="nav-link">Partial Reconfiguration (PR)</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#code-location" class="nav-link">Code location:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#in-short" class="nav-link">In short:</a>
+            <li class="nav-item" data-level="2"><a href="#partial-reconfiguration-mode-introduction" class="nav-link">Partial Reconfiguration Mode Introduction</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#prerequisites" class="nav-link">Prerequisites:</a>
+            <li class="nav-item" data-level="2"><a href="#design-changes" class="nav-link">Design changes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#loopback-modes" class="nav-link">Loopback modes</a>
+            <li class="nav-item" data-level="2"><a href="#building-the-base-image" class="nav-link">Building the base image</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#some-details" class="nav-link">Some Details</a>
+            <li class="nav-item" data-level="2"><a href="#building-the-action-image" class="nav-link">Building the action image</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#pr-code" class="nav-link">PR code</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#cleaning-processes" class="nav-link">Cleaning Processes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -272,60 +276,69 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="hls_udp_512">hls_udp_512</h1>
-<p><img alt="oc-accel-bar" src="../../pictures/oc-accel-bar.png" /></p>
-<h2 id="code-location">Code location:</h2>
-<p>Code can be found at:<a href="https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_udp_512/">https://github.com/OpenCAPI/oc-accel/blob/master/actions/hls_udp_512/</a> </p>
-<h2 id="in-short">In short:</h2>
-<p>This example:</p>
+<h1 id="partial-reconfiguration-pr">Partial Reconfiguration (PR)</h1>
+<h2 id="partial-reconfiguration-mode-introduction">Partial Reconfiguration Mode Introduction</h2>
+<p>The Partial Reconfiguration (PR) mode allows a user to reconfigure/reprogram the whole FPGA while keeping all the OpenCAPI link logic alive. Therefore the <strong>OC link is not stopped</strong> anymore.</p>
+<p>This is typically used in a cloud specific configuration. A stable fixed base/reference design is programmed in the Flash and a temporary user image programmed in the FPGA at user request.</p>
+<p>The reboot of the server or the reload of the FPGA from the Flash will reprogram the base design (and default associated action) into the FPGA.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This Partial Reconfiguration mode, also called "Dynamic Function eXchange(DFX)" by Vivado tools is enabled and tested, as of today, only for AD9H3, AD9H335 and AD9H7 cards</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The simulation is not affected by this mode.</p>
+</div>
+<h2 id="design-changes">Design changes</h2>
+<p>Starting with <strong>OC-ACCEL git tag2.0</strong>, the design architecture is modified to decouple the "static" area from the "dynamic" part of the design.</p>
+<p>An "<strong>oc_action_core</strong>" level  was created containing all the user design code which will be dynamically reprogrammed. This will be what we call the <strong>dynamic code</strong>.</p>
+<p>The <strong>static part</strong> (sometime called base part) will contain the logic needed for the OpenCAPI link and everything else except the oc_action_core module. </p>
+<p>The <strong>dynamic part</strong> will contain the oc_action_core module and all design specific resources, like AXI clock converter, AXI dwidth converter but also FPGA (internal or external) resources as HBM IP or other IP like EMAC IPs,....</p>
+<p><img alt="" src="../pictures/hw-clock-domain.svg" />Figure 1: New Block Diagram including PR</p>
+<h2 id="building-the-base-image">Building the base image</h2>
+<p>The base image is built using the <code>make cloud_base</code> command. A random 3 hex digits <strong>PR_code</strong> is added into the internal global basic register (PRC) when building the static part. This hereby ensures each dynamic placement of the code is coherent with its associated static mode (eg: <strong>PR06f</strong>).</p>
+<p>The design is placed and routed in a constrained area so that we can efficiently and physically separate the 2 parts of the design.</p>
+<p>As an example with an hls_helloworld action using an AD9H3 card, the images files generated in <code>~oc-accel/hardware/build/Images</code> will be:</p>
 <ul>
-<li>provides a simple base to send and receive data to/from UDP frames</li>
-<li>allows to use a CMAC providing high speed data transfer capability.</li>
+<li><code>oc_2021_0924_1714_PR06f_25G_hls_helloworld_1024_OC-AD9H3_21.bit</code>     =&gt; used for jtag programming</li>
+<li><code>oc_2021_0924_1714_PR06f_25G_hls_helloworld_1024_OC-AD9H3_21_primary.bin</code> =&gt; used with <code>oc-flash-script</code> to program the Flash with a reference image (this image will be persistent)</li>
+<li><code>oc_2021_0924_1714_PR06f_25G_hls_helloworld_1024_OC-AD9H3_21_secondary.bin</code></li>
+<li><code>oc_2021_0924_1714_PR06f_25G_hls_helloworld_1024_OC-AD9H3_21_partial.bin</code> =&gt; used with <code>oc-flash-script</code> to program the FPGA with the dynamic design (this image will be kept in the FPGA as long as card is not powered off or reloaded)</li>
 </ul>
-<p>The data inserted in the UDP frame are concatenated in <em>make_packet</em> function of <em>hw/hls_udp.cpp</em> file.</p>
-<p>Internally generated sample packets are then sent through an AXI stream to the ethernet CMAC layer. </p>
-<p>The data extracted are processed and verified in <em>read_eth_packet</em> function of <em>hw/eth_decode.cpp</em> file.</p>
-<p>The test <em>test/hw_test.sh</em> expects packets to be internally or externally "loopback" returned to compare them and thus checks the complete CMAC path.</p>
-<p>This code is a simplified version of the hls_rx_100G function designed by Paul Sherrer Institute</p>
-<p>It can be checked in /action.Kconfig file that the ACTION_HALF_WIDTH bloc is used for this example, so the interface uses the OpenCAPI 512 bit bus.</p>
-<h2 id="prerequisites">Prerequisites:</h2>
-<p>As CMAC IP is under licence, make sure your license file is up-to-date.</p>
-<h2 id="loopback-modes">Loopback modes</h2>
-<p>For debug purpose, an internal loopback can be selected, avoiding to use the CMAC layer, thus reducing synthesis and/or routing time.</p>
-<p><img alt="" src="../../pictures/eth_loopback_modes.png" /></p>
-<p><center>fig 1 : loopback settings</center></p>
+<p>A <code>xxx_static_routed.dcp</code> file, required for building the dynamic part, is generated in the <code>BASE_DCP</code> directory defined in snap_env.sh file will be named:</p>
+<ul>
+<li><code>oc_AD9H3_PR06f_static_routed</code>    =&gt; this file will be used to build the dynamic partial image (it is independent from the action used since it contains only the static placed and routed code)</li>
+</ul>
+<h2 id="building-the-action-image">Building the action image</h2>
+<p>The action image is built using the <code>make cloud_action</code> command. The only requirement is to have the <code>xxx_static_routed.dcp</code> file generated for the card and available in the <code>BASE_DCP</code> directory defined in <code>snap_env.sh</code> file. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In simulation the CMAC bloc is always in loopback mode when selected.</p>
+<p>If there are several dcp files for a card, the system will use the most recent.</p>
 </div>
-<h2 id="some-details">Some Details</h2>
+<p>User can generate as many action images he wants for a same or different dynamic code
+The images files generated in ~oc-accel/hardware/build/Images will be for example with a hls_hbm_memcopy action for a AD9H3 card:</p>
+<ul>
+<li>`oc_2021_0924_1504_PR06f_25G_hls_hbm_memcopy_1024_HBM_OC-AD9H3_21_partial.bin``   =&gt; used for oc-flash-script programming of the dynamic design</li>
+</ul>
+<h3 id="programming-the-static-base-image-in-flash">Programming the static-base image in flash</h3>
+<p>As for any design, check <a href="../../user-guide/8-deploy/">User Guide Deploy step</a>.</p>
+<p>The base primary/secondary images files will be used with the <code>oc-flash-script</code> program to program the Flash (persistent images)</p>
+<h3 id="programming-the-dynamic-action-image-directly-in-the-fpga">Programming the dynamic-action image directly in the FPGA</h3>
+<p>To reprogram dynamically the FPGA with the action image, use the <code>oc-flash-script</code> with the partial.bin image as unique argument. The dynamic part of the FPGA code will be reprogrammed while the static part will be kept alive and unchanged.</p>
+<p>To reload the reference/base image, just do a oc-reload and the code from the Flash will be immediately reloaded in the FPGA</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Only one CMAC bloc is available and only in OC-AD9H3 card at the time of writing.</p>
+<p>Remember that the reference/base image is programmed in the Flash and loaded in the FPGA by a reload or a card reboot, while a dynamic image is programmed in the FPGA meaning that a load or a card reboot will reload the reference image.</p>
 </div>
-<p>The main application software will tune the number of packets to read, the MAC Address and the IP of the FPGA.
-All these exchanged data are contained in a structure defined in https://github.com/OpenCAPI/oc-accel/tree/master/actions/hls_udp_512/include/action_udp.H and shared with the hardware.</p>
-<p>In return hardware will provide simple statistics.</p>
-<pre><code>/* Data structure used to exchange information between action and application */
-/* Size limit is 108 Bytes */
-typedef struct rx100G_job {
-    struct snap_addr out_frame_buffer;
-    uint64_t packets_to_read;
-    uint64_t read_size;
-    uint64_t bad_packets;
-    uint64_t ignored_packets;
-    uint64_t good_packets;
-    uint64_t fpga_mac_addr;
-    uint32_t fpga_ipv4_addr;
-    uint32_t user;
-    uint32_t mode;  
-    uint32_t dummy;    // to align with 8 bytes
-} rx100G_job_t;
-</code></pre>
-
-<p>The hardware is defined using a C description in </p>
-<p>https://github.com/OpenCAPI/oc-accel/tree/emac_2020_1/actions/hls_udp_512/hw</p>
-<p>The example uses streams to output (input) hardware built packets into (from) CMAC.</p></div>
+<h2 id="pr-code">PR code</h2>
+<p>You'll notice that the 3 hex digits randomly generated PR code from the base image is used in all file names to quicker refer to the right static part. </p>
+<p>A hardware control is performed by the oc-flash-script programmer to prevent from programming a dynamic image not coherent with its corresponding static/base/reference image.</p>
+<h2 id="cleaning-processes">Cleaning Processes</h2>
+<h3 id="clean-base_dcp-dir">Clean BASE_DCP dir</h3>
+<p>A <code>make clean_cloud</code> will only clean the BASE_DCP directory defined in <code>snap_env.sh</code> file </p>
+<h3 id="clean-while-keeping-static-dcp">Clean while keeping static dcp</h3>
+<p>When we want to build action after a base, we need to keep the dcp as a start base for future actions.</p>
+<p>Then we will use a <code>make clean</code> to clean all directories except the <code>BASE_DCP</code> directory containing the required <code>xxx_static_routed.dcp</code> </p></div>
             </div>
         </div>
 

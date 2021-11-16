@@ -164,6 +164,10 @@
 <li>
     <a href="../../deep-dive/board-package/" class="dropdown-item">New Board Support</a>
 </li>
+                                    
+<li>
+    <a href="../../deep-dive/pr/" class="dropdown-item">Partial Reconfiguration</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -276,6 +280,19 @@
 <pre><code>./ocaccel_workflow.py --no_make_model --no_run_sim --make_image
 </code></pre>
 
+<p>PR case (check <a href="../../deep-dive/PR"> PR&quot; section​&quot;</a> for more details):</p>
+<ul>
+<li>if you just want to start building a reference image (including a reference base as well as a default action), please run with the following commands:</li>
+</ul>
+<p><code>./ocaccel_workflow.py --make_cloud_base</code></p>
+<p>if you just want to start building a reference image (including a reference base as well as a default action), please run with the following commands:</p>
+<ul>
+<li><code>./ocaccel_workflow.py --make_cloud_action</code></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure to maintain coherency between actions and associated base (keep the same PR_code by keeping the base files present when preparing actions)</p>
+</div>
 <h1 id="check-the-result-of-fpga-bitstream">Check the Result of FPGA Bitstream</h1>
 <h2 id="basic-result">Basic Result</h2>
 <p>The basic concepts and flows of building FPGA bitstream, including synthesis, place, route and optimization, can be found in Xilinx official documentation <a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2016_1/ug904-vivado-implementation.pdf">ug904</a>.</p>

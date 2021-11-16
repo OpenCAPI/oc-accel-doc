@@ -164,6 +164,10 @@
 <li>
     <a href="../board-package/" class="dropdown-item">New Board Support</a>
 </li>
+                                    
+<li>
+    <a href="../pr/" class="dropdown-item">Partial Reconfiguration</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -267,6 +271,7 @@
 <ul>
 <li><strong>oc_bsp_wrap</strong> and <strong>oc_cfg</strong> come from oc-bip ( <a href="https://github.com/OpenCAPI/OpenCAPI3.0_Client_RefDesign">OpenCAPI3.0 Device Reference design</a> )</li>
 <li><strong>oc_function</strong> comes from OC-Accel <code>hardware/hdl/core</code>.</li>
+<li>oc_action can be issued either from a regular or from a "Partial Reconfiguration (PR)" process. In the latter only this region is build and attached to a previously built base. A PR_code ensures they are compatible.</li>
 </ul>
 <p>oc_bsp_wrap has DLX, PHY, TLX, VPD (Virtual Product Data) and flash_sub_system. oc_cfg handles the registers defined in OpenCAPI CFG specification. </p>
 <p>Under oc_function, <strong>framework_afu</strong> can be replaced by other reference AFUs like AFP3 or MCP3 in <a href="https://github.com/OpenCAPI/OpenCAPI3.0_Client_RefDesign">OpenCAPI3.0 Device Reference design</a>. framework_afu contains its cfg_descriptor to describe the basic settings for this AFU. </p>
@@ -279,6 +284,7 @@
 </ul>
 <p>The blocks with transitional color means it has the clock converter logic or asynchronous clock interfaces. </p>
 <p>A partial reconfiguration region is defined as shown in the dotted box. This area is dynamic area that allows user to change their functional logic and all of the other regions are static in PR (Partial Reconfiguration) Flow.</p>
+<p>Click <a href="../pr/">here</a> to get PR details.</p>
 <h2 id="axi4-feature-list">AXI4 feature list</h2>
 <p>Here lists the AXI4 feature list of oc_snap_core: </p>
 <h3 id="axi-lite-m">AXI Lite-M</h3>
