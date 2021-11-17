@@ -24,7 +24,7 @@ If you just want to start building the bitstream without running simulation, ple
 
 
 ```
-./ocaccel_workflow.py --make_cloud_base
+./ocaccel_workflow.py --no_run_sim --image_mode=cloud_base
 ```
 
 
@@ -32,7 +32,7 @@ If you just want to start building the bitstream without running simulation, ple
 - if you just want to start building an action image, please run with the following commands:
 
 ```
-./ocaccel_workflow.py --make_cloud_action
+./ocaccel_workflow.py --no_run_sim --image_mode=cloud_action
 ```
 
 !!! note
