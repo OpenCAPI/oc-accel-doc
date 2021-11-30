@@ -6,6 +6,10 @@
 
 A very simple Verilog written example to interface with AXI-lite slave and AXI-master and measure the bandwidth and latency.
 
+## Code location:
+
+Code can be found at:[https://github.com/OpenCAPI/oc-accel/blob/master/actions/hdl_single_engine/](https://github.com/OpenCAPI/oc-accel/blob/master/actions/hdl_single_engine/) 
+
 ## Latency Evaluation
 
 Single Engine test offers a simple way to evaluate latency.
