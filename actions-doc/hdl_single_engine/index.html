@@ -245,6 +245,18 @@
             
             <li class="nav-item" data-level="1"><a href="#hdl_single_engine" class="nav-link">hdl_single_engine</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#latency-evaluation" class="nav-link">Latency Evaluation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bandwidth-evaluation" class="nav-link">Bandwidth Evaluation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#command-arguments-details" class="nav-link">Command arguments details :</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -253,7 +265,66 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="hdl_single_engine">hdl_single_engine</h1>
-<p>A very simple example to interface with AXI-lite slave and AXI-master and measure the bandwidth and latency.</p></div>
+<p>A very simple Verilog written example to interface with AXI-lite slave and AXI-master and measure the bandwidth and latency.</p>
+<h2 id="latency-evaluation">Latency Evaluation</h2>
+<p>Single Engine test offers a simple way to evaluate latency.</p>
+<p>The goal is that the FPGA generates a sequence of Bytes reads or writes from/into server memory.</p>
+<p>The routine launches a counter whose initial and end values can be read afterwards in dedicated registers.</p>
+<p>Each counter increment represents 5ns.</p>
+<p>A file is automatically written to store the initial and end values.</p>
+<p>The difference represents a complete multiple words operation, so a short calculation is required to obtain the minimum time required to read/write 1 single Byte.</p>
+<p>Here are examples of commands to evaluate latency on a OC-AD9H3 card in an IBM IC922 server:</p>
+<h4 id="read-of-4096b-at-default-memory-location-provided-by-the-server">Read of 4096B at default memory location provided by the server:</h4>
+<pre><code>cd oc-accel/action/hdl_single_engine/sw
+# make sure make apps has been run from your oc-accel directory
+./hdl_single_engine -c 100 -w 0x00000601 -n1 -N0 -p 0x00001F07  -t 100000 -C5
+cat file_rd_cycle
+    arid,           rd_cmd,      rid,          rd_resp
+       0,                3,        0,              131
+</code></pre>
+
+<p><strong>Minimum latency  in this configuration is thus 485ns</strong></p>
+<p><img alt="Read_latency_measurement" src="../hdl_single_engine.assets/Read_latency_measurement.png" /></p>
+<h4 id="write-of-4096b-to-default-memory-location-provided-by-the-server">Write of 4096B to default memory location provided by the server:</h4>
+<pre><code>cd oc-accel/action/hdl_single_engine/sw
+# make sure make apps has been run from your oc-accel directory
+./hdl_single_engine -c 100 -w 0x00000601 -n 0 -N1 -p 0x00001F07  -t 100000 -C5
+cat file_wr_cycle
+ -- Counter values for different signals --
+    awid,           wr_cmd,      bid,          wr_resp
+       0,                3,        0,              143
+</code></pre>
+
+<p><strong>Minimum latency in this configuration is thus 545ns</strong></p>
+<p><img alt="Write_latency_measurement" src="../hdl_single_engine.assets/Write_latency_measurement.png" /></p>
+<h2 id="bandwidth-evaluation">Bandwidth Evaluation</h2>
+<p>Using following test commands allow to get a summary of R/W measured bandwidth:</p>
+<pre><code>cd oc-accel/action/hdl_single_engine/sw
+# make sure make apps has been run from your oc-accel directory
+./hdl_single_engine/sw/hdl_single_engine -c 50 -w 0x00000600 -n10000 -N0 -p 0x00001F07  -t 10000 -C5 -vv
+Read average bandwidth (Host-&gt;FPGA): 40960000 bytes in 2020 usec ( 20274.421 MB/s )
+Read bandwidth min, max and variance: 40960000 bytes in 2020 usec ( 20257.171 MB/s, 20307.387 MB/s, 72.731 )
+</code></pre>
+
+<p>We can check the read bandwidth is around <strong>20GB/sec</strong> with a OC-AD9H3 installed in a IBM IC922 server.</p>
+<pre><code>cd oc-accel/action/hdl_single_engine/sw
+# make sure make apps has been run from your oc-accel directory
+./hdl_single_engine/sw/hdl_single_engine -c 50 -w 0x00000600 -N10000 -n0 -p 0x00001F07 -t 10000 -C5 -vv
+Write average bandwidth (FPGA-&gt;Host): 40960000 bytes in 1894 usec ( 21611.797 MB/s )
+Write bandwidth min, max and variance: 40960000 bytes in 1894 usec ( 20940.695 MB/s, 21671.958 MB/s, 9266.666 )
+</code></pre>
+
+<p>We can check the write bandwidth is around <strong>21GB/sec</strong> with a OC-AD9H3 installed in a IBM IC922 server.</p>
+<h2 id="command-arguments-details">Command arguments details :</h2>
+<ul>
+<li><code>-c 100</code> : perform 100 tests. eg to initiate the path and get an average latency</li>
+<li><code>-w 0x00000601</code> : setp the configuration to read 4096</li>
+<li><code>-n1</code> : n read operations requested (1 here)</li>
+<li><code>-N0</code> : N write operations requested (0 here)</li>
+<li><code>-p 0x00001F07</code> : p stands for "pattern", can be anything.</li>
+<li><code>-t 100000</code> : t stands for "time out" in seconds</li>
+<li><code>-C5</code> : C stands for "Card", here we choose the card number 5 in the server</li>
+</ul></div>
             </div>
         </div>
 
