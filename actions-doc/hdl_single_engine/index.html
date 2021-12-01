@@ -296,7 +296,7 @@ cat file_rd_cycle
 </code></pre>
 
 <p>131-3   * 5 ns = 640ns for the total 32 words read time.</p>
-<p>we then substract 31 * 5 ns = 155ns to obtain 485ns read time for the first word. </p>
+<p>We then substract 31 * 5 ns = 155ns to obtain 485ns read time for the first word. </p>
 <p><strong>Minimum latency  in this configuration is thus 640ns for 4kB read and 485ns for the first 128B word read.</strong></p>
 <p>Associated read simulation chronogram:</p>
 <p><img alt="Read_latency_measurement" src="../hdl_single_engine.assets/Read_latency_measurement.png" /></p>
@@ -311,7 +311,7 @@ cat file_wr_cycle
 </code></pre>
 
 <p>140 * 5 ns = 700ns for the total 32 words write time.</p>
-<p>we then substract 31 * 5 ns = 155ns to obtain 545ns read time for the first word. </p>
+<p>We then substract 31 * 5 ns = 155ns to obtain 545ns read time for the first word. </p>
 <p><strong>Minimum latency in this configuration is thus 700ns for 4kB written and 545ns for the first 128B word written.</strong></p>
 <p>Associated read simulation chronogram:</p>
 <p><img alt="Write_latency_measurement" src="../hdl_single_engine.assets/Write_latency_measurement.png" /></p>
