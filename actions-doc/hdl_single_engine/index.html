@@ -253,14 +253,35 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#bandwidth-evaluation" class="nav-link">Bandwidth Evaluation</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#make-sure-make-apps-has-been-run-from-your-oc-accel-directory" class="nav-link">make sure make apps has been run from your oc-accel directory</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="1"><a href="#make-sure-make-apps-has-been-run-from-your-oc-accel-directory_1" class="nav-link">make sure make apps has been run from your oc-accel directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#make-sure-make-apps-has-been-run-from-your-oc-accel-directory_2" class="nav-link">make sure make apps has been run from your oc-accel directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#make-sure-make-apps-has-been-run-from-your-oc-accel-directory_3" class="nav-link">make sure make apps has been run from your oc-accel directory</a>
+              <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#command-arguments-details" class="nav-link">Command arguments details :</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#conclusion" class="nav-link">Conclusion</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -274,52 +295,84 @@
 <p>Code can be found at:<a href="https://github.com/OpenCAPI/oc-accel/blob/master/actions/hdl_single_engine/">https://github.com/OpenCAPI/oc-accel/blob/master/actions/hdl_single_engine/</a> </p>
 <h2 id="latency-evaluation">Latency Evaluation</h2>
 <p>Single Engine test offers a simple way to evaluate latency.</p>
-<p>The goal is that the FPGA generates a sequence of Bytes reads or writes from/into server memory.</p>
+<p><strong>Simulation</strong> can be used to better understand the evaluation mechanism, as <a href="./../../user-guide/6-co-simulation/">OCSE</a> can emulate the server behavior.</p>
+<p>The FPGA generates a sequence of 128Bytes words read or write operations from/into the server memory.</p>
 <p>The routine launches a counter whose initial and end values can be read afterwards in dedicated registers.</p>
 <p>Each counter increment represents 5ns.</p>
-<p>A file is automatically written to store the initial and end values.</p>
-<p>The difference represents a complete multiple words operation, so a short calculation is required to obtain the minimum time required to read/write 1 single Byte.</p>
-<p>Here are examples of commands to evaluate latency on a OC-AD9H3 card in an IBM IC922 server:</p>
+<p>A file is automatically written by the test sotfware to store the initial and end values.</p>
+<p>The difference represents a complete multiple words operation, so a short calculation is required to obtain the minimum time required to read/write 1 single word.</p>
+<p>Here are examples of commands and associated simulations to evaluate latency on a OC-AD9H3 card in an IBM IC922 server and associated simulations:</p>
 <h4 id="read-of-4096b-at-default-memory-location-provided-by-the-server">Read of 4096B at default memory location provided by the server:</h4>
-<pre><code>cd oc-accel/action/hdl_single_engine/sw
-# make sure make apps has been run from your oc-accel directory
-./hdl_single_engine -c 100 -w 0x00000601 -n1 -N0 -p 0x00001F07  -t 100000 -C5
+<p>```(
+cd oc-accel/action/hdl_single_engine/sw</p>
+<h1 id="make-sure-make-apps-has-been-run-from-your-oc-accel-directory">make sure make apps has been run from your oc-accel directory</h1>
+<p>./hdl_single_engine -c 100 -w 0x00000601 -n1 -N0 -p 0x00001F07  -t 100000 -C5
 cat file_rd_cycle
     arid,           rd_cmd,      rid,          rd_resp
-       0,                3,        0,              131
+       0,                3,        0,              131</p>
+<pre><code>
+(131-3) * 5 ns = 640ns for the total 32 words read time.
+
+we then substract 31 * 5 ns = 155ns to obtain 485ns read time for the first word. 
+
+**Minimum latency  in this configuration is thus 640ns for 4kB read and 485ns for the first 128B word read.**
+
+
+
+Associated read simulation chronogram:
+
+![Read_latency_measurement](./hdl_single_engine.assets/Read_latency_measurement.png)
+
+
+
+#### Write of 4096B to default memory location provided by the server:
+
 </code></pre>
 
-<p><strong>Minimum latency  in this configuration is thus 485ns</strong></p>
-<p><img alt="Read_latency_measurement" src="../hdl_single_engine.assets/Read_latency_measurement.png" /></p>
-<h4 id="write-of-4096b-to-default-memory-location-provided-by-the-server">Write of 4096B to default memory location provided by the server:</h4>
-<pre><code>cd oc-accel/action/hdl_single_engine/sw
-# make sure make apps has been run from your oc-accel directory
-./hdl_single_engine -c 100 -w 0x00000601 -n 0 -N1 -p 0x00001F07  -t 100000 -C5
+<p>cd oc-accel/action/hdl_single_engine/sw</p>
+<h1 id="make-sure-make-apps-has-been-run-from-your-oc-accel-directory_1">make sure make apps has been run from your oc-accel directory</h1>
+<p>./hdl_single_engine -c 100 -w 0x00000601 -n 0 -N1 -p 0x00001F07  -t 100000 -C5
 cat file_wr_cycle
  -- Counter values for different signals --
     awid,           wr_cmd,      bid,          wr_resp
-       0,                3,        0,              143
+       0,                3,        0,              143</p>
+<pre><code>
+(140) * 5 ns = 700ns for the total 32 words write time.
+
+we then substract 31 * 5 ns = 155ns to obtain 545ns read time for the first word. 
+
+**Minimum latency in this configuration is thus 700ns for 4kB written and 545ns for the first 128B word written.**
+
+
+
+Associated read simulation chronogram:
+
+![Write_latency_measurement](./hdl_single_engine.assets/Write_latency_measurement.png)
+
+
+
+## Bandwidth Evaluation
+
+Using following test commands allow to get a summary of R/W measured bandwidth:
+
 </code></pre>
 
-<p><strong>Minimum latency in this configuration is thus 545ns</strong></p>
-<p><img alt="Write_latency_measurement" src="../hdl_single_engine.assets/Write_latency_measurement.png" /></p>
-<h2 id="bandwidth-evaluation">Bandwidth Evaluation</h2>
-<p>Using following test commands allow to get a summary of R/W measured bandwidth:</p>
-<pre><code>cd oc-accel/action/hdl_single_engine/sw
-# make sure make apps has been run from your oc-accel directory
-./hdl_single_engine/sw/hdl_single_engine -c 50 -w 0x00000600 -n10000 -N0 -p 0x00001F07  -t 10000 -C5 -vv
+<p>cd oc-accel/action/hdl_single_engine/sw</p>
+<h1 id="make-sure-make-apps-has-been-run-from-your-oc-accel-directory_2">make sure make apps has been run from your oc-accel directory</h1>
+<p>./hdl_single_engine/sw/hdl_single_engine -c 50 -w 0x00000600 -n10000 -N0 -p 0x00001F07  -t 10000 -C5 -vv
 Read average bandwidth (Host-&gt;FPGA): 40960000 bytes in 2020 usec ( 20274.421 MB/s )
-Read bandwidth min, max and variance: 40960000 bytes in 2020 usec ( 20257.171 MB/s, 20307.387 MB/s, 72.731 )
+Read bandwidth min, max and variance: 40960000 bytes in 2020 usec ( 20257.171 MB/s, 20307.387 MB/s, 72.731 )</p>
+<pre><code>
+We can check the read bandwidth is around **20GB/sec** with a OC-AD9H3 installed in a IBM IC922 server.
+
 </code></pre>
 
-<p>We can check the read bandwidth is around <strong>20GB/sec</strong> with a OC-AD9H3 installed in a IBM IC922 server.</p>
-<pre><code>cd oc-accel/action/hdl_single_engine/sw
-# make sure make apps has been run from your oc-accel directory
-./hdl_single_engine/sw/hdl_single_engine -c 50 -w 0x00000600 -N10000 -n0 -p 0x00001F07 -t 10000 -C5 -vv
+<p>cd oc-accel/action/hdl_single_engine/sw</p>
+<h1 id="make-sure-make-apps-has-been-run-from-your-oc-accel-directory_3">make sure make apps has been run from your oc-accel directory</h1>
+<p>./hdl_single_engine/sw/hdl_single_engine -c 50 -w 0x00000600 -N10000 -n0 -p 0x00001F07 -t 10000 -C5 -vv
 Write average bandwidth (FPGA-&gt;Host): 40960000 bytes in 1894 usec ( 21611.797 MB/s )
 Write bandwidth min, max and variance: 40960000 bytes in 1894 usec ( 20940.695 MB/s, 21671.958 MB/s, 9266.666 )
-</code></pre>
-
+```</p>
 <p>We can check the write bandwidth is around <strong>21GB/sec</strong> with a OC-AD9H3 installed in a IBM IC922 server.</p>
 <h2 id="command-arguments-details">Command arguments details :</h2>
 <ul>
@@ -330,7 +383,10 @@ Write bandwidth min, max and variance: 40960000 bytes in 1894 usec ( 20940.695 M
 <li><code>-p 0x00001F07</code> : p stands for "pattern", can be anything.</li>
 <li><code>-t 100000</code> : t stands for "time out" in seconds</li>
 <li><code>-C5</code> : C stands for "Card", here we choose the card number 5 in the server</li>
-</ul></div>
+</ul>
+<h1 id="conclusion">Conclusion</h1>
+<p>Once again, we can easily used simulation to evaluate future performance of CAPI/OPENCAPI hardware, and a simple example provided allow any user to double check the results.</p>
+<p><strong>Such latency and bandwidth results obtained without software driver are unique at the time of writing.</strong></p></div>
             </div>
         </div>
 
