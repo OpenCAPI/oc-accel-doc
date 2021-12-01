@@ -316,27 +316,27 @@ cat file_wr_cycle
 <p>Associated read simulation chronogram:</p>
 <p><img alt="Write_latency_measurement" src="../hdl_single_engine.assets/Write_latency_measurement.png" /></p>
 <h2 id="bandwidth-evaluation">Bandwidth Evaluation</h2>
-<p>Using following test commands allow to get a summary of R/W measured bandwidth:</p>
-<p>Make sure make apps has been run from your oc-accel directory</p>
+<p>Using following test commands allow to get a summary of R/W measured bandwidths of a OC-AD9H3 card installed in a IBM IC922 server:</p>
+<p>Make sure <code>make apps</code> has been run from your oc-accel directory</p>
 <pre><code>cd oc-accel/action/hdl_single_engine/sw
 ./hdl_single_engine -c 50 -w 0x00000601 -n100000 -N0 -p 0x00001F07  -t 10000 -C5 -v
 Read average bandwidth (Host-&gt;FPGA): 409600000 bytes in 20172 usec ( 20306.844 MB/s )
 Read bandwidth min, max and variance: 409600000 bytes in 20172 usec ( 20303.361 MB/s, 20313.430 MB/s, 3.131 )
 </code></pre>
 
-<p>Above we can check the read only bandwidth is around <strong>20GB/sec</strong> with a OC-AD9H3 installed in a IBM IC922 server.</p>
+<p>Above we can check the read only bandwidth is around <strong>20GB/sec</strong>.</p>
 <pre><code>./hdl_single_engine/sw/hdl_single_engine -c 50 -w 0x00000601 -N10000 -n0 -p 0x00001F07 -t 10000 -C5 -vv
 Write average bandwidth (FPGA-&gt;Host): 40960000 bytes in 1894 usec ( 21611.797 MB/s )
 Write bandwidth min, max and variance: 40960000 bytes in 1894 usec ( 20940.695 MB/s, 21671.958 MB/s, 9266.666 )
 </code></pre>
 
-<p>Above we can check the write only bandwidth is around <strong>21GB/sec</strong> with a OC-AD9H3 installed in a IBM IC922 server.</p>
+<p>Above we can check the write only bandwidth is around <strong>21GB/sec</strong>.</p>
 <pre><code>./hdl_single_engine -c 50 -w 0x00000601 -n100000 -N100000 -p 0x00001F07  -t 10000 -C5 -v
 Duplex average bandwidth: 409600000 bytes in 22281 usec ( 18415.290 MB/s )
 Duplex bandwidth min, max and variance: 409600000 bytes in 22281 usec ( 18383.376 MB/s, 18710.886 MB/s, 2986.513 )
 </code></pre>
 
-<p>Above we can check the duplex read and write bandwidth is around <strong>18GB/sec</strong> with a OC-AD9H3 installed in a IBM IC922 server.</p>
+<p>Above we can check the duplex read and write bandwidth is around <strong>18GB/sec</strong>.</p>
 <h2 id="command-arguments-details">Command arguments details :</h2>
 <ul>
 <li><code>-c 100</code> : perform 100 tests. eg to initiate the path and get an average latency</li>
