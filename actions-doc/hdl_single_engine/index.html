@@ -327,7 +327,7 @@ Read bandwidth min, max and variance: 40960000 bytes in 2020 usec ( 20257.171 MB
 <p>We can check the read bandwidth is around <strong>20GB/sec</strong> with a OC-AD9H3 installed in a IBM IC922 server.</p>
 <pre><code>cd oc-accel/action/hdl_single_engine/sw
 # make sure make apps has been run from your oc-accel directory
-./hdl_single_engine/sw/hdl_single_engine -c 50 -w 0x00000600 -N10000 -n0 -p 0x00001F07 -t 10000 -C5 -vv
+./hdl_single_engine/sw/hdl_single_engine -c 50 -w 0x00000601 -N10000 -n0 -p 0x00001F07 -t 10000 -C5 -vv
 Write average bandwidth (FPGA-&gt;Host): 40960000 bytes in 1894 usec ( 21611.797 MB/s )
 Write bandwidth min, max and variance: 40960000 bytes in 1894 usec ( 20940.695 MB/s, 21671.958 MB/s, 9266.666 )
 </code></pre>
