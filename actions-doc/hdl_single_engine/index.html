@@ -311,7 +311,7 @@ cat file_rd_cycle
     arid,           rd_cmd,      rid,          rd_resp
        0,                3,        0,              131</p>
 <pre><code>
-(131-3) * 5 ns = 640ns for the total 32 words read time.
+131-3   * 5 ns = 640ns for the total 32 words read time.
 
 we then substract 31 * 5 ns = 155ns to obtain 485ns read time for the first word. 
 
@@ -337,7 +337,7 @@ cat file_wr_cycle
     awid,           wr_cmd,      bid,          wr_resp
        0,                3,        0,              143</p>
 <pre><code>
-(140) * 5 ns = 700ns for the total 32 words write time.
+140 * 5 ns = 700ns for the total 32 words write time.
 
 we then substract 31 * 5 ns = 155ns to obtain 545ns read time for the first word. 
 
