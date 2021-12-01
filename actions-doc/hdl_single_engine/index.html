@@ -317,8 +317,8 @@ cat file_wr_cycle
 <p><img alt="Write_latency_measurement" src="../hdl_single_engine.assets/Write_latency_measurement.png" /></p>
 <h2 id="bandwidth-evaluation">Bandwidth Evaluation</h2>
 <p>Using following test commands allow to get a summary of R/W measured bandwidth:</p>
+<p>Make sure make apps has been run from your oc-accel directory</p>
 <pre><code>cd oc-accel/action/hdl_single_engine/sw
-# make sure make apps has been run from your oc-accel directory
 ./hdl_single_engine/sw/hdl_single_engine -c 50 -w 0x00000600 -n10000 -N0 -p 0x00001F07  -t 10000 -C5 -vv
 Read average bandwidth (Host-&gt;FPGA): 40960000 bytes in 2020 usec ( 20274.421 MB/s )
 Read bandwidth min, max and variance: 40960000 bytes in 2020 usec ( 20257.171 MB/s, 20307.387 MB/s, 72.731 )
@@ -326,7 +326,6 @@ Read bandwidth min, max and variance: 40960000 bytes in 2020 usec ( 20257.171 MB
 
 <p>We can check the read bandwidth is around <strong>20GB/sec</strong> with a OC-AD9H3 installed in a IBM IC922 server.</p>
 <pre><code>cd oc-accel/action/hdl_single_engine/sw
-# make sure make apps has been run from your oc-accel directory
 ./hdl_single_engine/sw/hdl_single_engine -c 50 -w 0x00000601 -N10000 -n0 -p 0x00001F07 -t 10000 -C5 -vv
 Write average bandwidth (FPGA-&gt;Host): 40960000 bytes in 1894 usec ( 21611.797 MB/s )
 Write bandwidth min, max and variance: 40960000 bytes in 1894 usec ( 20940.695 MB/s, 21671.958 MB/s, 9266.666 )
@@ -344,7 +343,7 @@ Write bandwidth min, max and variance: 40960000 bytes in 1894 usec ( 20940.695 M
 <li><code>-C5</code> : C stands for "Card", here we choose the card number 5 in the server</li>
 </ul>
 <h1 id="conclusion">Conclusion</h1>
-<p>Once again, we can easily used simulation to evaluate future performance of CAPI/OPENCAPI hardware, and a simple example provided allow any user to double check the results.</p>
+<p>Once again, we can easily use simulation to evaluate future performance of CAPI/OPENCAPI hardware, and a simple example provided allow any user to double check the results.</p>
 <p><strong>Such latency and bandwidth results obtained without software driver are unique at the time of writing.</strong></p></div>
             </div>
         </div>
