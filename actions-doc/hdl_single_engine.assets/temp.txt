@@ -1,0 +1,9 @@
+hdl_single_engine -c 50 -w 0x00000601 -n100000 -N0 -p 0x00001F07  -t 10000 -C5 -v
+Read average bandwidth (Host->FPGA): 409600000 bytes in 20172 usec ( 20306.844 MB/s )
+Read bandwidth min, max and variance: 409600000 bytes in 20172 usec ( 20303.361 MB/s, 20313.430 MB/s, 3.131 )
+11:11
+Je t'ai augmenté un peu les perfs en augmentant le nombre d'occurrences de rd/wr
+11:11
+hdl_single_engine -c 50 -w 0x00000601 -n100000 -N100000 -p 0x00001F07  -t 10000 -C5 -v
+Duplex average bandwidth: 409600000 bytes in 22281 usec ( 18415.290 MB/s )
+Duplex bandwidth min, max and variance: 409600000 bytes in 22281 usec ( 18383.376 MB/s, 18710.886 MB/s, 2986.513 )
