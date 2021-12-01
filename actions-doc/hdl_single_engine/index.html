@@ -289,7 +289,6 @@
 <h4 id="read-of-4096b-at-default-memory-location-provided-by-the-server">Read of 4096B at default memory location provided by the server:</h4>
 <p>Make sure <code>make apps</code> has been run from your oc-accel directory</p>
 <pre><code>cd oc-accel/action/hdl_single_engine/sw
-
 ./hdl_single_engine -c 100 -w 0x00000601 -n1 -N0 -p 0x00001F07  -t 100000 -C5
 cat file_rd_cycle
     arid,           rd_cmd,      rid,          rd_resp
