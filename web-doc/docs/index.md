@@ -10,7 +10,8 @@ The underlying enabling technology is OpenCAPI 3.0, the third-generation coheren
 
  All the code and related materials are contributed to Github here: <https://github.com/OpenCAPI/oc-accel>.
 
-![conceptual_system] (pictures/conceptual_system.svg)
+![](./index.assets/conceptual_system.svg)
+
 The predecessor to OC-Accel was [SNAP](https://github.com/open-power/snap) for CAPI 2.0 and CAPI 1.0.
 
 ## What is OpenCAPI
